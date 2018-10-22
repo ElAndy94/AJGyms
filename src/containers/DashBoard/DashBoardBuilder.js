@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import Aux from '../../hoc/Aux';
-import Portal from '../../components/Portal/Portal';
+import DashBoard from '../../components/DashBoard/DashBoard';
 
-class PortalBuilder extends Component {
+class DashBoardBuilder extends Component {
   state = {
 
   }
@@ -11,11 +11,11 @@ class PortalBuilder extends Component {
   render() {
     return (
       <Aux>
-        <Portal />
+        <DashBoard />
         <div>Classes</div>
       </Aux>
     );
   }
 }
 
-export default PortalBuilder;
+export default DashBoardBuilder;
