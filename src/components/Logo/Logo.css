@@ -1,0 +1,21 @@
+.Logo {
+  background-color: white;
+  padding: 8px;
+  height: 80%;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.Logo img {
+  height: 100%;
+  animation: Portal-logo-spin infinite 10s linear;
+}
+
+@keyframes Portal-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
