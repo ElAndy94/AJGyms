@@ -2,7 +2,7 @@ import React from "react";
 
 import classes from './GymTimetable.css';
 
-const gymTimetable = props => {
+const gymTimetable = (props) => {
   return (
     <div className={classes.GymTimetable}>
       <h1>Hope you enjoy these classes</h1>
