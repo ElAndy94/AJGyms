@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Layout from './components/Layout/Layout';
 import DashBoardBuilder from './containers/DashBoard/DashBoardBuilder';
+import GymClasses from './containers/GymClasses/GymClasses';
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
       <div>
         <Layout>
           <DashBoardBuilder />
+          <GymClasses />
         </Layout>
       </div>
     );
