@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import DashBoardBuilder from './containers/DashBoard/DashBoardBuilder';
@@ -9,8 +10,10 @@ class App extends Component {
     return (
       <div>
         <Layout>
-          <DashBoardBuilder />
-          <GymClasses />
+          <Switch>
+            <Route path="/classes" component={GymClasses} />
+            <Route path="/" exact component={DashBoardBuilder} />
+          </Switch>
         </Layout>
       </div>
     );
