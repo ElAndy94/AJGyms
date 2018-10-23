@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import DashBoardBuilder from './containers/DashBoard/DashBoardBuilder';
@@ -13,6 +13,7 @@ class App extends Component {
           <Switch>
             <Route path="/classes" component={GymClasses} />
             <Route path="/" exact component={DashBoardBuilder} />
+            <Redirect to="/" />
           </Switch>
         </Layout>
       </div>
