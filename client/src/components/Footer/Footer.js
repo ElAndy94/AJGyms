@@ -6,7 +6,7 @@ const footer = (props) => {
   return (
     <div className={classes.Footer}>
       <hr/>
-      <p> A & J </p>
+      <p> Footer </p>
     </div>
   );
 }
