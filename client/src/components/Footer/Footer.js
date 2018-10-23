@@ -6,25 +6,6 @@ const footer = (props) => {
   return (
     <div className={classes.Footer}>
       <hr/>
-      {/* <table style={{width: '100%', margin: 'auto'}}>
-        <tr>
-          <td>Our gyms</td>
-          <td>Get assistance</td>
-          <td>Company</td>
-          <td>T & C's</td>
-        </tr>
-        <tr>
-          <th>Equipment</th>
-          <th>Classes</th>
-          <th>Help Centre</th>
-          <th>Gym Rules</th>
-        </tr>
-        <tr>
-          <th>Terms & Conditions</th>
-          <th>About us</th>
-          <th>Careers</th>
-        </tr>
-      </table> */}
       <table style={{width: '100%'}}>
         <tbody>
         <tr>
