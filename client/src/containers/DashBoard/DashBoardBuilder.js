@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Aux from '../../hoc/ReactAux';
 import DashBoard from '../../components/DashBoard/DashBoard';
+import Footer from '../../components/Footer/Footer';
 
 class DashBoardBuilder extends Component {
   state = {
@@ -12,7 +13,7 @@ class DashBoardBuilder extends Component {
     return (
       <Aux>
         <DashBoard />
-        <div>Classes</div>
+        <Footer />
       </Aux>
     );
   }
