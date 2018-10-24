@@ -1,12 +1,12 @@
 .UserProfile {
   text-align: center;
-  width: 80%;
+  width: 90%;
   margin: auto;
 }
 
 .Wrapper {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 100%;
   grid-gap: 10px;
   background-color: #fff;
   color: #444;

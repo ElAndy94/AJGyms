@@ -1,6 +1,7 @@
 import React from "react";
 
 import classes from './UserProfile.css';
+import Button from '../UI/Button/Button';
 
 const userProfile = (props) => {
   return (
@@ -10,7 +11,7 @@ const userProfile = (props) => {
         <div className={classes.Box}>
           <div className={classes.Card}>
               <div className={classes.Container}>
-                <p>Your Package</p>
+                <p><b>Your Package</b></p>
                 <p>Manchester Market Street Gym</p>
                 <p>Extra Multi-Access</p>
               </div>
@@ -19,10 +20,11 @@ const userProfile = (props) => {
         <div className={classes.Box}>
           <div className={classes.Card}>
                 <div className={classes.Container}>
-                  <p>Your Details</p>
-                  <p>Personal Information</p>
-                  <p>Payment Information</p>
-                  <p>Cancel Your Membership</p>
+                  <p><b>Your Details</b><br/>Larry Ven Dyson</p>
+                  <p><b>Personal Information</b><br/>40 Gringo Road<br/>M1 7DZ</p>
+                  <p><b>Payment Information</b><br/>Direct Debit: Card ending 7070</p>
+                  <Button btnType="Danger">Cancel Your Membership</Button>
+                  {/* <p>Cancel Your Membership</p> */}
                 </div>
             </div>
         </div>

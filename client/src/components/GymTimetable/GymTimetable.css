@@ -1,6 +1,7 @@
 .GymTimetable {
   text-align: center;
-  width: 80%;
+  width: 50%;
+  margin: auto;
   /* margin: 1em 1em 1em 1em; */
 }
 
@@ -25,6 +26,6 @@
 
 @media (min-width: 600px) {
   .GymTimetable {
-    width: 100%;
+    width: 50%;
   }
 }

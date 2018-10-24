@@ -5,7 +5,7 @@ import classes from './GymTimetable.css';
 const gymTimetable = (props) => {
   return (
     <div className={classes.GymTimetable}>
-      <h3>Hope you enjoy these classes</h3>
+      <h3 style={{paddingBottom: '6px'}}>Hope you enjoy these classes</h3>
       <div>
         <div className={classes.Card}>
             <div className={classes.Container}>

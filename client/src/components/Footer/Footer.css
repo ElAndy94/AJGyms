@@ -11,10 +11,11 @@
 }
 
 .Footer table {
-  width: 100%;
+  width: 90%;
 }
 
 .Footer th {
+  padding-top: 10px;
   padding-bottom: 10px;
 }
 

@@ -24,6 +24,21 @@ class GymClasses extends Component {
         validation: {},
         valid: true
       },
+      trainer: {
+        elementType: 'select',
+        elementConfig: {
+          options: [
+            {value: 'JeffBren', displayValue: 'Jeff Bren'},
+            {value: 'RalfTomson', displayValue: 'Ralf Thomson'},
+            {value: 'JessicaWhite', displayValue: 'Jessica White'},
+            {value: 'BrendenFin', displayValue: 'Brenden Fin'},
+            {value: 'CharlesKip', displayValue: 'Charles Kip'},
+          ]
+        },
+        value: 'JeffBren',
+        validation: {},
+        valid: true
+      },
       classType: {
         elementType: 'select',
         elementConfig: {
@@ -63,13 +78,11 @@ class GymClasses extends Component {
     for (let formElementIdentifier in this.state.gymForm) {
       formData[formElementIdentifier] = this.state.gymForm[formElementIdentifier].value;
     }
-    // const order = {
-    //   ingredients: this.props.ings,
-    //   price: this.props.price,
-    //   orderData: formData,
-    //   userId: this.props.userId
-    // }
-    // this.props.onOrderBurger(order, this.props.token);
+    const selectedClass = {
+      classData: formData,
+      userId: this.props.userId
+    }
+    this.props.onCreateClass(selectedClass);
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -119,8 +132,8 @@ class GymClasses extends Component {
         <div className={classes.GymClasses}>
           <h3>Select, book and enjoy!</h3>
           {form}
-          <GymTimetable />
         </div>
+          <GymTimetable />
           <Footer />
       </Aux>
     )
