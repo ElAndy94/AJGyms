@@ -4,7 +4,7 @@ import Aux from '../../hoc/ReactAux';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import Footer from '../../components/Footer/Footer';
 
-class DashBoardBuilder extends Component {
+class Profile extends Component {
   state = {
 
   }
@@ -19,4 +19,4 @@ class DashBoardBuilder extends Component {
   }
 }
 
-export default DashBoardBuilder;
+export default Profile;

@@ -6,7 +6,7 @@ const footer = (props) => {
   return (
     <div className={classes.Footer}>
       <hr/>
-      <table style={{width: '100%'}}>
+      <table>
         <tbody>
         <tr>
           <th>Our Gyms</th>

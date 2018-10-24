@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import Aux from '../../hoc/ReactAux';
-import GymTimetable from '../../components/GymTimetable/GymTimetable';
+import classes from './CreateGymClass.css';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import classes from './GymClasses.css';
-import Footer from '../../components/Footer/Footer';
 import { updateObject, checkValidity } from '../../shared/utility';
 
-class GymClasses extends Component {
+class CreateGymClass extends Component {
   state = {
-    gymForm: {
+    createClassForm: {
       gymLocation: {
         elementType: 'select',
         elementConfig: {
@@ -49,7 +46,7 @@ class GymClasses extends Component {
             {value: 'Evening', displayValue: 'Evening (17:00 - 21:00)'},
           ]
         },
-        value: 'AllDay',
+        value: '09:00',
         validation: {},
         valid: true
       },
@@ -57,49 +54,47 @@ class GymClasses extends Component {
     formIsValid: false,
   }
 
-  classBookHandler = (event) => {
+  createClassHandler = (event) => {
     event.preventDefault();
     const formData = {};
-    for (let formElementIdentifier in this.state.gymForm) {
-      formData[formElementIdentifier] = this.state.gymForm[formElementIdentifier].value;
+    for (let formElementIdentifier in this.state.createClassForm) {
+      formData[formElementIdentifier] = this.state.createClassForm[formElementIdentifier].value;
     }
-    // const order = {
-    //   ingredients: this.props.ings,
-    //   price: this.props.price,
-    //   orderData: formData,
-    //   userId: this.props.userId
-    // }
-    // this.props.onOrderBurger(order, this.props.token);
+    const Createclass = {
+      classData: formData,
+      userId: this.props.userId
+    }
+    this.props.onCreateClass(Createclass);
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
-    const updatedFormElement = updateObject(this.state.gymForm[inputIdentifier], {
+    const updatedFormElement = updateObject(this.state.createClassForm[inputIdentifier], {
         value: event.target.value,
-        valid: checkValidity(event.target.value, this.state.gymForm[inputIdentifier].validation),
+        valid: checkValidity(event.target.value, this.state.createClassForm[inputIdentifier].validation),
         touched: true
     });
-    const updatedGymForm = updateObject(this.state.gymForm, {
+    const updatedCreateClassForm = updateObject(this.state.createClassForm, {
       [inputIdentifier]: updatedFormElement
     });
 
     let formIsValid = true;
-    for (let inputIdentifier in updatedGymForm) {
-      formIsValid = updatedGymForm[inputIdentifier].valid && formIsValid;
+    for (let inputIdentifier in updatedCreateClassForm) {
+      formIsValid = updatedCreateClassForm[inputIdentifier].valid && formIsValid;
     }
 
-    this.setState({gymForm: updatedGymForm, formIsValid: formIsValid});
+    this.setState({createClassForm: updatedCreateClassForm, formIsValid: formIsValid});
   }
 
   render() {
     const formElementsArray = [];
-    for (let key in this.state.gymForm) {
+    for (let key in this.state.createClassForm) {
       formElementsArray.push({
         id: key,
-        config: this.state.gymForm[key]
+        config: this.state.createClassForm[key]
       });
     }
     let form = (
-      <form onSubmit={this.classBookHandler}>
+      <form onSubmit={this.createClassHandler}>
           {formElementsArray.map(formElement => (
             <Input
                 key={formElement.id}
@@ -111,20 +106,16 @@ class GymClasses extends Component {
                 invalid={!formElement.config.valid}
                 changed={(event) => this.inputChangedHandler(event, formElement.id)} />
           ))}
-          <Button btnType="Success" disabled={!this.state.formIsValid}>Book Class</Button>
+          <Button btnType="Success" disabled={!this.state.formIsValid}>Add Class</Button>
         </form>
     );
     return (
-      <Aux>
-        <div className={classes.GymClasses}>
-          <h3>Select, book and enjoy!</h3>
-          {form}
-          <GymTimetable />
-        </div>
-          <Footer />
-      </Aux>
-    )
+      <div className={classes.CreateGymClass}>
+        <h3>Careful when creating a class!</h3>
+        {form}
+      </div>
+     );
   }
-};
+}
 
-export default GymClasses;
+export default CreateGymClass;

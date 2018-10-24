@@ -5,18 +5,26 @@ import classes from './UserProfile.css';
 const userProfile = (props) => {
   return (
     <div className={classes.UserProfile}>
-      <h1>*UserName* Profile</h1>
+      <h1>Welcome Back, Larry</h1>
     <div className={classes.Wrapper}>
         <div className={classes.Box}>
-          <p>Your Package:</p>
-          <p>Manchester Market Street Gym</p>
-          <p>Extra Multi-Access</p>
+          <div className={classes.Card}>
+              <div className={classes.Container}>
+                <p>Your Package</p>
+                <p>Manchester Market Street Gym</p>
+                <p>Extra Multi-Access</p>
+              </div>
+          </div>
         </div>
         <div className={classes.Box}>
-          <p>Your Details</p>
-          <p>Personal Information</p>
-          <p>Payment Information</p>
-          <p>Cancel Your Membership</p>
+          <div className={classes.Card}>
+                <div className={classes.Container}>
+                  <p>Your Details</p>
+                  <p>Personal Information</p>
+                  <p>Payment Information</p>
+                  <p>Cancel Your Membership</p>
+                </div>
+            </div>
         </div>
         {/* <div className={classes.Box}>C</div> */}
         {/* <div className={classes.Box}>D</div> */}
