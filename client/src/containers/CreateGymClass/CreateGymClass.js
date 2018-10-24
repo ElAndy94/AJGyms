@@ -159,7 +159,7 @@ class CreateGymClass extends Component {
     );
     return (
       <div className={classes.CreateGymClass}>
-        <h3>Careful when creating a class!</h3>
+        <h3>Larry, <br/> Make sure all fields are correct before creating a class!</h3>
         {form}
       </div>
      );

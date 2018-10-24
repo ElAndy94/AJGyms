@@ -9,9 +9,26 @@
   /* overflow: scroll; */
 }
 
+.DashBoard p {
+  font-size: 26px;
+}
+
 .DashBoard img {
   width: 10%;
   height: 10%;
+}
+
+.DashBoard Button {
+  padding-left: 10px !important;
+  font-size: 26px;
+  text-align: center;
+  background-color: #31ff18;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.DashBoard Button:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 @media (min-width: 420px) and (min-height: 400px) {
