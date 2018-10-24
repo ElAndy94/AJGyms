@@ -9,19 +9,19 @@ const footer = (props) => {
       <table style={{width: '100%'}}>
         <tbody>
         <tr>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Age</th>
+          <th>Our Gyms</th>
+          <th>Help</th>
+          <th>T & C's</th>
         </tr>
         <tr>
-          <td>Jill</td>
-          <td>Smith</td>
-          <td>50</td>
+          <td>Gym Offers</td>
+          <td>Help Center</td>
+          <td>Privacy</td>
         </tr>
         <tr>
-          <td>Eve</td>
-          <td>Jackson</td>
-          <td>94</td>
+          <td>Classes</td>
+          <td>Contact Us</td>
+          <td>Cookies</td>
         </tr>
         </tbody>
       </table>

@@ -4,6 +4,22 @@
   margin: auto;
 }
 
+.Wrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+.Box {
+  /* background-color: #444; */
+  /* color: black; */
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
+
 @media (min-width: 600px) {
   .UserProfile {
     width: 500px;
