@@ -13,3 +13,8 @@
     width: 500px;
   }
 }
+
+.CentreDiv {
+  margin: auto;
+  width: 20%;
+}

@@ -99,6 +99,8 @@ class CreateGymClass extends Component {
       },
     },
     formIsValid: false,
+    showConfirmation: false,
+    currentClass: {},
   }
 
   createClassHandler = (event) => {
@@ -107,12 +109,12 @@ class CreateGymClass extends Component {
     for (let formElementIdentifier in this.state.createClassForm) {
       formData[formElementIdentifier] = this.state.createClassForm[formElementIdentifier].value;
     }
-    const Createclass = {
-      classData: formData,
+    const newGymClass = {
+      data: formData,
       // userId: this.props.userId
     }
-    this.props.onCreateClass(Createclass);
-    // this.props.onCreateClass(Createclass).push();
+    // Setting the state to store the class data in the state, and toggle the showConfirmation flag.
+    this.setState({currentClass: newGymClass.data, showConfirmation: true});
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -154,23 +156,64 @@ class CreateGymClass extends Component {
                 invalid={!formElement.config.valid}
                 changed={(event) => this.inputChangedHandler(event, formElement.id)} />
           ))}
-          <Button btnType="Success" disabled={!this.state.formIsValid}>Add Class</Button>
+          <Button 
+            btnType="Success" 
+            disabled={!this.state.formIsValid}
+          >Add Class</Button>
         </form>
     );
+
+    // Delcaring the confirmation but leaving it null - this is so after the inital page render
+    //  nothing is shown in the screen. If statement is used to return the ClassConfirmation if 
+    //  showConfirmation flag is true - An else statement could be used here for a default value.
+    let confirmation;
+    if (this.state.showConfirmation) {
+      confirmation = (
+        <ClassConfirmation 
+          class={this.state.currentClass}
+        />
+      );
+    }
+
+    /* 
+      I've added the confimration below - the styling is applied here, but I think 
+      it would be better practice to style inside the ClassConfirmation component. 
+      Another thing would be to look into a react equivalent of ng-container to 
+      replace the div that holds confirmation - this div only adds to the web of 
+      nested divs.
+    */
     return (
-      <div className={classes.CreateGymClass}>
-        <h3>Larry, <br/> Make sure all fields are correct before creating a class!</h3>
-        {form}
+      <div>
+        <div className={classes.CreateGymClass}>
+          <h3>Larry, <br/> Make sure all fields are correct before creating a class!</h3>
+          {form}
+        </div>
+        <div className={classes.CentreDiv}>
+          {confirmation}
+        </div>
       </div>
      );
   }
+
 }
 
-// const onCreateClass = () => {
-//   console.log('hello');
-//   return {
+/*
+  Component to hold the structure of a class confirmation.
+  If the props are for some reason empty - the default value will be returned.
+*/
+function ClassConfirmation(props) {
+  if (!props) {
+    return <p>No class found!</p>;
+  }
 
-//   }
-// }
+  return (
+    <div>
+      <p>{props.class.gymLocation}</p>
+      <p>{props.class.classType}</p>
+      <p>{props.class.className}</p>
+      <p>{props.class.timeOfDay}</p>
+    </div>
+  );
+}
 
 export default CreateGymClass;
