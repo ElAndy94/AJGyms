@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 
 import classes from './CreateGymClass.css';
+import axios from 'axios';
 import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
 import { updateObject, checkValidity } from '../../shared/utility';
+import Button from '../../components/UI/Button/Button';
+// import Modal from '../../components/UI/Modal/Modal';
 
 class CreateGymClass extends Component {
   state = {
@@ -48,19 +50,6 @@ class CreateGymClass extends Component {
         valid: false,
         touched: false
       },
-      // timeOfDay: {
-      //   elementType: 'input',
-      //   elementConfig: {
-      //     type: 'text',
-      //     placeholder: 'Start Time:End Time (06:00)'
-      //   },
-      //   value: '',
-      //   validation: {
-      //     required: true
-      //   },
-      //   valid: false,
-      //   touched: false
-      // },
       timeOfDay: {
         elementType: 'select',
         elementConfig: {
@@ -115,6 +104,12 @@ class CreateGymClass extends Component {
     }
     // Setting the state to store the class data in the state, and toggle the showConfirmation flag.
     this.setState({currentClass: newGymClass.data, showConfirmation: true});
+
+    this.createGymClassHandler(formData);
+  }
+
+  cancelNewClass = () => {
+    this.setState({showConfirmation: false});
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -133,6 +128,21 @@ class CreateGymClass extends Component {
     }
 
     this.setState({createClassForm: updatedCreateClassForm, formIsValid: formIsValid});
+  }
+
+  createGymClassHandler = (formData) => {
+    // const dataWeSending = {
+    //   location: this.props.class.gymLocation,
+    //   classType: this.props.class.classType,
+    //   className: this.props.class.className,
+    //   timeOfDay: this.props.class.timeOfDay
+    // };
+    // THIS NEEDS FIXING
+    axios.post('https://jsonplaceholder.typicode.com/posts', formData)
+      .then(response => {
+        console.log(formData);
+        console.log(response);
+      });
   }
 
   render() {
@@ -156,30 +166,31 @@ class CreateGymClass extends Component {
                 invalid={!formElement.config.valid}
                 changed={(event) => this.inputChangedHandler(event, formElement.id)} />
           ))}
-          <Button 
-            btnType="Success" 
+          <Button
+            btnType="Success"
+            onClick={this.createGymClassHandler}
             disabled={!this.state.formIsValid}
           >Add Class</Button>
         </form>
     );
 
     // Delcaring the confirmation but leaving it null - this is so after the inital page render
-    //  nothing is shown in the screen. If statement is used to return the ClassConfirmation if 
+    //  nothing is shown in the screen. If statement is used to return the ClassConfirmation if
     //  showConfirmation flag is true - An else statement could be used here for a default value.
     let confirmation;
     if (this.state.showConfirmation) {
       confirmation = (
-        <ClassConfirmation 
+        <ClassConfirmation
           class={this.state.currentClass}
         />
       );
     }
 
-    /* 
-      I've added the confimration below - the styling is applied here, but I think 
-      it would be better practice to style inside the ClassConfirmation component. 
-      Another thing would be to look into a react equivalent of ng-container to 
-      replace the div that holds confirmation - this div only adds to the web of 
+    /*
+      I've added the confimration below - the styling is applied here, but I think
+      it would be better practice to style inside the ClassConfirmation component.
+      Another thing would be to look into a react equivalent of ng-container to
+      replace the div that holds confirmation - this div only adds to the web of
       nested divs.
     */
     return (
@@ -189,7 +200,9 @@ class CreateGymClass extends Component {
           {form}
         </div>
         <div className={classes.CentreDiv}>
-          {confirmation}
+            {confirmation}
+            {/* <Button btnType="Success" onClick={this.createGymClassHandler}>Create Class</Button> */}
+            {/* <button onClick={this.createGymClassHandler}>Add Post</button> */}
         </div>
       </div>
      );
