@@ -4,6 +4,7 @@ import Aux from '../../hoc/ReactAux';
 import classes from './Layout.css';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
+import Footer from '../Footer/Footer';
 
 class Layout extends Component {
   state = {
@@ -25,7 +26,12 @@ class Layout extends Component {
         <Aux>
           <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
           <SideDrawer open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler}/>
-          <main className={classes.Content}>{this.props.children}</main>
+          <main className={classes.Content}>
+            <div>
+              {this.props.children}
+            </div>
+          </main>
+          <Footer/>
         </Aux>
       );
     };

@@ -5,7 +5,6 @@ import classes from './Footer.css';
 const footer = (props) => {
   return (
     <div className={classes.Footer}>
-      <hr/>
       <table>
         <tbody>
         <tr>

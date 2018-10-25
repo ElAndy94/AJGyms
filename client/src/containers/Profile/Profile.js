@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import Aux from '../../hoc/ReactAux';
 import UserProfile from '../../components/UserProfile/UserProfile';
-import Footer from '../../components/Footer/Footer';
 
 class Profile extends Component {
   state = {
@@ -13,7 +12,6 @@ class Profile extends Component {
     return (
       <Aux>
         <UserProfile />
-        <Footer />
       </Aux>
     );
   }

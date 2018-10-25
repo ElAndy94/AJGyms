@@ -8,6 +8,11 @@
   /* overflow: scroll; */
   /* font-weight: bold; */
   /* background-color: rgb(0, 167, 189); */
+  background-color: #696969;
+  /* position: absolute;
+  bottom: 0;
+  width: 100%; */
+  flex-shrink: 0;
 }
 
 .Footer table {

@@ -7,10 +7,12 @@ import GymClasses from './containers/GymClasses/GymClasses';
 import Profile from './containers/Profile/Profile';
 import CreateGymClass from './containers/CreateGymClass/CreateGymClass';
 
+import classes from './App.css';
+
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className={classes.root}>
         <Layout>
           <Switch>
             <Route path="/profile" component={Profile} />
