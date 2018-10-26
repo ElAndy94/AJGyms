@@ -5,46 +5,46 @@ import classes from './FullGymClass.css';
 
 class FullGymClass extends Component {
     state = {
-        loadedPost: null
+        loadedClass: null
     }
 
     componentDidUpdate () {
         if ( this.props.id ) {
-            if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id) ) {
-                axios.get( '/posts/' + this.props.id )
+            if ( !this.state.loadedClass || (this.state.loadedClass && this.state.loadedClass.id !== this.props.id) ) {
+                axios.get( '/api/classes/' + this.props.id )
                     .then( response => {
                         // console.log(response);
-                        this.setState( { loadedPost: response.data } );
+                        this.setState( { loadedClass: response.data } );
                     } );
             }
         }
     }
 
-    deletePostHandler = () => {
-      axios.delete('/posts/' + this.props.id)
+    deleteClassHandler = () => {
+      axios.delete('/api/classes/' + this.props.id)
         .then(response => {
           console.log(response);
         });
     }
 
     render () {
-        let post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
+        let gymClass = <p style={{ textAlign: 'center' }}>Please select a Class!</p>;
         if ( this.props.id ) {
-            post = <p style={{ textAlign: 'center' }}>Loading...!</p>;
+          gymClass = <p style={{ textAlign: 'center' }}>Loading...!</p>;
         }
-        if ( this.state.loadedPost ) {
-            post = (
+        if ( this.state.loadedClass ) {
+          gymClass = (
                 <div className={classes.FullGymClass}>
-                    <h1>{this.state.loadedPost.title}</h1>
-                    <p>{this.state.loadedPost.body}</p>
+                    <h1>{this.state.loadedClass.title}</h1>
+                    <p>{this.state.loadedClass.body}</p>
                     <div className={classes.Edit}>
-                        <button onClick={this.deletePostHandler} className={classes.Delete}>Delete</button>
+                        <button onClick={this.deleteClassHandler} className={classes.Delete}>Delete</button>
                     </div>
                 </div>
 
             );
         }
-        return post;
+        return gymClass;
     }
 }
 

@@ -1,4 +1,4 @@
-.Post {
+.Class {
   width: 250px;
   padding: 16px;
   text-align: center;
@@ -9,14 +9,14 @@
   cursor: pointer;
 }
 
-.Post:hover,
-.Post:active {
+.Class:hover,
+.Class:active {
   background-color: #C0DDF5;
 }
 
-.Author {
+.Name {
   margin: 16px 0;
-  color: #ccc;
+  color: rgb(26, 26, 26);
 }
 
 /* .GymTimetable {

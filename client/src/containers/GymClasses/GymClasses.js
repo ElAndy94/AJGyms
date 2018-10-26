@@ -12,7 +12,7 @@ import { updateObject, checkValidity } from '../../shared/utility';
 
 class GymClasses extends Component {
   state = {
-    posts: [],
+    gymClasses: [],
     selectedPostId: null,
     gymForm: {
       gymLocation: {
@@ -79,17 +79,18 @@ class GymClasses extends Component {
   }
 
   componentDidMount() {
-    axios.get('/posts')
+    axios.get('/api/classes')
       .then(response => {
-        const posts = response.data.slice(0,4);
-        const updatedPosts = posts.map(post => {
+        const gymClasses = response.data;
+        const updatedGymClasses = gymClasses.map(gymClass => {
+          console.log(response);
           return {
-            ...post,
-            author: 'Andrew'
+            ...gymClass,
+            // author: 'Andrew'
           }
         });
         // this.setState({posts: response.data});
-        this.setState({posts: updatedPosts});
+        this.setState({gymClasses: updatedGymClasses});
         // console.log(response);
       })
       .catch(error => {
@@ -136,13 +137,15 @@ class GymClasses extends Component {
   }
 
   render() {
-    const posts = this.state.posts.map(post => {
+    const gymClasses = this.state.gymClasses.map(gymClass => {
       return  (
       <GymTimetable
-        key={post.id}
-        title={post.title}
-        author={post.author}
-        clicked={() => this.classSelectedHandler(post.id)}/>
+        key={gymClass.id}
+        location={gymClass.location}
+        classType={gymClass.classType}
+        className={gymClass.className}
+        startTime={gymClass.startTime}
+        clicked={() => this.classSelectedHandler(gymClass.id)}/>
       );
 
     });
@@ -176,8 +179,8 @@ class GymClasses extends Component {
           <h3>Select, book and enjoy!</h3>
           {form}
         </div>
-        <section className={classes.Posts}>
-          {posts}
+        <section className={classes.Classes}>
+          {gymClasses}
         </section>
         <section>
           <FullGymClass id={this.state.selectedClassId} />
