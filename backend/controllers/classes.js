@@ -15,11 +15,33 @@ const classes = [
   },
 ];
 
+exports.getAllClasses = (req, res) => {
+  return res.json(classes);
+}
+
 // api/classes/ping for this one *
 exports.pingPong = (req, res) => {
   return res.send('dilly dilly pong pong');
 }
 
-exports.getAllClasses = (req, res) => {
-  return res.json(classes);
-}
+// exports.getClassById = (req, res) => {
+//   classes.findById(req.params.id)
+//     .then(gymClass => {
+//       if (gymClass) {
+//         res.status(200).json(gymClass);
+//       } else {
+//         res.status(404).json({
+//           message: 'Class not found!'
+//         });
+//       }
+//     })
+//     .catch(error => {
+//       res.status(500).json({
+//         message: "Fetching class failed!"
+//       });
+//     });
+//   // console.log(req.params.id);
+//   // if (req.params.id === classes.id) {
+//   //   console.log(classes.id);
+//   // }
+// }

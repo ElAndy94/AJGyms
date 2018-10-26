@@ -4,11 +4,11 @@ import axios from 'axios';
 import Aux from '../../hoc/ReactAux';
 import GymTimetable from '../../components/GymTimetable/GymTimetable';
 import Input from '../../components/UI/Input/Input';
-// import Button from '../../components/UI/Button/Button';
 import classes from './GymClasses.css';
 import Footer from '../../components/Footer/Footer';
 import FullGymClass from './FullGymClass/FullGymClass';
 import { updateObject, checkValidity } from '../../shared/utility';
+// import Button from '../../components/UI/Button/Button';
 
 class GymClasses extends Component {
   state = {
@@ -83,7 +83,6 @@ class GymClasses extends Component {
       .then(response => {
         const gymClasses = response.data;
         const updatedGymClasses = gymClasses.map(gymClass => {
-          console.log(response);
           return {
             ...gymClass,
             // author: 'Andrew'

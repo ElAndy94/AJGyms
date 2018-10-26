@@ -5,6 +5,8 @@ const ClassesController = require('../controllers/classes');
 
 router.get('', ClassesController.getAllClasses);
 
+// router.get('/:id', ClassesController.getClassById);
+
 router.get('/ping', ClassesController.pingPong);
 
 module.exports = router;

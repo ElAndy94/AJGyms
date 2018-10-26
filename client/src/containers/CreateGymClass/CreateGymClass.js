@@ -104,7 +104,6 @@ class CreateGymClass extends Component {
     }
     // Setting the state to store the class data in the state, and toggle the showConfirmation flag.
     this.setState({currentClass: newGymClass.data, showConfirmation: true});
-
     this.createGymClassHandler(formData);
   }
 
@@ -131,16 +130,18 @@ class CreateGymClass extends Component {
   }
 
   createGymClassHandler = (formData) => {
-    // const dataWeSending = {
-    //   location: this.props.class.gymLocation,
-    //   classType: this.props.class.classType,
-    //   className: this.props.class.className,
-    //   timeOfDay: this.props.class.timeOfDay
-    // };
-    axios.post('/posts/', formData)
+    const newClass = {
+      location: formData.gymLocation,
+      type: formData.classType,
+      name: formData.className,
+      time: formData.timeOfDay
+    };
+    axios.post('/api/createClass/', newClass)
       .then(response => {
         console.log(response);
-        this.cancelNewClass();
+        // this.cancelNewClass();
+      }).catch(error => {
+        console.log(error);
       });
   }
 
