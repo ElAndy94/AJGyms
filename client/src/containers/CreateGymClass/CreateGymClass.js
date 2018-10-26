@@ -109,7 +109,7 @@ class CreateGymClass extends Component {
   }
 
   cancelNewClass = () => {
-    this.setState({showConfirmation: false});
+    this.setState({showConfirmation: false, formData: {}, className: {} });
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -137,11 +137,10 @@ class CreateGymClass extends Component {
     //   className: this.props.class.className,
     //   timeOfDay: this.props.class.timeOfDay
     // };
-    // THIS NEEDS FIXING
-    axios.post('https://jsonplaceholder.typicode.com/posts', formData)
+    axios.post('/posts/', formData)
       .then(response => {
-        console.log(formData);
         console.log(response);
+        this.cancelNewClass();
       });
   }
 

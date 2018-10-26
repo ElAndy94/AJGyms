@@ -2,29 +2,27 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
+
+const classesRoutes = require('./backend/routes/classes');
+
 app.use(express.static(path.join(__dirname, 'build')));
 
-const classes = [
-    {
-        location: 'Market Street',
-        classType: 'Induction only',
-        className: 'Intro class',
-        startTime: '10:00am'
-    },
-    {
-        location: 'Portland Street',
-        classType: 'intermediate',
-        className: 'Mass Building',
-        startTime: '7:00pm'
-    },
-];
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
-app.get('/ping', function (req, res) {
- return res.send('pong');
-});
 
-app.get('/api/classes', (req, res) => {
-    return res.json(classes);
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+  next();
 });
 
 app.listen(process.env.PORT || 8080);
+
+app.use('/api/classes', classesRoutes);
