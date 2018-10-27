@@ -139,12 +139,12 @@ class GymClasses extends Component {
     const gymClasses = this.state.gymClasses.map(gymClass => {
       return  (
       <GymTimetable
-        key={gymClass.id}
+        key={gymClass._id}
         location={gymClass.location}
-        classType={gymClass.classType}
-        className={gymClass.className}
-        startTime={gymClass.startTime}
-        clicked={() => this.classSelectedHandler(gymClass.id)}/>
+        classType={gymClass.type}
+        className={gymClass.name}
+        startTime={gymClass.time}
+        clicked={() => this.classSelectedHandler(gymClass._id)}/>
       );
 
     });

@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const app = express();
 
 const classesRoutes = require('./backend/routes/classes');
-const createClassesRoutes = require('./backend/routes/createClasses');
 
 // app.use(express.static(path.join(__dirname, 'build')));
 mongoose.set('useCreateIndex', true);
@@ -36,5 +35,3 @@ app.use((req, res, next) => {
 app.listen(process.env.PORT || 8080);
 
 app.use('/api/classes', classesRoutes);
-app.use('/api/createClass', createClassesRoutes);
-

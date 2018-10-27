@@ -1,3 +1,9 @@
+const GymClass = require('../models/classes');
+
+const CLASS_NOT_FOUND = {
+  message: 'Class not found!'
+};
+
 const classes = [
   {
       id: '676d34ffdgfdg433',
@@ -16,7 +22,38 @@ const classes = [
 ];
 
 exports.getAllClasses = (req, res) => {
-  return res.json(classes);
+  GymClass.find({}, (err, classes) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json(CLASS_NOT_FOUND);
+    }
+    return res.json(classes);
+  })
+}
+
+exports.createClass = (req, res) => {
+  const gymClass = new GymClass({
+    location: req.body.location,
+    type: req.body.type,
+    name: req.body.name,
+    time: req.body.time
+  });
+  gymClass.save()
+    .then(createdClass => {
+      res.status(201).json({
+        message: "Class added Successfully",
+        gymClass: {
+          ...createdClass,
+          id: createdClass._id,
+        }
+      });
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json({
+        message: "Creating Class Failed!"
+      });
+    });
 }
 
 // api/classes/ping for this one *
@@ -30,9 +67,7 @@ exports.pingPong = (req, res) => {
 //       if (gymClass) {
 //         res.status(200).json(gymClass);
 //       } else {
-//         res.status(404).json({
-//           message: 'Class not found!'
-//         });
+//        res.status(404).json(CLASS_NOT_FOUND);
 //       }
 //     })
 //     .catch(error => {
