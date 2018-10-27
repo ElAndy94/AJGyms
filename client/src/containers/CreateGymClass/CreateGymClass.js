@@ -136,7 +136,7 @@ class CreateGymClass extends Component {
       name: formData.className,
       time: formData.timeOfDay
     };
-    axios.post('/api/createClass/', newClass)
+    axios.post('/api/classes', newClass)
       .then(response => {
         console.log(response);
         // this.cancelNewClass();

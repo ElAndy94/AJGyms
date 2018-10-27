@@ -10,7 +10,7 @@ class FullGymClass extends Component {
 
     componentDidUpdate () {
         if ( this.props.id ) {
-            if ( !this.state.loadedClass || (this.state.loadedClass && this.state.loadedClass.id !== this.props.id) ) {
+            if ( !this.state.loadedClass || (this.state.loadedClass && this.state.loadedClass._id !== this.props.id) ) {
                 axios.get( '/api/classes/' + this.props.id )
                     .then( response => {
                         console.log(response);
@@ -35,8 +35,10 @@ class FullGymClass extends Component {
         if ( this.state.loadedClass ) {
           gymClass = (
                 <div className={classes.FullGymClass}>
-                    <h1>{this.state.loadedClass.title}</h1>
-                    <p>{this.state.loadedClass.body}</p>
+                    <h1>{this.state.loadedClass.location}</h1>
+                    <p>{this.state.loadedClass.type}</p>
+                    <p>{this.state.loadedClass.name}</p>
+                    <p>{this.state.loadedClass.time}</p>
                     <div className={classes.Edit}>
                         <button onClick={this.deleteClassHandler} className={classes.Delete}>Delete</button>
                     </div>
