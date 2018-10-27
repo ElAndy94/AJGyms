@@ -56,27 +56,35 @@ exports.createClass = (req, res) => {
     });
 }
 
-// api/classes/ping for this one *
-exports.pingPong = (req, res) => {
-  return res.send('dilly dilly pong pong');
+exports.getClassById = (req, res) => {
+  GymClass.findById(req.params.id)
+    .then(gymClass => {
+      if (gymClass) {
+        res.status(200).json(gymClass);
+      } else {
+       res.status(404).json(CLASS_NOT_FOUND);
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Fetching class failed!"
+      });
+    });
 }
 
-// exports.getClassById = (req, res) => {
-//   classes.findById(req.params.id)
-//     .then(gymClass => {
-//       if (gymClass) {
-//         res.status(200).json(gymClass);
-//       } else {
-//        res.status(404).json(CLASS_NOT_FOUND);
-//       }
-//     })
-//     .catch(error => {
-//       res.status(500).json({
-//         message: "Fetching class failed!"
-//       });
-//     });
-//   // console.log(req.params.id);
-//   // if (req.params.id === classes.id) {
-//   //   console.log(classes.id);
-//   // }
-// }
+exports.deleteClass = (req, res, next) => {
+  GymClass.findByIdAndRemove({
+      _id: req.params.id
+    })
+    .then(result => {
+      res.status(200).json({
+        message: "Class has been deleted successfully!",
+        result: result
+      });
+    })
+    .catch(err => {
+      res.status(500).json({
+        message: 'Class was not deleted!'
+      })
+    });
+}
