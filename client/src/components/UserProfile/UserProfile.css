@@ -15,7 +15,8 @@
 .Box {
   border-radius: 5px;
   padding: 20px;
-  font-size: 150%;
+  /* font-size: 130%; */
+  /* overflow: scroll; */
   /* background-color: #444; */
   /* color: black; */
 }

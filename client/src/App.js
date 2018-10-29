@@ -10,23 +10,65 @@ import Auth from './containers/Auth/Login/Auth';
 import Logout from './containers/Auth/Logout/Logout';
 
 class App extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAuthenticated: false
+    };
+  }
+
+  handleAuthComplete = () => {
+    this.setState({ isAuthenticated: true });
+    console.log(this.state.isAuthenticated);
+  };
+
+  render () {
+    let routes = (
+        <Switch>
+          <Route path="/auth" render={props => <Auth onAuthComplete={this.handleAuthComplete} />} />
+          <Route path="/" exact component={DashBoardBuilder} />
+          <Redirect to="/" />
+        </Switch>
+    );
+
+    if (this.state.isAuthenticated) {
+      routes = (
+        <Switch>
+          <Route path="/profile" component={Profile} />
+          <Route path="/classes" component={GymClasses} />
+          <Route path="/createGymClass" component={CreateGymClass} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/" exact component={DashBoardBuilder} />
+          <Redirect to="/" />
+        </Switch>
+      );
+    }
+
     return (
       <div>
         <Layout>
-          <Switch>
-            <Route path="/auth" component={Auth} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/createGymClass" component={CreateGymClass} />
-            <Route path="/classes" component={GymClasses} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/" exact component={DashBoardBuilder} />
-            <Redirect to="/" />
-          </Switch>
+          {routes}
         </Layout>
       </div>
     );
   }
+  // render() {
+  //   return (
+  //     <div>
+  //       <Layout>
+  //         <Switch>
+  //           <Auth onAuthComplete={this.handleAuthComplete}/>
+  //           <Route path="/profile" component={Profile} />
+  //           <Route path="/createGymClass" component={CreateGymClass} />
+  //           <Route path="/classes" component={GymClasses} />
+  //           <Route path="/logout" component={Logout} />
+  //           <Route path="/" exact component={DashBoardBuilder} />
+  //           <Redirect to="/" />
+  //         </Switch>
+  //       </Layout>
+  //     </div>
+  //   );
+  // }
 }
 
 export default App;
