@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect} from 'react-router-dom';
 
+import Aux from '../../../hoc/ReactAux';
+import Footer from '../../../components/Footer/Footer';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import classes from './Auth.css';
@@ -103,8 +106,8 @@ class Auth extends Component {
           console.log('mama I made it');
           this.setState({ isAuthenticated: true });
           console.log(response);
+          console.log('isAuth', this.state.isAuthenticated);
         }).catch(error => {
-          console.log('nada');
           console.log(error);
         });
     }
@@ -140,7 +143,9 @@ class Auth extends Component {
     };
 
     return (
+      <Aux>
         <div className={classes.Auth}>
+<<<<<<< Updated upstream
             {errorMessage}
             <h2>{this.state.isSignup ? 'SIGN UP' : 'SIGN IN'}</h2>
             <form onSubmit={this.submitHandler}>
@@ -151,6 +156,22 @@ class Auth extends Component {
                 clicked={this.switchAuthModeHandler}
                 btnType="Danger">SWITCH TO {this.state.isSignup ? 'SIGN IN' : 'SIGN UP'}</Button>
         </div>
+=======
+            {/* This redirects you when you successfully log on, should be done differently tbh!  */}
+            {this.state.isAuthenticated ? <Redirect to="/"/> : null }
+              {errorMessage}
+              <h2>{this.state.isSignup ? 'SIGN UP' : 'SIGN IN'}</h2>
+              <form onSubmit={this.submitHandler}>
+                  {form}
+                  <Button btnType="Success">SUBMIT</Button>
+              </form>
+              <Button
+                  clicked={this.switchAuthModeHandler}
+                  btnType="Danger">SWITCH TO {this.state.isSignup ? 'SIGN IN' : 'SIGN UP'}</Button>
+          </div>
+          <Footer />
+      </Aux>
+>>>>>>> Stashed changes
     );
   }
 }
