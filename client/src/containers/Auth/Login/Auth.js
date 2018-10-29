@@ -80,13 +80,12 @@ class Auth extends Component {
 
 
   onAuth = () => {
-    if (this.state.isSignup === true) {
-      const date = new Date();
+    if (this.state.isSignup) {
       const authentication = {
         name: this.state.controls.name.value,
         email: this.state.controls.email.value,
         password: this.state.controls.password.value,
-        date: date
+        date: new Date(),
       };
       axios.post('/api/auth', authentication)
         .then(response => {
@@ -143,7 +142,7 @@ class Auth extends Component {
     return (
         <div className={classes.Auth}>
             {errorMessage}
-            <h2>{this.state.isSignup ? 'SIGN IN' : 'SIGN UP'}</h2>
+            <h2>{this.state.isSignup ? 'SIGN UP' : 'SIGN IN'}</h2>
             <form onSubmit={this.submitHandler}>
                 {form}
                 <Button btnType="Success">SUBMIT</Button>
