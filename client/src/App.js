@@ -8,6 +8,7 @@ import Profile from './containers/Profile/Profile';
 import CreateGymClass from './containers/CreateGymClass/CreateGymClass';
 import Auth from './containers/Auth/Login/Auth';
 import Logout from './containers/Auth/Logout/Logout';
+import Signup from './containers/Auth/Signup/Signup';
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class App extends Component {
     let routes = (
         <Switch>
           <Route path="/auth" render={props => <Auth onAuthComplete={this.handleAuthComplete} />} />
+          <Route path="/signup" component={Signup} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
         </Switch>

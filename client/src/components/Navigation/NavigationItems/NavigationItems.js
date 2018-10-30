@@ -14,7 +14,11 @@ const navigationItems = (props) => (
         <NavigationItem link="/createGymClass">Create Class</NavigationItem>
         <NavigationItem link="/logout">Logout</NavigationItem>
       </Aux>
-      : <NavigationItem link="/auth" >Login</NavigationItem>
+      :
+      <Aux>
+        <NavigationItem link="/signup" >SignUp</NavigationItem>
+        <NavigationItem link="/auth" >Login</NavigationItem>
+      </Aux>
     }
   </ul>
 );

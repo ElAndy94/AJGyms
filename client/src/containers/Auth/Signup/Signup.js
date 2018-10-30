@@ -6,12 +6,26 @@ import Aux from '../../../hoc/ReactAux';
 import Footer from '../../../components/Footer/Footer';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
-import classes from './Auth.css';
+import classes from './Signup.css';
 import { updateObject, checkValidity } from '../../../shared/utility';
 
 class Auth extends Component {
     state = {
       controls: {
+        name: {
+          elementType: 'input',
+          elementConfig: {
+            type: 'text',
+            placeholder: 'Name'
+          },
+          value: '',
+          validation: {
+            required: true,
+            isEmail: true
+          },
+          valid: false,
+          touched: false
+        },
         email: {
           elementType: 'input',
           elementConfig: {
@@ -57,29 +71,25 @@ class Auth extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.onAuth(this.state.controls.email.value, this.state.controls.password.value);
+    this.onAuth(this.state.controls.name.value, this.state.controls.email.value, this.state.controls.password.value);
   }
 
-  // switchAuthModeHandler = () => {
-  //   this.setState(prevState => {
-  //     return {isSignup: !prevState.isSignup};
-  //   });
-  // };
-
-
   onAuth = () => {
-      const authenticationCheck = {
+    if (this.state.isSignup) {
+      const authentication = {
+        name: this.state.controls.name.value,
         email: this.state.controls.email.value,
         password: this.state.controls.password.value,
+        date: new Date(),
       };
-      axios.post('/api/auth/check', authenticationCheck)
+      axios.post('/api/auth', authentication)
         .then(response => {
-          this.props.onAuthComplete();
           console.log(response);
         }).catch(error => {
           console.log(error);
         });
     }
+  }
 
   render () {
     const formElementsArray = [];
@@ -112,18 +122,15 @@ class Auth extends Component {
 
     return (
       <Aux>
-        <div className={classes.Auth}>
+        <div className={classes.Signup}>
             {/* This redirects you when you successfully log on, should be done differently tbh!  */}
             {/* {this.state.isAuthenticated ? <Redirect to="/"/> : null } */}
               {errorMessage}
-              <h2>SIGN IN</h2>
+              <h2>SIGN UP</h2>
               <form onSubmit={this.submitHandler}>
                   {form}
                   <Button btnType="Success">SUBMIT</Button>
               </form>
-              {/* <Button */}
-                  {/* clicked={this.switchAuthModeHandler} */}
-                  {/* btnType="Danger">SWITCH TO {this.state.isSignup ? 'SIGN IN' : 'SIGN UP'}</Button> */}
           </div>
           <Footer />
       </Aux>
