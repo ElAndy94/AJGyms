@@ -24,14 +24,9 @@ const userProfile = (props) => {
                   <p><b>Personal Information</b><br/>40 Gringo Road<br/>M1 7DZ</p>
                   <p><b>Payment Information</b><br/>Direct Debit: Card ending 7070</p>
                   <Button btnType="Danger">Cancel Your Membership</Button>
-                  {/* <p>Cancel Your Membership</p> */}
                 </div>
             </div>
         </div>
-        {/* <div className={classes.Box}>C</div> */}
-        {/* <div className={classes.Box}>D</div> */}
-        {/* <div className={classes.Box}>E</div> */}
-        {/* <div className={classes.Box}>F</div> */}
      </div>
     </div>
   );

@@ -57,14 +57,9 @@ class Auth extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.onAuth(this.state.controls.email.value, this.state.controls.password.value);
+    this.props.onAuthComplete();
+    // this.onAuth(this.state.controls.email.value, this.state.controls.password.value);
   }
-
-  // switchAuthModeHandler = () => {
-  //   this.setState(prevState => {
-  //     return {isSignup: !prevState.isSignup};
-  //   });
-  // };
 
   onAuth = () => {
       const authenticationCheck = {
@@ -119,7 +114,7 @@ class Auth extends Component {
             {/* This redirects you when you successfully log on, should be done differently tbh!  */}
             {/* {this.state.isAuthenticated ? <Redirect to="/"/> : null } */}
               {errorMessage}
-              <h2>SIGN IN</h2>
+              <h2>LOGIN</h2>
               <form onSubmit={this.submitHandler}>
                   {form}
                   <Button btnType="Success">SUBMIT</Button>

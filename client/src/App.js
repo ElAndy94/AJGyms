@@ -20,7 +20,6 @@ class App extends Component {
 
   handleAuthComplete = () => {
     this.setState({ isAuthenticated: true });
-    console.log(this.state.isAuthenticated);
   };
 
   handleLogout = () => {

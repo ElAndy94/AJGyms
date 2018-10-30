@@ -11,7 +11,6 @@ const dashBoard = (props) => {
       <h2>AJ GYMS</h2>
     <div>
       <img className={classes.img} src={GymImg} alt="AJGYM" />
-      {/* style={{backgroundImage:`url(${GymImg})`}} */}
     </div>
         <p>Stop waiting... <br/> make a difference now!</p>
         <p>Join today and pay no joining fee.</p>
