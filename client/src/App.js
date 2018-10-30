@@ -22,6 +22,11 @@ class App extends Component {
     console.log(this.state.isAuthenticated);
   };
 
+  handleLogout = () => {
+    this.setState({ isAuthenticated: false });
+    console.log(this.state.isAuthenticated);
+  }
+
   render () {
     let routes = (
         <Switch>
@@ -37,7 +42,7 @@ class App extends Component {
           <Route path="/profile" component={Profile} />
           <Route path="/classes" component={GymClasses} />
           <Route path="/createGymClass" component={CreateGymClass} />
-          <Route path="/logout" component={Logout} />
+          <Route path="/logout" render={props => <Logout onLogout={this.handleLogout} />} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
         </Switch>
@@ -46,7 +51,7 @@ class App extends Component {
 
     return (
       <div>
-        <Layout>
+        <Layout isAuthenticated={this.state.isAuthenticated}>
           {routes}
         </Layout>
       </div>

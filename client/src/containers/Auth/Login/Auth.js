@@ -10,9 +10,9 @@ import classes from './Auth.css';
 import { updateObject, checkValidity } from '../../../shared/utility';
 
 class Auth extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  // constructor(props) {
+    // super(props);
+    state = {
       controls: {
         name: {
           elementType: 'input',
@@ -59,7 +59,7 @@ class Auth extends Component {
       },
       isSignup: true
     }
-  }
+  // }
 
   inputChangedHandler = (event, controlName) => {
     const updatedControls = updateObject(this.state.controls, {
