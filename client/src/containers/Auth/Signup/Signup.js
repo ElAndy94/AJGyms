@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import Aux from '../../../hoc/ReactAux';
 import Footer from '../../../components/Footer/Footer';
@@ -9,7 +9,7 @@ import Button from '../../../components/UI/Button/Button';
 import classes from './Signup.css';
 import { updateObject, checkValidity } from '../../../shared/utility';
 
-class Auth extends Component {
+class Signup extends Component {
     state = {
       controls: {
         name: {
@@ -55,7 +55,7 @@ class Auth extends Component {
           touched: false
         }
       },
-      isSignup: true
+      isSignup: false
     }
 
   inputChangedHandler = (event, controlName) => {
@@ -75,7 +75,6 @@ class Auth extends Component {
   }
 
   onAuth = () => {
-    if (this.state.isSignup) {
       const authentication = {
         name: this.state.controls.name.value,
         email: this.state.controls.email.value,
@@ -84,14 +83,18 @@ class Auth extends Component {
       };
       axios.post('/api/auth', authentication)
         .then(response => {
+          this.setState({ isSignup: true })
           console.log(response);
         }).catch(error => {
           console.log(error);
         });
-    }
   }
 
   render () {
+    if (this.state.isSignup === true) {
+      return <Redirect to="/auth" />
+    }
+
     const formElementsArray = [];
       for (let key in this.state.controls) {
         formElementsArray.push({
@@ -123,19 +126,17 @@ class Auth extends Component {
     return (
       <Aux>
         <div className={classes.Signup}>
-            {/* This redirects you when you successfully log on, should be done differently tbh!  */}
-            {/* {this.state.isAuthenticated ? <Redirect to="/"/> : null } */}
-              {errorMessage}
-              <h2>SIGN UP</h2>
-              <form onSubmit={this.submitHandler}>
-                  {form}
-                  <Button btnType="Success">SUBMIT</Button>
-              </form>
-          </div>
+            {errorMessage}
+            <h2>SIGN UP</h2>
+            <form onSubmit={this.submitHandler}>
+                {form}
+                <Button btnType="Success">SUBMIT</Button>
+            </form>
+        </div>
           <Footer />
       </Aux>
     );
   }
 }
 
-export default Auth;
+export default Signup;

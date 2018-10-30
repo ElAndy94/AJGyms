@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import Aux from '../../../hoc/ReactAux';
 import Footer from '../../../components/Footer/Footer';
@@ -41,7 +41,7 @@ class Auth extends Component {
           touched: false
         }
       },
-      isSignup: true
+      signedIn: false
     }
 
   inputChangedHandler = (event, controlName) => {
@@ -66,7 +66,6 @@ class Auth extends Component {
   //   });
   // };
 
-
   onAuth = () => {
       const authenticationCheck = {
         email: this.state.controls.email.value,
@@ -82,6 +81,10 @@ class Auth extends Component {
     }
 
   render () {
+    if (this.state.signedIn === true) {
+     return <Redirect to="/" />
+    }
+
     const formElementsArray = [];
       for (let key in this.state.controls) {
         formElementsArray.push({
