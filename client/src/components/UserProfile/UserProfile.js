@@ -8,7 +8,7 @@ const userProfile = (props) => {
   // {/* <p>{props.user.address.map(i => <li>{i}</li>)}</p> */}
   return (
     <div className={classes.UserProfile}>
-      <h1>Welcome Back, {props.user.userName}</h1>
+      <h1>Welcome Back, {props.user.user}</h1>
     <div className={classes.Wrapper}>
         <div className={classes.Box}>
           <div className={classes.Card}>
@@ -16,7 +16,7 @@ const userProfile = (props) => {
                 <p><b>Your Package</b></p>
                 <p>Manchester {props.user.gymLocation}</p>
                 <p>{props.user.payment}</p>
-                <p>{props.user.contract} contract</p>
+                <p>{props.user.contract}</p>
               </div>
           </div>
         </div>
@@ -28,7 +28,7 @@ const userProfile = (props) => {
                   <p><b>Payment Information</b><br/>Direct Debit: Card ending 7070</p>
                   <Button btnType="Danger">Cancel Your Membership</Button>
                 </div>
-            </div>
+           </div>
         </div>
      </div>
     </div>

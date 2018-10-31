@@ -20,7 +20,7 @@ class Profile extends Component {
     axios.get('/api/auth/' + this.props.userId )
       .then( response => {
           this.setState({ user: response.data });
-          console.log(this.state.user);
+          // console.log(this.state.user);
       });
   }
 
