@@ -14,12 +14,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      userId: ''
     };
   }
 
-  handleAuthComplete = () => {
-    this.setState({ isAuthenticated: true });
+  handleAuthComplete = (userId) => {
+    this.setState({ isAuthenticated: true, userId: userId });
   };
 
   handleLogout = () => {
@@ -40,7 +41,7 @@ class App extends Component {
     if (this.state.isAuthenticated) {
       routes = (
         <Switch>
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
           <Route path="/classes" component={GymClasses} />
           <Route path="/createGymClass" component={CreateGymClass} />
           <Route path="/logout" render={props => <Logout onLogout={this.handleLogout} />} />

@@ -53,7 +53,74 @@ class Signup extends Component {
           },
           valid: false,
           touched: false
-        }
+        },
+        address: {
+          elementType: 'input',
+          elementConfig: {
+            type: 'text',
+            placeholder: 'Address'
+          },
+          value: '',
+          validation: {
+            required: true,
+            minLength: 6
+          },
+          valid: false,
+          touched: false
+        },
+        gymLocation: {
+          elementType: 'select',
+          elementConfig: {
+            options: [
+              {value: 'Market Street', displayValue: 'Market Street'},
+              {value: 'Portland Street', displayValue: 'Portland Street'},
+              {value: 'Oxford Road', displayValue: 'Oxford Road'},
+            ]
+          },
+          value: 'Market Street',
+          validation: {},
+          valid: true
+        },
+        membershipType: {
+          elementType: 'select',
+          elementConfig: {
+            options: [
+              {value: '12 Month Contract', displayValue: '12 Month Contract £16.00'},
+              {value: '6 Month Contract', displayValue: '6 Month Contract £18.00'},
+              {value: 'Rolling Monthly Contract', displayValue: 'Rolling Monthly Contract £22.00'},
+            ]
+          },
+          value: '12 Month Contract',
+          validation: {},
+          valid: true
+        },
+        payment: {
+          elementType: 'select',
+          elementConfig: {
+            options: [
+              {value: 'Monthly Payments', displayValue: 'Monthly Payments'},
+              {value: 'Upfront Payment', displayValue: 'Up Front Payment *25% OFF*'},
+            ]
+          },
+          value: 'Monthly Payments',
+          validation: {},
+          valid: true
+        },
+        gymGoal: {
+          elementType: 'select',
+          elementConfig: {
+            options: [
+              {value: 'Weight Loss', displayValue: 'Weight Loss'},
+              {value: 'Muscle Gain', displayValue: 'Muscle Gain'},
+              {value: 'Strength Gain', displayValue: 'Strength Gain'},
+              {value: 'Cardio', displayValue: 'Cardio'},
+              {value: 'Rather Not Share', displayValue: 'Rather Not Share'},
+            ]
+          },
+          value: 'Weight Loss',
+          validation: {},
+          valid: true
+        },
       },
       isSignup: false
     }
@@ -71,7 +138,15 @@ class Signup extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.onAuth(this.state.controls.name.value, this.state.controls.email.value, this.state.controls.password.value);
+    this.onAuth(
+      this.state.controls.name.value,
+      this.state.controls.email.value,
+      this.state.controls.password.value,
+      this.state.controls.address.value,
+      this.state.controls.membershipType.value,
+      this.state.controls.payment.value,
+      this.state.controls.gymGoal.value,
+      this.state.controls.gymLocation.value);
   }
 
   onAuth = () => {
@@ -79,6 +154,11 @@ class Signup extends Component {
         name: this.state.controls.name.value,
         email: this.state.controls.email.value,
         password: this.state.controls.password.value,
+        address: this.state.controls.address.value,
+        contract: this.state.controls.membershipType.value,
+        payment: this.state.controls.payment.value,
+        goal: this.state.controls.gymGoal.value,
+        gymLocation: this.state.controls.gymLocation.value,
         date: new Date(),
       };
       axios.post('/api/auth', authentication)

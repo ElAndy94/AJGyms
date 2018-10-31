@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 // import { Redirect } from 'react-router-dom';
 
 import UserProfile from '../../components/UserProfile/UserProfile';
@@ -12,50 +12,16 @@ import { updateObject, checkValidity } from '../../shared/utility';
 
 class Profile extends Component {
   state = {
-    gymMembership: [],
-    controls: {
-      membershipType: {
-        elementType: 'select',
-        elementConfig: {
-          options: [
-            {value: 'RollingContract', displayValue: 'RollingContract 22.00'},
-            {value: '12month', displayValue: '12 Month Contract 16.00'},
-            {value: '6month', displayValue: '6 Month Contract 18.00'},
-          ]
-        },
-        value: 'RollingContract',
-        validation: {},
-        valid: true
-      },
-      payment: {
-        elementType: 'select',
-        elementConfig: {
-          options: [
-            {value: 'monthly', displayValue: 'Monthly Payments'},
-            {value: 'upfront', displayValue: 'Up Front Payment'},
-          ]
-        },
-        value: 'monthly',
-        validation: {},
-        valid: true
-      },
-      gymGoal: {
-        elementType: 'select',
-        elementConfig: {
-          options: [
-            {value: 'WeightLoss', displayValue: 'Weight Loss'},
-            {value: 'MuscleGain', displayValue: 'Muscle Gain'},
-            {value: 'StrengthGain', displayValue: 'Strength Gain'},
-            {value: 'Cardio', displayValue: 'Cardio'},
-            {value: 'RatherNotShare', displayValue: 'Rather Not Share'},
-          ]
-        },
-        value: 'WeightLoss',
-        validation: {},
-        valid: true
-      },
-    },
     formIsValid: false,
+    user: {}
+  }
+
+  componentDidMount () {
+    axios.get('/api/auth/' + this.props.userId )
+      .then( response => {
+          this.setState({ user: response.data });
+          console.log(this.state.user);
+      });
   }
 
   inputChangedHandler = (event, controlName) => {
@@ -71,7 +37,7 @@ class Profile extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.membershipSub(this.state.controls.membershipType.value, this.state.controls.payment.value, this.state.controls.gymGoal.value);
+    // this.membershipSub(this.state.controls.membershipType.value, this.state.controls.payment.value, this.state.controls.gymGoal.value);
   }
 
   render() {
@@ -105,7 +71,7 @@ class Profile extends Component {
 
     return (
       <Aux>
-        <UserProfile />
+        <UserProfile user={this.state.user}/>
         <div className={classes.Profile}>
         {errorMessage}
           <form onSubmit={this.submitHandler}>

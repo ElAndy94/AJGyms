@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uniqueVal = require('mongoose-unique-validator');
 
 const userSchema = mongoose.Schema({
   name: {
@@ -7,14 +8,35 @@ const userSchema = mongoose.Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   password: {
     type: String,
     required: true
   },
+  address: {
+    type: String,
+    required: true
+  },
+  contract: {
+    type: String,
+    required: true
+  },
   date: {
     type: Date,
+    required: true
+  },
+  payment: {
+    type: String,
+    required: true
+  },
+  goal: {
+    type: String,
+    required: true
+  },
+  gymLocation: {
+    type: String,
     required: true
   },
   pt: {
@@ -26,5 +48,7 @@ const userSchema = mongoose.Schema({
     required: false
   }
 });
+
+userSchema.plugin(uniqueVal);
 
 module.exports = mongoose.model('user', userSchema);

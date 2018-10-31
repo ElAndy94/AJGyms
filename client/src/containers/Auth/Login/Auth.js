@@ -18,7 +18,7 @@ class Auth extends Component {
             type: 'email',
             placeholder: 'Email'
           },
-          value: '',
+          value: 'Larry@hotmail.com',
           validation: {
             required: true,
             isEmail: true
@@ -32,7 +32,7 @@ class Auth extends Component {
             type: 'password',
             placeholder: 'Password'
           },
-          value: '',
+          value: '123456',
           validation: {
             required: true,
             minLength: 6
@@ -57,8 +57,8 @@ class Auth extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.onAuthComplete();
-    // this.onAuth(this.state.controls.email.value, this.state.controls.password.value);
+    // this.props.onAuthComplete();
+    this.onAuth(this.state.controls.email.value, this.state.controls.password.value);
   }
 
   onAuth = () => {
@@ -68,7 +68,8 @@ class Auth extends Component {
       };
       axios.post('/api/auth/check', authenticationCheck)
         .then(response => {
-          this.props.onAuthComplete();
+          const userId = response.data._id;
+          this.props.onAuthComplete(userId);
           console.log(response);
         }).catch(error => {
           console.log(error);

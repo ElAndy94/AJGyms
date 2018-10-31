@@ -90,11 +90,9 @@ class GymClasses extends Component {
         });
         // this.setState({posts: response.data});
         this.setState({gymClasses: updatedGymClasses});
-        // console.log(response);
       })
       .catch(error => {
         console.log(error);
-        // this.setState({error: true});
       });
   }
 

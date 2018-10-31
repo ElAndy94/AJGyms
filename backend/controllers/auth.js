@@ -8,7 +8,12 @@ exports.createUser = (req, res) => {
       name: req.body.name,
       email: req.body.email,
       password: hash,
-      date: req.body.date
+      address: req.body.address,
+      contract: req.body.contract,
+      date: req.body.date,
+      payment: req.body.payment,
+      goal: req.body.goal,
+      gymLocation: req.body.gymLocation
     });
     user.save()
       .then(createdUser => {
@@ -59,4 +64,17 @@ exports.checkUser = (req, res) => {
       message: "Invalid credentials!"
     });
   });
+}
+
+exports.getUser = (req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      // console.log(user);
+      res.status(200).json(user);
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Fetching User Failed"
+      });
+    });
 }
