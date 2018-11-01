@@ -1,6 +1,16 @@
 const mongoose = require('mongoose');
 const uniqueVal = require('mongoose-unique-validator');
 
+const bookedClassesSchema = mongoose.Schema({
+  classId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'createClass',
+  },
+  dateBooked: {
+    type: Date,
+  }
+})
+
 const userSchema = mongoose.Schema({
   name: {
     type: String,
@@ -46,7 +56,8 @@ const userSchema = mongoose.Schema({
   admin: {
     type: Boolean,
     required: false
-  }
+  },
+  bookedClasses: [bookedClassesSchema]
 });
 
 userSchema.plugin(uniqueVal);

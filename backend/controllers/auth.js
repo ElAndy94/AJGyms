@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
+const mongoose = require('mongoose');
 
 exports.createUser = (req, res) => {
   bcrypt.hash(req.body.password, 10)
@@ -78,3 +79,66 @@ exports.getUser = (req, res) => {
       });
     });
 }
+
+exports.bookClass = (req, res) => {
+  User.findById({
+    _id: req.body.userId
+  }, 'bookedClasses', function (err) {
+    if (err) {
+      res.status(401).json({
+        message: "Error Occured!"
+      })
+    } else {
+      const classToAdd = {
+        classId: mongoose.Types.ObjectId(req.body.classId),
+        dateBooked: (req.body.date)
+      };
+      User.findByIdAndUpdate({
+        _id: mongoose.Types.ObjectId(req.body.userId)
+      },
+        {$push: { bookedClasses : classToAdd }},
+        (err) => {
+          if(err) {
+            res.status(401).json({
+              message: "Error Occured!"
+            })
+          } else {
+            res.status(200).json({
+              message: "Success!"
+            })
+          }
+        }
+      );
+    }
+  });
+}
+
+
+// exports.bookClass = (req, res) => {
+//   User.findById({
+//     _id: req.body.id
+//   }, 'bookedClasses', function (err) {
+//     if (err) {
+//       res.status(401).json({
+//         message: "Error Occured!"
+//       })
+//     } else {
+//       User.findOneAndUpdate({
+//         "bookedClasses.classId" : mongoose.Types.ObjectId(req.body.classId),
+//         "bookedClasses.dateBooked" : (req.body.date)
+//         },
+//         (err) => {
+//             if(err) {
+//               res.status(401).json({
+//                 message: "Error Occured!"
+//               })
+//             } else {
+//               res.status(200).json({
+//                 message: "Success!"
+//               })
+//             }
+//         }
+//       );
+//     }
+//   });
+// }

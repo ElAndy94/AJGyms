@@ -16,7 +16,7 @@
     color: grey;
 }
 
-.Edit button {
+.Button {
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -24,16 +24,16 @@
     color: #fa923f;
 }
 
-.Edit button:hover,
-.Edit button:active {
+.Button:hover,
+.Button:active {
     color: #521751;
 }
 
-.Edit button.Delete {
+.Button .Delete {
     color: red;
 }
 
-.Edit button.Delete:hover,
-.Edit button.Delete:active {
+.Button Button.Delete:hover,
+.Button Button.Delete:active {
     color: darkred;
 }

@@ -18,7 +18,7 @@ class Auth extends Component {
             type: 'email',
             placeholder: 'Email'
           },
-          value: 'Larry@hotmail.com',
+          value: 'melissaastbury@hotmail.com',
           validation: {
             required: true,
             isEmail: true
@@ -112,17 +112,12 @@ class Auth extends Component {
     return (
       <Aux>
         <div className={classes.Auth}>
-            {/* This redirects you when you successfully log on, should be done differently tbh!  */}
-            {/* {this.state.isAuthenticated ? <Redirect to="/"/> : null } */}
               {errorMessage}
               <h2>LOGIN</h2>
               <form onSubmit={this.submitHandler}>
                   {form}
                   <Button btnType="Success">SUBMIT</Button>
               </form>
-              {/* <Button */}
-                  {/* clicked={this.switchAuthModeHandler} */}
-                  {/* btnType="Danger">SWITCH TO {this.state.isSignup ? 'SIGN IN' : 'SIGN UP'}</Button> */}
           </div>
           <Footer />
       </Aux>

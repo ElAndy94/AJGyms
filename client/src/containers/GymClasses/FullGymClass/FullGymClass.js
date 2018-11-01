@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import classes from './FullGymClass.css';
+// import Button from '../../../components/UI/Button/Button';
 
 class FullGymClass extends Component {
     state = {
@@ -18,6 +19,22 @@ class FullGymClass extends Component {
                     } );
             }
         }
+    }
+
+    bookClassHandler = () => {
+      const bookingData = {
+        userId: this.props.userId,
+        classId: this.props.id,
+        date: new Date()
+      }
+      axios.post('/api/auth/bookclass', bookingData)
+        .then( response => {
+          console.log('done');
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
 
     deleteClassHandler = () => {
@@ -40,6 +57,8 @@ class FullGymClass extends Component {
                     <p>{this.state.loadedClass.name}</p>
                     <p>{this.state.loadedClass.time}</p>
                     <div className={classes.Edit}>
+                    {/* btnType="Success" */}
+                        <button onClick={this.bookClassHandler}>Book Class</button>
                         <button onClick={this.deleteClassHandler} className={classes.Delete}>Delete</button>
                     </div>
                 </div>

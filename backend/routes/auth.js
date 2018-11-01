@@ -7,6 +7,8 @@ router.post('', UserController.createUser);
 
 router.post('/check', UserController.checkUser);
 
+router.post('/bookclass', UserController.bookClass);
+
 router.get('/:id', UserController.getUser);
 
 module.exports = router;
