@@ -5,10 +5,10 @@ import Button from '../UI/Button/Button';
 
 const userProfile = (props) => {
   // props.user.address.map( line => <p>{line}</p> )
-  // {/* <p>{props.user.address.map(i => <li>{i}</li>)}</p> */}
+  // <p>{props.user.address.map(i => <li>{i}</li>)}</p>
   return (
     <div className={classes.UserProfile}>
-      <h1>Welcome Back, {props.user.user}</h1>
+      <h1>Welcome Back, {props.user.name}</h1>
     <div className={classes.Wrapper}>
         <div className={classes.Box}>
           <div className={classes.Card}>
