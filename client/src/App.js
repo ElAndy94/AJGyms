@@ -9,6 +9,7 @@ import CreateGymClass from './containers/CreateGymClass/CreateGymClass';
 import Auth from './containers/Auth/Login/Auth';
 import Logout from './containers/Auth/Logout/Logout';
 import Signup from './containers/Auth/Signup/Signup';
+import BookedGymClasses from './containers/GymClasses/BookedGymClasses/BookedGymClasses';
 
 class App extends Component {
   constructor(props) {
@@ -43,8 +44,9 @@ class App extends Component {
         <Switch>
           <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
           <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} />} />
+          <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
           <Route path="/createGymClass" component={CreateGymClass} />
-          <Route path="/logout" render={props => <Logout onLogout={this.handleLogout} />} />
+          <Route path="/logout" render={(props) => <Logout onLogout={this.handleLogout} />} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
         </Switch>

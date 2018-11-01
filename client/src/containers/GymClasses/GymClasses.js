@@ -13,7 +13,6 @@ import { updateObject, checkValidity } from '../../shared/utility';
 class GymClasses extends Component {
   state = {
     gymClasses: [],
-    selectedPostId: null,
     gymForm: {
       gymLocation: {
         elementType: 'select',
@@ -144,7 +143,6 @@ class GymClasses extends Component {
         startTime={gymClass.time}
         clicked={() => this.classSelectedHandler(gymClass._id)}/>
       );
-
     });
 
     const formElementsArray = [];

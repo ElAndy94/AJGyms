@@ -11,4 +11,6 @@ router.post('/bookclass', UserController.bookClass);
 
 router.get('/:id', UserController.getUser);
 
+router.get('/booked:id', UserController.bookedClasses)
+
 module.exports = router;

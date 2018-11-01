@@ -89,56 +89,30 @@ exports.bookClass = (req, res) => {
         message: "Error Occured!"
       })
     } else {
-      const classToAdd = {
-        classId: mongoose.Types.ObjectId(req.body.classId),
-        dateBooked: (req.body.date)
-      };
-      User.findByIdAndUpdate({
-        _id: mongoose.Types.ObjectId(req.body.userId)
-      },
+        const classToAdd = {
+          classId: mongoose.Types.ObjectId(req.body.classId),
+          dateBooked: (req.body.date)
+        };
+        User.findByIdAndUpdate({
+          _id: mongoose.Types.ObjectId(req.body.userId)
+        },
         {$push: { bookedClasses : classToAdd }},
-        (err) => {
-          if(err) {
-            res.status(401).json({
-              message: "Error Occured!"
-            })
-          } else {
-            res.status(200).json({
-              message: "Success!"
-            })
+          (err) => {
+            if(err) {
+              res.status(401).json({
+                message: "Error Occured!"
+              })
+            } else {
+              res.status(200).json({
+                message: "Success!"
+              })
+            }
           }
-        }
       );
     }
   });
 }
 
+exports.bookedClasses = (req, res) => {
 
-// exports.bookClass = (req, res) => {
-//   User.findById({
-//     _id: req.body.id
-//   }, 'bookedClasses', function (err) {
-//     if (err) {
-//       res.status(401).json({
-//         message: "Error Occured!"
-//       })
-//     } else {
-//       User.findOneAndUpdate({
-//         "bookedClasses.classId" : mongoose.Types.ObjectId(req.body.classId),
-//         "bookedClasses.dateBooked" : (req.body.date)
-//         },
-//         (err) => {
-//             if(err) {
-//               res.status(401).json({
-//                 message: "Error Occured!"
-//               })
-//             } else {
-//               res.status(200).json({
-//                 message: "Success!"
-//               })
-//             }
-//         }
-//       );
-//     }
-//   });
-// }
+}
