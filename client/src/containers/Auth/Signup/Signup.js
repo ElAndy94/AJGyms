@@ -21,7 +21,8 @@ class Signup extends Component {
           value: '',
           validation: {
             required: true,
-            isEmail: true
+            minLength: 6,
+            maxLength: 25
           },
           valid: false,
           touched: false
@@ -35,7 +36,8 @@ class Signup extends Component {
           value: '',
           validation: {
             required: true,
-            isEmail: true
+            isEmail: true,
+            maxLength: 40
           },
           valid: false,
           touched: false
@@ -49,7 +51,23 @@ class Signup extends Component {
           value: '',
           validation: {
             required: true,
-            minLength: 6
+            minLength: 6,
+            maxLength: 25
+          },
+          valid: false,
+          touched: false
+        },
+        password2: {
+          elementType: 'input',
+          elementConfig: {
+            type: 'password',
+            placeholder: 'Password'
+          },
+          value: '',
+          validation: {
+            required: true,
+            minLength: 6,
+            maxLength: 25
           },
           valid: false,
           touched: false
@@ -63,7 +81,8 @@ class Signup extends Component {
           value: '',
           validation: {
             required: true,
-            minLength: 6
+            minLength: 6,
+            maxLength: 50
           },
           valid: false,
           touched: false
@@ -122,7 +141,7 @@ class Signup extends Component {
           valid: true
         },
       },
-      isSignup: false
+      isSignup: true
     }
 
   inputChangedHandler = (event, controlName) => {
@@ -138,15 +157,26 @@ class Signup extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.onAuth(
-      this.state.controls.name.value,
-      this.state.controls.email.value,
-      this.state.controls.password.value,
-      this.state.controls.address.value,
-      this.state.controls.membershipType.value,
-      this.state.controls.payment.value,
-      this.state.controls.gymGoal.value,
-      this.state.controls.gymLocation.value);
+    if (
+      this.state.controls.password.value ===
+      this.state.controls.password2.value &&
+      this.state.controls.password.valid &&
+      this.state.controls.email.valid &&
+      this.state.controls.name.valid &&
+      this.state.controls.address.valid === true
+      ){
+      this.onAuth(
+        this.state.controls.name.value,
+        this.state.controls.email.value,
+        this.state.controls.password.value,
+        this.state.controls.address.value,
+        this.state.controls.membershipType.value,
+        this.state.controls.payment.value,
+        this.state.controls.gymGoal.value,
+        this.state.controls.gymLocation.value
+      );
+    }
+      // this.errorMessage = <p>Passwords Need To Match</p>;
   }
 
   onAuth = () => {
@@ -163,7 +193,7 @@ class Signup extends Component {
       };
       axios.post('/api/auth', authentication)
         .then(response => {
-          this.setState({ isSignup: true })
+          this.setState({ isSignup: false })
           console.log(response);
         }).catch(error => {
           console.log(error);
@@ -171,7 +201,7 @@ class Signup extends Component {
   }
 
   render () {
-    if (this.state.isSignup === true) {
+    if (this.state.isSignup === false) {
       return <Redirect to="/auth" />
     }
 
@@ -206,12 +236,12 @@ class Signup extends Component {
     return (
       <Aux>
         <div className={classes.Signup}>
-            {errorMessage}
-            <h2>SIGN UP</h2>
-            <form onSubmit={this.submitHandler}>
-                {form}
-                <Button btnType="Success">SUBMIT</Button>
-            </form>
+          {errorMessage}
+          <h2>SIGN UP</h2>
+          <form onSubmit={this.submitHandler}>
+              {form}
+          <Button btnType="Success">SUBMIT</Button>
+          </form>
         </div>
           <Footer />
       </Aux>
