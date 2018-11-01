@@ -10,15 +10,15 @@ class FullGymClass extends Component {
     }
 
     componentDidUpdate () {
-        if ( this.props.id ) {
-            if ( !this.state.loadedClass || (this.state.loadedClass && this.state.loadedClass._id !== this.props.id) ) {
-                axios.get( '/api/classes/' + this.props.id )
-                    .then( response => {
-                        console.log(response);
-                        this.setState( { loadedClass: response.data } );
-                    } );
-            }
-        }
+      if ( this.props.id ) {
+          if ( !this.state.loadedClass || (this.state.loadedClass && this.state.loadedClass._id !== this.props.id) ) {
+            axios.get( '/api/classes/' + this.props.id )
+                .then( response => {
+                    // console.log(response);
+                    this.setState( { loadedClass: response.data } );
+                });
+          }
+      }
     }
 
     bookClassHandler = () => {
@@ -29,7 +29,6 @@ class FullGymClass extends Component {
       }
       axios.post('/api/auth/bookclass', bookingData)
         .then( response => {
-          console.log('done');
           console.log(response);
         })
         .catch(error => {
@@ -41,6 +40,9 @@ class FullGymClass extends Component {
       axios.delete('/api/classes/' + this.props.id)
         .then(response => {
           console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
         });
     }
 

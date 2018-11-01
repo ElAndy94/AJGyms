@@ -34,7 +34,7 @@ exports.createUser = (req, res) => {
   });
 }
 
-exports.checkUser = (req, res) => {
+exports.login = (req, res) => {
   let fetchedUser;
   User.findOne({
     email: req.body.email
@@ -114,5 +114,13 @@ exports.bookClass = (req, res) => {
 }
 
 exports.bookedClasses = (req, res) => {
-
+  User.findById(req.params.id)
+    .then(user => {
+      res.status(200).json(user.bookedClasses);
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Fetching User Classes Failed"
+      });
+    });
 }

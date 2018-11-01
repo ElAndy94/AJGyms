@@ -87,7 +87,6 @@ class GymClasses extends Component {
             // author: 'Andrew'
           }
         });
-        // this.setState({posts: response.data});
         this.setState({gymClasses: updatedGymClasses});
       })
       .catch(error => {

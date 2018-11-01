@@ -1,6 +1,6 @@
 .BookedGymClasses {
   margin: 20px auto;
-  width: 80%;
+  width: 50%;
   text-align: center;
   box-shadow: 0 2px 3px #ccc;
   border: 1px solid #eee;
@@ -9,4 +9,12 @@
   box-shadow: 1px 4px 6px 1px rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 23px;
+}
+
+.Classes {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
 }

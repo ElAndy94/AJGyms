@@ -66,7 +66,7 @@ class Auth extends Component {
         email: this.state.controls.email.value,
         password: this.state.controls.password.value,
       };
-      axios.post('/api/auth/check', authenticationCheck)
+      axios.post('/api/auth/login', authenticationCheck)
         .then(response => {
           const userId = response.data._id;
           this.props.onAuthComplete(userId);

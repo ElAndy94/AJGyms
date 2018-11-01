@@ -72,7 +72,7 @@ exports.getClassById = (req, res) => {
     });
 }
 
-exports.deleteClass = (req, res, next) => {
+exports.deleteClass = (req, res) => {
   GymClass.findByIdAndRemove({
       _id: req.params.id
     })
@@ -87,4 +87,16 @@ exports.deleteClass = (req, res, next) => {
         message: 'Class was not deleted!'
       })
     });
+}
+
+exports.getBookedClasses = (req, res) => {
+  GymClass.findById(req.params.id)
+    .then(gymClass => {
+      res.status(200).json(gymClass);
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "No Class Found"
+      })
+    })
 }
