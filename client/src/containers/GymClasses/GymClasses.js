@@ -180,7 +180,7 @@ class GymClasses extends Component {
           {gymClasses}
         </section>
         <section>
-          <FullGymClass id={this.state.selectedClassId} />
+          <FullGymClass userId={this.props.userId} id={this.state.selectedClassId} />
         </section>
           <Footer />
       </Aux>

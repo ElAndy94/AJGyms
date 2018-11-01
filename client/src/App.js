@@ -42,7 +42,7 @@ class App extends Component {
       routes = (
         <Switch>
           <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
-          <Route path="/classes" component={GymClasses} />
+          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} />} />
           <Route path="/createGymClass" component={CreateGymClass} />
           <Route path="/logout" render={props => <Logout onLogout={this.handleLogout} />} />
           <Route path="/" exact component={DashBoardBuilder} />
