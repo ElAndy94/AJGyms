@@ -173,13 +173,15 @@ class GymClasses extends Component {
           <h3>Select, book and enjoy!</h3>
           {form}
         </div>
-        <section className={classes.Classes}>
+        <div className={classes.ClassesContainer}>
           {gymClasses}
-        </section>
-        <section>
-          <FullGymClass userId={this.props.userId} id={this.state.selectedClassId} />
-        </section>
-          <Footer />
+        </div>
+        <div>
+          {/* <section> */}
+            <FullGymClass userId={this.props.userId} id={this.state.selectedClassId} />
+          {/* </section> */}
+        </div>
+          {/* <Footer /> */}
       </Aux>
     );
   }

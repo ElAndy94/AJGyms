@@ -12,6 +12,16 @@
   border-radius: 23px;
 }
 
+.ClassContainer {
+  /* border: 1px solid #000;
+  margin-bottom: 1em; */
+}
+
+.Column {
+  width: 33.33333333%;
+  float: left;
+}
+
 .Class:hover,
 .Class:active {
   background-color: #C0DDF5;
