@@ -115,6 +115,10 @@ exports.bookClass = (req, res) => {
 
 exports.bookedClasses = (req, res) => {
   User.findById(req.params.id)
+    .populate({
+      path: 'bookedClasses.classId',
+      model: 'createClass'
+    })
     .then(user => {
       res.status(200).json(user.bookedClasses);
     })
