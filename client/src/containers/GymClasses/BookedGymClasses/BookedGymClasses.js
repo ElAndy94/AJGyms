@@ -5,11 +5,11 @@ import Aux from '../../../hoc/ReactAux';
 import BookedClasses from '../../../components/BookedClasses/BookedClasses';
 import classes from './BookedGymClasses.css';
 import Footer from '../../../components/Footer/Footer';
+import BookedClass from './BookedClass/BookedClass';
 
 class BookedGymClasses extends Component {
   state = {
-    classes: [],
-    gymClasses: [],
+    classes: []
   }
 
   componentDidMount() {
@@ -17,7 +17,6 @@ class BookedGymClasses extends Component {
       .then(response => {
         const classes = response.data;
         const updatedClasses = classes.map(bookedClass => ({...bookedClass.classId}));
-          // console.log(bookedClass.classId);
           // return {
           //   ...bookedClass.classId
           // }
@@ -26,6 +25,10 @@ class BookedGymClasses extends Component {
       .catch(error => {
         console.log(error);
       });
+  }
+
+  classSelectedHandler = (id) => {
+    this.setState({selectedClassId: id});
   }
 
   render() {
@@ -43,11 +46,10 @@ class BookedGymClasses extends Component {
 
     return (
       <Aux>
-        <div className={classes.BookedGymClasses}>
-          <section className={classes.Classes}>
-            {gymClasses}
-          </section>
-        </div>
+        <section className={classes.Classes}>
+          {gymClasses}
+        </section>
+        <BookedClass userId={this.props.userId} id={this.state.selectedClassId} />
         <Footer />
       </Aux>
     );

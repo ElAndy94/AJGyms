@@ -1,4 +1,6 @@
+const mongoose = require('mongoose');
 const GymClass = require('../models/classes');
+const User = require('../models/user');
 
 const CLASS_NOT_FOUND = {
   message: 'Class not found!'
@@ -87,6 +89,70 @@ exports.deleteClass = (req, res) => {
         message: 'Class was not deleted!'
       })
     });
+}
+
+exports.deleteUser = (req, res) => {
+  console.log('cl userid ', req.body.userId);
+  console.log('cl classid ', req.body.classId);
+  GymClass.findById({
+    _id: req.body.classId
+  }, 'classMembers', (err) => {
+    if (err) {
+      console.log('class up here');
+      res.status(401).json({
+        message: "Error Occured!"
+      })
+    } else {
+      GymClass.findByIdAndDelete({
+        "classMembers.userId" : mongoose.Types.ObjectId(req.body.userId)
+      }, (err) => {
+        if(err) {
+          console.log('class down');
+            res.status(401).json({
+              message: "Error Occured!"
+            })
+        } else {
+          res.status(200).json({
+            message: "Success!"
+          })
+        }
+      });
+    }
+  })
+}
+
+exports.bookClass = (req, res) => {
+  GymClass.findById({
+    _id: req.body.classId
+  }, 'classMembers', (err) => {
+    if (err) {
+      console.log('up here');
+      res.status(401).json({
+        message: "Error Occured!"
+      })
+    } else {
+      const userToAdd = {
+        userId: mongoose.Types.ObjectId(req.body.userId),
+      };
+      GymClass.findByIdAndUpdate({
+        _id: mongoose.Types.ObjectId(req.body.classId)
+      },
+      {$push: { classMembers : userToAdd }},
+        (err) => {
+          if(err) {
+            console.log('here');
+            res.status(401).json({
+              message: "Error Occured!"
+            })
+          } else {
+            res.status(200).json({
+              message: "Success!"
+            })
+          }
+        }
+      );
+    }
+  });
 }
 
 // exports.getBookedClasses = (req, res) => {

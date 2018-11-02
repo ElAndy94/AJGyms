@@ -70,7 +70,6 @@ class Auth extends Component {
         .then(response => {
           const userId = response.data._id;
           this.props.onAuthComplete(userId);
-          console.log(response);
         }).catch(error => {
           console.log(error);
         });

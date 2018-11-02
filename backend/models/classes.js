@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 
+const classMembersSchema = mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+  }
+})
+
 const classSchema = mongoose.Schema({
-  // JH: Commented out this ID field because _id is automatically created, and we should use that.
-  //     In addition, I updated the front end code to use _id instead of id when in the GET request
   // id: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   required: true
@@ -23,6 +28,7 @@ const classSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  classMembers: [classMembersSchema]
 });
 
 module.exports = mongoose.model('createClass', classSchema);

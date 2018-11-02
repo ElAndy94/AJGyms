@@ -16,7 +16,7 @@ class App extends Component {
     super(props);
     this.state = {
       isAuthenticated: false,
-      userId: ''
+      userId: '',
     };
   }
 
@@ -26,7 +26,6 @@ class App extends Component {
 
   handleLogout = () => {
     this.setState({ isAuthenticated: false });
-    console.log(this.state.isAuthenticated);
   }
 
   render () {

@@ -1,0 +1,39 @@
+.BookedClass {
+  width: 36%;
+  margin: 20px auto;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  text-align: center;
+  position: relative;
+  box-shadow: 1px 4px 6px 1px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 23px;
+  /* overflow: scroll; */
+}
+
+.Edit label {
+  display: block;
+  color: grey;
+}
+
+.Button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  color: #fa923f;
+}
+
+.Button:hover,
+.Button:active {
+  color: #521751;
+}
+
+.Button .Delete {
+  color: red;
+}
+
+.Button Button.Delete:hover,
+.Button Button.Delete:active {
+  color: darkred;
+}
