@@ -16,68 +16,20 @@ class BookedGymClasses extends Component {
     axios.get('/api/auth/booked/' + this.props.userId)
       .then(response => {
         const classes = response.data;
-        const updatedClasses = classes.map(bookedClass => {
-          return {
-            ...bookedClass,
-          }
-        });
+        const updatedClasses = classes.map(bookedClass => ({...bookedClass.classId}));
+          // console.log(bookedClass.classId);
+          // return {
+          //   ...bookedClass.classId
+          // }
         this.setState({classes: updatedClasses});
-        console.log(classes);
       })
       .catch(error => {
         console.log(error);
       });
-
-      // JOSH THIS IS WHERE YOU NOW NEED TO COMPARE THE ID OF THESE CLASSES WITH THE ID OF THE CLASSES ONTOP
-    // SO IT WOULD BE THESE  classes: []  WITH  gymClasses: []
-    // THEN ONLY DISPLAY THE CLASSES IN THE GYMCLASS
-
-    axios.get('/api/classes')
-      .then(response => {
-        const gymClasses = response.data;
-        const updatedGymClasses = gymClasses.map(gymClass => {
-          return {
-            ...gymClass,
-          }
-        });
-        console.log(gymClasses);
-        this.setState({gymClasses: updatedGymClasses});
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-
-    // const classes = this.state.classes;
-    // const bookedClasses = classes.map(bookedClass => {
-    //     return {
-    //       ...bookedClass,
-    //     }
-    // });
-
-    // axios.get('/api/classes/booked', bookedClasses)
-    //   .then(response => {
-    //     const gymClasses = response.data;
-    //     const updatedClasses = gymClasses.map(bookedClass => {
-    //       return {
-    //         ...bookedClass,
-    //       }
-    //     });
-    //     this.setState({gymClasses: updatedClasses});
-    //     // console.log(this.state.classes);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
   }
 
   render() {
-      const gymClasses = this.state.gymClasses.map(gymClass => {
-        // const match = this.state.classes.map(classes => {
-        //   if (classes.id === this.state.id) {
-        //     this.gymClass._id = classes.id;
-        //   }
-        // });
+      const gymClasses = this.state.classes.map(gymClass => {
         return  (
         <BookedClasses
           key={gymClass._id}

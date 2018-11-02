@@ -108,7 +108,7 @@ exports.bookClass = (req, res) => {
               })
             }
           }
-      );
+        );
     }
   });
 }
