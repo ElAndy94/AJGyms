@@ -5,7 +5,6 @@ import Aux from '../../hoc/ReactAux';
 import GymTimetable from '../../components/GymTimetable/GymTimetable';
 import Input from '../../components/UI/Input/Input';
 import classes from './GymClasses.css';
-import Footer from '../../components/Footer/Footer';
 import FullGymClass from './FullGymClass/FullGymClass';
 import { updateObject, checkValidity } from '../../shared/utility';
 // import Button from '../../components/UI/Button/Button';
@@ -179,7 +178,6 @@ class GymClasses extends Component {
         <section>
           <FullGymClass userId={this.props.userId} id={this.state.selectedClassId} />
         </section>
-          <Footer />
       </Aux>
     );
   }

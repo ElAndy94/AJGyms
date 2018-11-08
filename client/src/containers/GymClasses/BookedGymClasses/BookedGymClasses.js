@@ -4,7 +4,6 @@ import axios from 'axios';
 import Aux from '../../../hoc/ReactAux';
 import BookedClasses from '../../../components/BookedClasses/BookedClasses';
 import classes from './BookedGymClasses.css';
-import Footer from '../../../components/Footer/Footer';
 import BookedClass from './BookedClass/BookedClass';
 
 class BookedGymClasses extends Component {
@@ -50,7 +49,6 @@ class BookedGymClasses extends Component {
           {gymClasses}
         </section>
         <BookedClass userId={this.props.userId} id={this.state.selectedClassId} />
-        <Footer />
       </Aux>
     );
   }

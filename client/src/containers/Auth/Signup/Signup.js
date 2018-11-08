@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
 import Aux from '../../../hoc/ReactAux';
-import Footer from '../../../components/Footer/Footer';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import classes from './Signup.css';
@@ -243,7 +242,6 @@ class Signup extends Component {
           <Button btnType="Success">SUBMIT</Button>
           </form>
         </div>
-          <Footer />
       </Aux>
     );
   }

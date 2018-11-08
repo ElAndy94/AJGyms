@@ -36,7 +36,8 @@
   /* color: #5C9210; */
 }
 
-.Success:focus {
+.Success:focus,
+.Success:hover {
   outline: none;
   animation: pulsate 1s infinite;
 }
@@ -51,7 +52,8 @@
   /* color: #944317; */
 }
 
-.Danger:focus {
+.Danger:focus,
+.Danger:hover {
   outline: none;
   animation: pulsate 1s infinite;
 }
