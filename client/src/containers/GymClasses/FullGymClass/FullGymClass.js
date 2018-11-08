@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import classes from './FullGymClass.css';
-// import Button from '../../../components/UI/Button/Button';
+import Button from '../../../components/UI/Button/Button';
 
 class FullGymClass extends Component {
     state = {
@@ -68,18 +68,18 @@ class FullGymClass extends Component {
         }
         if ( this.state.loadedClass ) {
           gymClass = (
-                <div className={classes.FullGymClass}>
-                    <h1>{this.state.loadedClass.location}</h1>
-                    <p>{this.state.loadedClass.type}</p>
-                    <p>{this.state.loadedClass.name}</p>
-                    <p>{this.state.loadedClass.time}</p>
-                    <div className={classes.Edit}>
-                    {/* btnType="Success" */}
-                        <button onClick={this.bookClassHandler}>Book Class</button>
-                        <button onClick={this.deleteClassHandler} className={classes.Delete}>Delete</button>
-                    </div>
+              <div className={classes.FullGymClass}>
+                <h1>{this.state.loadedClass.location}</h1>
+                <p>{this.state.loadedClass.type}</p>
+                <p>{this.state.loadedClass.name}</p>
+                <p>{this.state.loadedClass.time}</p>
+                <div className={classes.Edit}>
+                  <Button btnType="Success" clicked={this.bookClassHandler}>Book Class</Button>
+                  <Button btnType="Danger" clicked={this.deleteClassHandler}>Delete</Button>
+                  {/* <button onClick={this.bookClassHandler}>Book Class</button>
+                  <button onClick={this.deleteClassHandler} className={classes.Delete}>Delete</button> */}
                 </div>
-
+              </div>
             );
         }
         return gymClass;

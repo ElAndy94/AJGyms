@@ -7,7 +7,7 @@
   border-radius: 100px;
   font: inherit;
   padding: 5px 10px 5px 10px !important;
-  margin: 10px;
+  margin: 10px !important;
   font-weight: bold;
   text-align: center;
 }
@@ -29,9 +29,10 @@
 .Success {
   background-image: linear-gradient(
     to right,
-    #00ff00,
-    #00cc00
+    #00cc00,
+    #009900
   );
+  box-shadow: 0 1rem 4rem rgba(0,0,0,.30);
   /* color: #5C9210; */
 }
 
@@ -41,7 +42,18 @@
 }
 
 .Danger {
-  color: #944317;
+  background-image: linear-gradient(
+    to right,
+    #b30000,
+    #800000
+  );
+  box-shadow: 0 1rem 4rem rgba(0,0,0,.30);
+  /* color: #944317; */
+}
+
+.Danger:focus {
+  outline: none;
+  animation: pulsate 1s infinite;
 }
 
 @keyframes pulsate {

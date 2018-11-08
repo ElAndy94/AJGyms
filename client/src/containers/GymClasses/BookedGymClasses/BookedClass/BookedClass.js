@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import classes from './BookedClass.css';
-// import Button from '../../../components/UI/Button/Button';
+import Button from '../../../../components/UI/Button/Button';
 
 class BookedClass extends Component {
     state = {
@@ -21,13 +21,16 @@ class BookedClass extends Component {
     }
 
     deleteClassHandler = () => {
-      const data = {
-        userId: this.props.userId,
-        classId: this.props.id
-      }
-      console.log('userID ', this.props.userId);
-      console.log('id ', this.props.id);
-      axios.delete('/api/classes/remove', data)
+      // const data = {
+      //   userId: this.props.userId,
+      //   classId: this.props.id
+      // }
+      axios.delete('/api/classes/remove', {
+        data: {
+          userId: this.props.userId,
+          classId: this.props.id
+        }
+      })
         .then(response => {
           console.log(response);
         })
@@ -38,11 +41,16 @@ class BookedClass extends Component {
 
     deleteUserClassHandler = () => {
       this.deleteClassHandler();
-      const data = {
-        userId: this.props.userId,
-        classId: this.props.id
-      }
-      axios.delete('/api/auth/remove', data)
+      // const data = {
+      //   userId: this.props.userId,
+      //   classId: this.props.id
+      // }
+      axios.delete('/api/auth/remove', {
+        data: {
+          userId: this.props.userId,
+          classId: this.props.id
+        }
+      })
         .then(response => {
           console.log(response);
         })
@@ -80,7 +88,8 @@ class BookedClass extends Component {
                   <p>{this.state.loadedClass.time}</p>
                   <div className={classes.Edit}>
                     {/* <button onClick={this.bookClassHandler}>Book Class</button> */}
-                    <button onClick={this.deleteClassHandler} className={classes.Delete}>Delete</button>
+                    {/* <button onClick={this.deleteClassHandler} className={classes.Delete}>Delete</button> */}
+                    <Button clicked={this.deleteClassHandler} btnType="Danger">Delete</Button>
                   </div>
               </div>
 
