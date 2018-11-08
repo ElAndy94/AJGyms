@@ -21,16 +21,7 @@ class BookedClass extends Component {
     }
 
     deleteClassHandler = () => {
-      // const data = {
-      //   userId: this.props.userId,
-      //   classId: this.props.id
-      // }
-      axios.delete('/api/classes/remove', {
-        data: {
-          userId: this.props.userId,
-          classId: this.props.id
-        }
-      })
+      axios.delete('/api/classes/' + this.props.id + '/user/' + this.props.userId)
         .then(response => {
           console.log(response);
         })
@@ -40,17 +31,7 @@ class BookedClass extends Component {
     }
 
     deleteUserClassHandler = () => {
-      this.deleteClassHandler();
-      // const data = {
-      //   userId: this.props.userId,
-      //   classId: this.props.id
-      // }
-      axios.delete('/api/auth/remove', {
-        data: {
-          userId: this.props.userId,
-          classId: this.props.id
-        }
-      })
+      axios.delete('/api/auth/' + this.props.id + '/user/' + this.props.userId)
         .then(response => {
           console.log(response);
         })
@@ -58,21 +39,6 @@ class BookedClass extends Component {
           console.log(error);
         });
     }
-
-    // bookClassHandler = () => {
-    //   const bookingData = {
-    //     userId: this.props.userId,
-    //     classId: this.props.id,
-    //     date: new Date()
-    //   }
-    //   axios.post('/api/auth/bookclass', bookingData)
-    //     .then( response => {
-    //       console.log(response);
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
-    // }
 
     render () {
         let gymClass = <p style={{ textAlign: 'center' }}>Please select a Class!</p>;
@@ -87,9 +53,8 @@ class BookedClass extends Component {
                   <p>{this.state.loadedClass.name}</p>
                   <p>{this.state.loadedClass.time}</p>
                   <div className={classes.Edit}>
-                    {/* <button onClick={this.bookClassHandler}>Book Class</button> */}
-                    {/* <button onClick={this.deleteClassHandler} className={classes.Delete}>Delete</button> */}
-                    <Button clicked={this.deleteClassHandler} btnType="Danger">Delete</Button>
+                    {/* <Button clicked={this.deleteClassHandler} btnType="Danger">Delete</Button> */}
+                    <Button clicked={() => {this.deleteClassHandler(); this.deleteUserClassHandler();}} btnType="Danger">Delete</Button>
                   </div>
               </div>
 

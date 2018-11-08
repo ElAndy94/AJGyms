@@ -13,6 +13,6 @@ router.get('/:id', UserController.getUser);
 
 router.get('/booked/:id', UserController.bookedClasses);
 
-router.delete('/remove', UserController.deleteClass);
+router.delete('/:id/user/:userId', UserController.deleteClass);
 
 module.exports = router;

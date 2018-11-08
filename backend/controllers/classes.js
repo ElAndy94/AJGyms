@@ -92,19 +92,16 @@ exports.deleteClass = (req, res) => {
 }
 
 exports.deleteUser = (req, res) => {
-  console.log('cl userid ', req.body.userId);
-  console.log('cl classid ', req.body.classId);
   GymClass.findById({
-    _id: req.body.classId
+    _id: req.params.id
   }, 'classMembers', (err) => {
     if (err) {
-      console.log('class up here');
       res.status(401).json({
         message: "Error Occured!"
       })
     } else {
       GymClass.findByIdAndDelete({
-        "classMembers.userId" : mongoose.Types.ObjectId(req.body.userId)
+        "classMembers.userId" : mongoose.Types.ObjectId(req.params.userId)
       }, (err) => {
         if(err) {
           console.log('class down');

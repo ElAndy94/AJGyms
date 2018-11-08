@@ -114,19 +114,16 @@ exports.bookClass = (req, res) => {
 }
 
 exports.deleteClass = (req, res) => {
-  console.log('auth userid', req.body.userId);
-  console.log('auth classid', req.body.classId);
   User.findById({
-    _id: req.body.userId
+    _id: req.params.userId
   }, 'bookedClasses', (err) => {
     if (err) {
-      console.log('auth up here');
       res.status(401).json({
         message: "Error Occured!"
       })
     } else {
-      GymClass.findByIdAndDelete({
-        "bookedClasses.classId" : mongoose.Types.ObjectId(req.body.classId)
+      User.findByIdAndDelete({
+        "bookedClasses.classId" : mongoose.Types.ObjectId(req.params.id)
       }, (err) => {
         if(err) {
           console.log('auth down here');

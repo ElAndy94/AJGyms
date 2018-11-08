@@ -13,6 +13,6 @@ router.post('/bookclass', ClassesController.bookClass);
 
 router.delete('/:id', ClassesController.deleteClass);
 
-router.delete('/remove', ClassesController.deleteUser);
+router.delete('/:id/user/:userId', ClassesController.deleteUser);
 
 module.exports = router;

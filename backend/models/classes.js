@@ -8,10 +8,6 @@ const classMembersSchema = mongoose.Schema({
 })
 
 const classSchema = mongoose.Schema({
-  // id: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   required: true
-  // },
   location: {
     type: String,
     required: true
