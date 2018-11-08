@@ -17,7 +17,7 @@ const dashBoard = (props) => {
         <p>Stop waiting... <br/> make a difference now!</p>
         <p>Join today and pay no joining fee.</p>
         <p>Bring a friend, signup and first month becomes FREE!</p>
-        <Button btnType="Success">Join Now!</Button>
+        <Button btnType="Success">Join Now</Button>
         {/* clicked={props.history.push("/signup")} */}
     </div>
   );

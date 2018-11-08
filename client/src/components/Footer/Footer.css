@@ -20,28 +20,98 @@
 
 .Footer td {
   padding-bottom: 10px;
+} */
+
+/* .footer {
+  background-color: $color-grey-dark-3;
+  color: $color-grey-light-1;
+  padding: 10rem 0;
+  font-size: 1.4rem; */
+
+.Footer__navigation {
+  border-top: 1px solid grey;
+  padding-top: 2rem;
+  display: inline-block;
 }
 
-@media (min-width: 500px) and (min-height: 400px) {
-  /* .Footer { */
-    /* width: 350px; */
-    /* width: 100%; */
-    /* height: 300px; */
-  /* } */
+.Footer__list {
+  list-style: none;
 }
 
-@media (min-width: 500px) and (min-height: 401px) {
-  /* .Footer { */
-    /* width: 450px; */
-    /* width: 100%; */
-    /* height: 400px; */
-  /* } */
+.Footer__item {
+  display: inline-block;
 }
 
-@media (min-width: 1000px) and (min-height: 700px) {
-  /* .Footer { */
-    /* width: 700px; */
-    /* width: 100%; */
-    /* height: 600px; */
-  /* } */
+.Footer__item:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+.Footer__link,
+.Footer__link:link,
+.Footer__link:visited {
+  color: lightgray;
+  background-color: darkgray;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.Footer__link:hover,
+.Footer__link:active {
+  color: grey;
+  box-shadow: 0 1rem 2rem rgba(black, 0.4);
+  transform: rotate(5deg) scale(1.3);
+}
+
+.Footer__copyright {
+  border-top: 1px solid darkgray;
+  padding-top: 2rem;
+  width: 80%;
+  float: right;
+}
+
+/* //GRID */
+/* $grid-width: 114rem; */
+/* $gutter-vertical: 8rem; */
+/* $gutter-vertical-small: 6rem; */
+/* 6rem: 6rem; */
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto;
+}
+.row:not(:last-child) {
+  margin-bottom: 8rem;
+}
+
+[class^="col"] {
+   float:left;
+}
+.row:not(:last-child) {
+    margin-right: 6rem;
+}
+
+.col1of2 {
+  width: calc((100% - 6rem) / 2);
+}
+
+.row col1of3 {
+  width: calc((100% - 2 * 6rem) / 3);
+}
+
+.row col2of3 {
+  width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem);
+}
+
+.row col1of4 {
+  width: calc((100% - 3 * 6rem) / 4);
+}
+
+.row col2of4 {
+  width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem);
+}
+
+.row col3of4 {
+  width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem);
 }

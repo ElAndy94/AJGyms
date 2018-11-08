@@ -25,6 +25,8 @@ class BookedClass extends Component {
         userId: this.props.userId,
         classId: this.props.id
       }
+      console.log('userID ', this.props.userId);
+      console.log('id ', this.props.id);
       axios.delete('/api/classes/remove', data)
         .then(response => {
           console.log(response);
