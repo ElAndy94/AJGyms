@@ -168,16 +168,18 @@ class GymClasses extends Component {
     );
     return (
       <Aux>
-        <div className={classes.GymClasses}>
-          <h3>Select, book and enjoy!</h3>
-          {form}
+        <div className={classes.BackGround}>
+            <div className={classes.GymClasses}>
+              <h3>Select, book and enjoy!</h3>
+              {form}
+            </div>
+            <div className={classes.Classes}>
+              {gymClasses}
+            </div>
+              <FullGymClass userId={this.props.userId} id={this.state.selectedClassId} />
+          {/* <section> */}
+          {/* </section> */}
         </div>
-        <section className={classes.Classes}>
-          {gymClasses}
-        </section>
-        <section>
-          <FullGymClass userId={this.props.userId} id={this.state.selectedClassId} />
-        </section>
       </Aux>
     );
   }

@@ -234,13 +234,15 @@ class Signup extends Component {
 
     return (
       <Aux>
-        <div className={classes.Signup}>
-          {errorMessage}
-          <h2>SIGN UP</h2>
-          <form onSubmit={this.submitHandler}>
-              {form}
-          <Button btnType="Success">SUBMIT</Button>
-          </form>
+        <div className={classes.BackGround}>
+          <div className={classes.Signup}>
+            {errorMessage}
+            <h2>SIGN UP</h2>
+            <form className={classes.BT} onSubmit={this.submitHandler}>
+                {form}
+            <Button btnType="Success">SUBMIT</Button>
+            </form>
+          </div>
         </div>
       </Aux>
     );

@@ -1,7 +1,9 @@
 .FullGymClass {
     width: 36%;
     margin: 20px auto;
-    border: 1px solid #eee;
+    background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.8), rgba(83, 134, 211, 0.8));
+    color: #fff;
+    /* border: 1px solid #eee; */
     box-shadow: 0 2px 3px #ccc;
     text-align: center;
     position: relative;
@@ -9,6 +11,13 @@
     transition: 0.3s;
     border-radius: 23px;
     /* overflow: scroll; */
+}
+
+.BackGround {
+  text-align: center;
+  height: 100vh;
+  background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.4), rgba(83, 134, 211, 0.4)), url('../../../assets/images/gym1.jpeg');
+  background-size: cover;
 }
 
 .Edit label {

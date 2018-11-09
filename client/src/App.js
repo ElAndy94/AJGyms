@@ -53,11 +53,9 @@ class App extends Component {
     }
 
     return (
-      <div>
-        <Layout isAuthenticated={this.state.isAuthenticated}>
-          {routes}
-        </Layout>
-      </div>
+      <Layout isAuthenticated={this.state.isAuthenticated}>
+        {routes}
+      </Layout>
     );
   }
   // render() {

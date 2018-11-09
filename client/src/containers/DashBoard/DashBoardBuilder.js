@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Aux from '../../hoc/ReactAux';
 import DashBoard from '../../components/DashBoard/DashBoard';
+import classes from './DashBoard.css';
 
 class DashBoardBuilder extends Component {
   state = {
@@ -11,7 +12,7 @@ class DashBoardBuilder extends Component {
   render() {
     return (
       <Aux>
-        <DashBoard />
+        <DashBoard className={classes.Dash}/>
       </Aux>
     );
   }

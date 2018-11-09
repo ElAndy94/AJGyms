@@ -1,3 +1,10 @@
 .Content {
-  margin-top: 72px;
+  /* margin-top: 72px; */
+  margin-top: 56px;
+  /* height: 100vh; */
+  /* background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(113, 180, 243, 0.85));
+  background-size: cover; */
+  /* background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.50), rgba(102, 211, 83, 0.5)), url('../../assets/images/gym.jpeg'); */
+  /* background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.5), rgba(83, 134, 211, 0.5)), url('../../assets/images/gym.jpeg'); */
+  /* background-color: black; */
 }

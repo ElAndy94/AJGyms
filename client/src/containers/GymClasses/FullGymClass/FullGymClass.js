@@ -68,6 +68,7 @@ class FullGymClass extends Component {
         }
         if ( this.state.loadedClass ) {
           gymClass = (
+            <div className={classes.BackGround}>
               <div className={classes.FullGymClass}>
                 <h1>{this.state.loadedClass.location}</h1>
                 <p>{this.state.loadedClass.type}</p>
@@ -76,10 +77,9 @@ class FullGymClass extends Component {
                 <div className={classes.Edit}>
                   <Button btnType="Success" clicked={this.bookClassHandler}>Book Class</Button>
                   <Button btnType="Danger" clicked={this.deleteClassHandler}>Delete</Button>
-                  {/* <button onClick={this.bookClassHandler}>Book Class</button>
-                  <button onClick={this.deleteClassHandler} className={classes.Delete}>Delete</button> */}
                 </div>
               </div>
+            </div>
             );
         }
         return gymClass;

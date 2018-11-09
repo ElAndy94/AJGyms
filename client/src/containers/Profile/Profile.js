@@ -4,10 +4,10 @@ import axios from 'axios';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import Aux from '../../hoc/ReactAux';
 import { updateObject, checkValidity } from '../../shared/utility';
+import classes from './Profile.css';
 
 class Profile extends Component {
   state = {
-    // formIsValid: false,
     user: {}
   }
 
@@ -37,7 +37,9 @@ class Profile extends Component {
   render() {
     return (
       <Aux>
-        <UserProfile user={this.state.user}/>
+         <div className={classes.BackGround}>
+            <UserProfile user={this.state.user}/>
+         </div>
       </Aux>
     );
   }

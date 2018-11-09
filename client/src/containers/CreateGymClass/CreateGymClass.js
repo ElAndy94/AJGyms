@@ -194,7 +194,7 @@ class CreateGymClass extends Component {
       nested divs.
     */
     return (
-      <div>
+      <div className={classes.BackGround}>
         <div className={classes.CreateGymClass}>
           <h3>Larry, <br/> Make sure all fields are correct before creating a class!</h3>
           {form}
@@ -220,11 +220,13 @@ function ClassConfirmation(props) {
   }
 
   return (
-    <div>
-      <p>{props.class.gymLocation}</p>
-      <p>{props.class.classType}</p>
-      <p>{props.class.className}</p>
-      <p>{props.class.timeOfDay}</p>
+    <div className={classes.BackGround}>
+      <div>
+        <p>{props.class.gymLocation}</p>
+        <p>{props.class.classType}</p>
+        <p>{props.class.className}</p>
+        <p>{props.class.timeOfDay}</p>
+      </div>
     </div>
   );
 }

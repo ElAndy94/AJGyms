@@ -41,7 +41,7 @@ class BookedClass extends Component {
     }
 
     render () {
-        let gymClass = <p style={{ textAlign: 'center' }}>Please select a Class!</p>;
+        let gymClass = <p style={{ textAlign: 'center', color: 'white', fontSize: '26px', fontWeight: '400'}}>Please select a Class!</p>;
         if ( this.props.id ) {
           gymClass = <p style={{ textAlign: 'center' }}>Loading...!</p>;
         }

@@ -58,6 +58,27 @@
   animation: pulsate 1s infinite;
 }
 
+.Signup {
+  padding: 8px 20px 8px 20px !important;
+  background-image: linear-gradient(
+    to right,
+    rgba(252, 180, 86, 0.925),
+    rgba(255, 145, 0, 0.925)
+  );
+  /* background-image: linear-gradient(
+    to right,
+    #40A4C8,
+    #2a517e
+  ); */
+  box-shadow: 0 1rem 4rem rgba(0,0,0,.30);
+}
+
+.Signup:focus,
+.Signup:hover {
+  outline: none;
+  animation: pulsate 1s infinite;
+}
+
 @keyframes pulsate {
   0% {
     transform: scale(1);

@@ -109,14 +109,16 @@ class Auth extends Component {
 
     return (
       <Aux>
-        <div className={classes.Auth}>
-              {errorMessage}
-              <h2>LOGIN</h2>
-              <form onSubmit={this.submitHandler}>
-                  {form}
-                  <Button btnType="Success">SUBMIT</Button>
-              </form>
-          </div>
+        <div className={classes.BackGround}>
+          <div className={classes.Auth}>
+                {errorMessage}
+                <h2>LOGIN</h2>
+                <form className={classes.BT} onSubmit={this.submitHandler}>
+                    {form}
+                    <Button btnType="Success">SUBMIT</Button>
+                </form>
+            </div>
+        </div>
       </Aux>
     );
   }

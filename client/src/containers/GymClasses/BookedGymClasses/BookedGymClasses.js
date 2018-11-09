@@ -45,10 +45,12 @@ class BookedGymClasses extends Component {
 
     return (
       <Aux>
-        <section className={classes.Classes}>
-          {gymClasses}
-        </section>
-        <BookedClass userId={this.props.userId} id={this.state.selectedClassId} />
+        <div className={classes.BackGround}>
+          <section className={classes.Classes}>
+            {gymClasses}
+          </section>
+          <BookedClass userId={this.props.userId} id={this.state.selectedClassId} />
+        </div>
       </Aux>
     );
   }
