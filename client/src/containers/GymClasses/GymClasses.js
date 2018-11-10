@@ -126,8 +126,6 @@ class GymClasses extends Component {
 
   classSelectedHandler = (id) => {
     this.setState({selectedClassId: id});
-    // this.props.history.push('/' + id);
-    // this.props.history.push({pathname: '/posts/' + id});
   }
 
   render() {
@@ -177,8 +175,6 @@ class GymClasses extends Component {
               {gymClasses}
             </div>
               <FullGymClass userId={this.props.userId} id={this.state.selectedClassId} />
-          {/* <section> */}
-          {/* </section> */}
         </div>
       </Aux>
     );
