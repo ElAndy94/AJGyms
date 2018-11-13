@@ -12,18 +12,19 @@ import Input from '../../components/UI/Input/Input';
 class GymClasses extends Component {
   state = {
     gymClasses: [],
+    filteredClasses: [],
     gymForm: {
       gymLocation: {
         elementType: 'select',
         elementConfig: {
           options: [
-            {value: 'AllGym', displayValue: 'All Gym'},
+            {value: 'AllGyms', displayValue: 'All Gyms'},
             {value: 'MarketStreet', displayValue: 'Market Street'},
             {value: 'PortlandStreet', displayValue: 'Portland Street'},
             {value: 'OxfordRoad', displayValue: 'Oxford Road'},
           ]
         },
-        value: 'AllGym',
+        value: 'AllGyms',
         validation: {},
         valid: true
       },
