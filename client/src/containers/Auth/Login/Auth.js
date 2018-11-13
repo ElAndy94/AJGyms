@@ -69,6 +69,9 @@ class Auth extends Component {
         .then(response => {
           const userId = response.data._id;
           this.props.onAuthComplete(userId);
+          if (response.data.pt === true) {
+            this.props.isPt(true);
+          }
         }).catch(error => {
           console.log(error);
         });

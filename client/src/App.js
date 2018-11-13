@@ -17,6 +17,7 @@ class App extends Component {
     this.state = {
       isAuthenticated: false,
       userId: '',
+      isPt: false
     };
   }
 
@@ -25,20 +26,24 @@ class App extends Component {
   };
 
   handleLogout = () => {
-    this.setState({ isAuthenticated: false });
+    this.setState({ isAuthenticated: false, userId: '', isPt: false });
+  };
+
+  handlePtVerification = () => {
+    this.setState({ isPt: true });
   }
 
   render () {
     let routes = (
         <Switch>
-          <Route path="/auth" render={props => <Auth onAuthComplete={this.handleAuthComplete} />} />
+          <Route path="/auth" render={props => <Auth onAuthComplete={this.handleAuthComplete} isPt={this.handlePtVerification} />} />
           <Route path="/signup" component={Signup} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
         </Switch>
     );
 
-    if (this.state.isAuthenticated) {
+    if (this.state.isAuthenticated && this.state.isPt) {
       routes = (
         <Switch>
           <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
@@ -52,8 +57,21 @@ class App extends Component {
       );
     }
 
+    if (this.state.isAuthenticated && !this.state.isPt) {
+      routes = (
+        <Switch>
+          <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
+          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} />} />
+          <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
+          <Route path="/logout" render={(props) => <Logout onLogout={this.handleLogout} />} />
+          <Route path="/" exact component={DashBoardBuilder} />
+          <Redirect to="/" />
+        </Switch>
+      );
+    }
+
     return (
-      <Layout isAuthenticated={this.state.isAuthenticated}>
+      <Layout isAuthenticated={this.state.isAuthenticated} isPt={this.state.isPt} >
         {routes}
       </Layout>
     );

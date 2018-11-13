@@ -7,7 +7,7 @@ import Aux from '../../../hoc/ReactAux';
 const navigationItems = (props) => (
   <ul className={classes.NavigationItems}>
     <NavigationItem link="/" exact>Dash Board</NavigationItem>
-    { props.isAuthenticated ?
+    { props.isAuthenticated && props.isPt ?
       <Aux>
         <NavigationItem link="/profile">Profile</NavigationItem>
         <NavigationItem link="/classes">Classes</NavigationItem>
@@ -16,10 +16,20 @@ const navigationItems = (props) => (
         <NavigationItem link="/logout">Logout</NavigationItem>
       </Aux>
       :
+      ( props.isAuthenticated && !props.isPt ?
+      <Aux>
+        <NavigationItem link="/profile">Profile</NavigationItem>
+        <NavigationItem link="/classes">Classes</NavigationItem>
+        <NavigationItem link="/myclasses">Booked Class</NavigationItem>
+        {/* <NavigationItem link="/createGymClass">Create Class</NavigationItem> */}
+        <NavigationItem link="/logout">Logout</NavigationItem>
+      </Aux>
+      :
       <Aux>
         <NavigationItem link="/signup" >Sign Up</NavigationItem>
         <NavigationItem link="/auth" >Login</NavigationItem>
       </Aux>
+      )
     }
   </ul>
 );
