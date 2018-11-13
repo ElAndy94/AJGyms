@@ -137,9 +137,11 @@ class GymClasses extends Component {
   filterClasses(value, fieldToSearch) {
     // Filter through the classes and only have ones that apply the search term
     // Update the state with the matching classes
-    const filteredClasses = this.state.gymClasses.filter( (value) => {
+    const newFilteredClasses = this.state.gymClasses.filter( (value) => {
         
     });
+
+    // this.setState({filterClasses: newFilteredClasses})
   }
 
   classSelectedHandler = (id) => {
