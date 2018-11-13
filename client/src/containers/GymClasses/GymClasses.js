@@ -113,6 +113,7 @@ class GymClasses extends Component {
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
+    console.log(event.target);
     const updatedFormElement = updateObject(this.state.gymForm[inputIdentifier], {
         value: event.target.value,
         valid: checkValidity(event.target.value, this.state.gymForm[inputIdentifier].validation),
@@ -127,7 +128,15 @@ class GymClasses extends Component {
       formIsValid = updatedGymForm[inputIdentifier].valid && formIsValid;
     }
 
+    //JH
+    this.filterClasses();
+
     this.setState({gymForm: updatedGymForm, formIsValid: formIsValid});
+  }
+
+  filterClasses(value, fieldToSearch) {
+    // Filter through the classes and only have ones that apply the search term
+    // Update the state with the matching classes
   }
 
   classSelectedHandler = (id) => {
