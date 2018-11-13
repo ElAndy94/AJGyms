@@ -3,10 +3,10 @@ import axios from 'axios';
 
 import Aux from '../../hoc/ReactAux';
 import GymTimetable from '../../components/GymTimetable/GymTimetable';
-import Input from '../../components/UI/Input/Input';
 import classes from './GymClasses.css';
 import FullGymClass from './FullGymClass/FullGymClass';
 import { updateObject, checkValidity } from '../../shared/utility';
+import Input from '../../components/UI/Input/Input';
 // import Button from '../../components/UI/Button/Button';
 
 class GymClasses extends Component {
@@ -74,7 +74,12 @@ class GymClasses extends Component {
       },
     },
     formIsValid: false,
+    // search: ''
   }
+
+  // updateSearch(event) {
+  //   this.setState({search: event.target.value.substr(0, 20)});
+  // }
 
   componentDidMount() {
     axios.get('/api/classes')
@@ -129,6 +134,12 @@ class GymClasses extends Component {
   }
 
   render() {
+    // let filteredClasses = this.state.gymClasses.filter(
+    //   (gymClass) => {
+    //     return gymClass.location.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+    //   }
+    // );
+
     const gymClasses = this.state.gymClasses.map(gymClass => {
       return  (
       <GymTimetable
@@ -174,7 +185,9 @@ class GymClasses extends Component {
             <div className={classes.Classes}>
               {gymClasses}
             </div>
+            <div className={classes.BackGroundTwo}>
               <FullGymClass userId={this.props.userId} id={this.state.selectedClassId} />
+            </div>
         </div>
       </Aux>
     );

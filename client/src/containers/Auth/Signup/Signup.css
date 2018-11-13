@@ -1,7 +1,7 @@
 .Signup {
+  position: relative;
+  top: 50px;
   margin: 20px auto;
-  /* margin-top: 120px; */
-  /* border: 1px solid #eee; */
   width: 80%;
   text-align: center;
   box-shadow: 0 2px 3px #ccc;

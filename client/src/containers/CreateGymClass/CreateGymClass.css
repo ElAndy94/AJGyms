@@ -1,4 +1,6 @@
 .CreateGymClass {
+  position: relative;
+  top: 50px;
   margin: 20px auto;
   width: 80%;
   text-align: center;
