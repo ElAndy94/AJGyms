@@ -100,11 +100,15 @@ exports.deleteUser = (req, res) => {
         message: "Error Occured!"
       })
     } else {
-      GymClass.findByIdAndDelete({
-        "classMembers.userId" : mongoose.Types.ObjectId(req.params.userId)
-      }, (err) => {
+        GymClass.findOneAndUpdate({
+          "classMembers.userId" : mongoose.Types.ObjectId(req.params.userId),
+          },
+        {
+          $pull : { "classMembers" : { userId : req.params.userId } }
+        }, (err, doc) => {
         if(err) {
-          console.log('class down');
+          console.log('err in class', err);
+            // console.log('Keeps hitting here!');
             res.status(401).json({
               message: "Error Occured!"
             })

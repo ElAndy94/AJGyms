@@ -122,11 +122,15 @@ exports.deleteClass = (req, res) => {
         message: "Error Occured!"
       })
     } else {
-      User.findByIdAndDelete({
-        "bookedClasses.classId" : mongoose.Types.ObjectId(req.params.id)
+      User.findOneAndUpdate({
+        "bookedClasses.classId" : mongoose.Types.ObjectId(req.params.id),
+        },
+      {
+        $pull : { "bookedClasses" : { classId : req.params.id } }
       }, (err) => {
         if(err) {
-          console.log('auth down here');
+          console.log('the error', err);
+          // console.log('auth down here');
             res.status(401).json({
               message: "Error Occured!"
             })

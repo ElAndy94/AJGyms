@@ -54,7 +54,6 @@ class BookedClass extends Component {
                   <p>{this.state.loadedClass.name}</p>
                   <p>{this.state.loadedClass.time}</p>
                   <div className={classes.Edit}>
-                    {/* <Button clicked={this.deleteClassHandler} btnType="Danger">Delete</Button> */}
                     <Button clicked={() => {this.deleteClassHandler(); this.deleteUserClassHandler();}} btnType="Danger">Delete</Button>
                   </div>
               </div>
