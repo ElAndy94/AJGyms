@@ -92,7 +92,7 @@ class GymClasses extends Component {
             // author: 'Andrew'
           }
         });
-        this.setState({gymClasses: updatedGymClasses}, {filterClasses: updatedGymClasses});
+        this.setState({gymClasses: updatedGymClasses, filteredClasses: updatedGymClasses});
       })
       .catch(error => {
         console.log(error);
