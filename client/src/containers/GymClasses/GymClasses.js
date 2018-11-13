@@ -92,7 +92,7 @@ class GymClasses extends Component {
             // author: 'Andrew'
           }
         });
-        this.setState({gymClasses: updatedGymClasses});
+        this.setState({gymClasses: updatedGymClasses}, {filterClasses: updatedGymClasses});
       })
       .catch(error => {
         console.log(error);
@@ -137,6 +137,9 @@ class GymClasses extends Component {
   filterClasses(value, fieldToSearch) {
     // Filter through the classes and only have ones that apply the search term
     // Update the state with the matching classes
+    const filteredClasses = this.state.gymClasses.filter( (value) => {
+        
+    });
   }
 
   classSelectedHandler = (id) => {
@@ -150,7 +153,7 @@ class GymClasses extends Component {
     //   }
     // );
 
-    const gymClasses = this.state.gymClasses.map(gymClass => {
+    const gymClasses = this.state.filteredClasses.map(gymClass => {
       return  (
       <GymTimetable
         key={gymClass._id}
