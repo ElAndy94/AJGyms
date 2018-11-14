@@ -13,7 +13,7 @@
 
 .GymClasses {
   position: relative;
-  top: 50px;
+  top: 30px;
   background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.8), rgba(83, 134, 211, 0.8));
   color: #fff;
   margin: 20px auto;
@@ -36,7 +36,7 @@
 
 .Classes {
   position: relative;
-  top: 50px;
+  top: 30px;
   color: #fff;
   display: flex;
   flex-flow: row wrap;

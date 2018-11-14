@@ -18,13 +18,13 @@ class GymClasses extends Component {
         elementType: 'select',
         elementConfig: {
           options: [
-            {value: 'AllGyms', displayValue: 'All Gyms'},
-            {value: 'MarketStreet', displayValue: 'Market Street'},
-            {value: 'PortlandStreet', displayValue: 'Portland Street'},
-            {value: 'OxfordRoad', displayValue: 'Oxford Road'},
+            {value: 'All Gyms', displayValue: 'All Gyms'},
+            {value: 'Market Street', displayValue: 'Market Street'},
+            {value: 'Portland Street', displayValue: 'Portland Street'},
+            {value: 'Oxford Road', displayValue: 'Oxford Road'},
           ]
         },
-        value: 'AllGyms',
+        value: 'All Gyms',
         validation: {},
         valid: true
       },
@@ -32,15 +32,15 @@ class GymClasses extends Component {
         elementType: 'select',
         elementConfig: {
           options: [
-            {value: 'AllTrainers', displayValue: 'All Trainers'},
-            {value: 'JeffBren', displayValue: 'Jeff Bren'},
-            {value: 'RalfTomson', displayValue: 'Ralf Thomson'},
-            {value: 'JessicaWhite', displayValue: 'Jessica White'},
-            {value: 'BrendenFin', displayValue: 'Brenden Fin'},
-            {value: 'CharlesKip', displayValue: 'Charles Kip'},
+            {value: 'All Trainers', displayValue: 'All Trainers'},
+            {value: 'Jeff Bren', displayValue: 'Jeff Bren'},
+            {value: 'Ralf Tomson', displayValue: 'Ralf Thomson'},
+            {value: 'Jessica White', displayValue: 'Jessica White'},
+            {value: 'Brenden Fin', displayValue: 'Brenden Fin'},
+            {value: 'Charles Kip', displayValue: 'Charles Kip'},
           ]
         },
-        value: 'AllTrainers',
+        value: 'All Trainers',
         validation: {},
         valid: true
       },
@@ -48,13 +48,13 @@ class GymClasses extends Component {
         elementType: 'select',
         elementConfig: {
           options: [
-            {value: 'AllClasses', displayValue: 'All Classes'},
-            {value: 'InductionOnly', displayValue: 'Induction Only'},
+            {value: 'All Classes', displayValue: 'All Classes'},
+            {value: 'Induction Only', displayValue: 'Induction Only'},
             {value: 'Classes Only', displayValue: 'Classes Only'},
-            {value: 'DigitalClassesOnly', displayValue: 'Digital Classes Only'},
+            {value: 'Digital Classes Only', displayValue: 'Digital Classes Only'},
           ]
         },
-        value: 'AllClasses',
+        value: 'All Classes',
         validation: {},
         valid: true
       },
@@ -62,25 +62,32 @@ class GymClasses extends Component {
         elementType: 'select',
         elementConfig: {
           options: [
-            {value: 'AllDay', displayValue: 'All Day'},
-            {value: 'Morning', displayValue: 'Morning (06:00 - 09:00)'},
-            {value: 'Noon', displayValue: 'Noon (09:00 - 12:00)'},
-            {value: 'Afternoon', displayValue: 'Afternoon (12:00 - 17:00)'},
-            {value: 'Evening', displayValue: 'Evening (17:00 - 21:00)'},
+            {value: 'All Day', displayValue: 'All Day'},
+            {value: 'Morning (06:00 - 07:00)', displayValue: 'Morning (06:00 - 07:00)'},
+            {value: 'Morning (07:00 - 08:00)', displayValue: 'Morning (07:00 - 08:00)'},
+            {value: 'Morning (08:00 - 09:00)', displayValue: 'Morning (08:00 - 09:00)'},
+            {value: 'Morning (09:00 - 10:00)', displayValue: 'Morning (09:00 - 10:00)'},
+            {value: 'Morning (10:00 - 11:00)', displayValue: 'Morning (10:00 - 11:00)'},
+            {value: 'Morning (11:00 - 12:00)', displayValue: 'Morning (11:00 - 12:00)'},
+            {value: 'Afternoon (12:00 - 13:00)', displayValue: 'Afternoon (12:00 - 13:00)'},
+            {value: 'Afternoon (13:00 - 14:00)', displayValue: 'Afternoon (13:00 - 14:00)'},
+            {value: 'Afternoon (14:00 - 15:00)', displayValue: 'Afternoon (14:00 - 15:00)'},
+            {value: 'Afternoon (15:00 - 16:00)', displayValue: 'Afternoon (15:00 - 16:00)'},
+            {value: 'Afternoon (16:00 - 17:00)', displayValue: 'Afternoon (16:00 - 17:00)'},
+            {value: 'Evening (17:00 - 18:00)', displayValue: 'Evening (17:00 - 18:00)'},
+            {value: 'Evening (18:00 - 19:00)', displayValue: 'Evening (18:00 - 19:00)'},
+            {value: 'Evening (19:00 - 20:00)', displayValue: 'Evening (19:00 - 20:00)'},
+            {value: 'Evening (20:00 - 21:00)', displayValue: 'Evening (20:00 - 21:00)'},
+            {value: 'Noon (21:00 - 22:00)', displayValue: 'Noon (21:00 - 22:00)'},
           ]
         },
-        value: 'AllDay',
+        value: 'All Day',
         validation: {},
         valid: true
       },
     },
     formIsValid: false,
-    // search: ''
   }
-
-  // updateSearch(event) {
-  //   this.setState({search: event.target.value.substr(0, 20)});
-  // }
 
   componentDidMount() {
     axios.get('/api/classes')
@@ -93,6 +100,7 @@ class GymClasses extends Component {
           }
         });
         this.setState({gymClasses: updatedGymClasses, filteredClasses: updatedGymClasses});
+        console.log(this.state.gymClasses);
       })
       .catch(error => {
         console.log(error);
@@ -113,7 +121,6 @@ class GymClasses extends Component {
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
-    console.log(event.target);
     const updatedFormElement = updateObject(this.state.gymForm[inputIdentifier], {
         value: event.target.value,
         valid: checkValidity(event.target.value, this.state.gymForm[inputIdentifier].validation),
@@ -128,33 +135,45 @@ class GymClasses extends Component {
       formIsValid = updatedGymForm[inputIdentifier].valid && formIsValid;
     }
 
-    //JH
-    this.filterClasses();
+    // this.filterClasses(event.target.value);
+
+    const theEvent = event.target.value;
+    if (theEvent.includes("Morning") || theEvent.includes("Afternoon") || theEvent.includes("Evening") ||  theEvent.includes("Noon")) {
+      this.filterClasses(theEvent, 'time');
+
+    } else if (theEvent.includes("Market Street") || theEvent.includes("Portland Street") || theEvent.includes("Oxford Road")) {
+      this.filterClasses(theEvent, 'location');
+
+    } else if (theEvent.includes("Induction Only") || theEvent.includes("Digital Class Only") || theEvent.includes("Classes Only")) {
+      this.filterClasses(theEvent, 'type');
+    }
+    console.log(theEvent);
 
     this.setState({gymForm: updatedGymForm, formIsValid: formIsValid});
   }
 
-  filterClasses(value, fieldToSearch) {
+  filterClasses(selectedValue, type) {
     // Filter through the classes and only have ones that apply the search term
     // Update the state with the matching classes
     const newFilteredClasses = this.state.gymClasses.filter( (value) => {
-        
+      return value.type === selectedValue;
     });
-
-    // this.setState({filterClasses: newFilteredClasses})
+    this.setState({filteredClasses: newFilteredClasses});
+    console.log(newFilteredClasses);
   }
+
+  // filterClassesTime(selectedValue) {
+  //   const newFilteredClasses = this.state.gymClasses.filter( (value) => {
+  //     return value.time === selectedValue;
+  //   });
+  //   this.setState({filteredClasses: newFilteredClasses});
+  // }
 
   classSelectedHandler = (id) => {
     this.setState({selectedClassId: id});
   }
 
   render() {
-    // let filteredClasses = this.state.gymClasses.filter(
-    //   (gymClass) => {
-    //     return gymClass.location.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    //   }
-    // );
-
     const gymClasses = this.state.filteredClasses.map(gymClass => {
       return  (
       <GymTimetable
