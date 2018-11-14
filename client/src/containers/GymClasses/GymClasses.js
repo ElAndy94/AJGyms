@@ -194,6 +194,7 @@ class GymClasses extends Component {
         classType={gymClass.type}
         className={gymClass.name}
         startTime={gymClass.time}
+        ptName={gymClass.ptName}
         clicked={() => this.classSelectedHandler(gymClass._id)}/>
       );
     });
