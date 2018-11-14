@@ -135,9 +135,14 @@ class GymClasses extends Component {
       formIsValid = updatedGymForm[inputIdentifier].valid && formIsValid;
     }
 
-    // this.filterClasses(event.target.value);
-
     const theEvent = event.target.value;
+
+    this.checkEvent(theEvent);
+
+    this.setState({gymForm: updatedGymForm, formIsValid: formIsValid});
+  }
+
+  checkEvent(theEvent) {
     if (theEvent.includes("Morning") || theEvent.includes("Afternoon") || theEvent.includes("Evening") ||  theEvent.includes("Noon")) {
       this.filterClasses(theEvent, 'time');
 
@@ -147,27 +152,35 @@ class GymClasses extends Component {
     } else if (theEvent.includes("Induction Only") || theEvent.includes("Digital Class Only") || theEvent.includes("Classes Only")) {
       this.filterClasses(theEvent, 'type');
     }
-    console.log(theEvent);
-
-    this.setState({gymForm: updatedGymForm, formIsValid: formIsValid});
   }
 
   filterClasses(selectedValue, type) {
     // Filter through the classes and only have ones that apply the search term
-    // Update the state with the matching classes
-    const newFilteredClasses = this.state.gymClasses.filter( (value) => {
-      return value.type === selectedValue;
-    });
-    this.setState({filteredClasses: newFilteredClasses});
-    console.log(newFilteredClasses);
-  }
+    if (type === 'type') {
+      const newFilteredClasses = this.state.gymClasses.filter( (value) => {
+        return value.type === selectedValue;
+      });
+      // Update the state with the matching classes
+      this.setState({filteredClasses: newFilteredClasses});
+      console.log(newFilteredClasses);
 
-  // filterClassesTime(selectedValue) {
-  //   const newFilteredClasses = this.state.gymClasses.filter( (value) => {
-  //     return value.time === selectedValue;
-  //   });
-  //   this.setState({filteredClasses: newFilteredClasses});
-  // }
+    } else if (type === 'location') {
+      const newFilteredClasses = this.state.gymClasses.filter( (value) => {
+        return value.location === selectedValue;
+      });
+      // Update the state with the matching classes
+      this.setState({filteredClasses: newFilteredClasses});
+      console.log(newFilteredClasses);
+
+    } else if (type === 'time') {
+      const newFilteredClasses = this.state.gymClasses.filter( (value) => {
+        return value.time === selectedValue;
+      });
+      // Update the state with the matching classes
+      this.setState({filteredClasses: newFilteredClasses});
+      console.log(newFilteredClasses);
+    }
+  }
 
   classSelectedHandler = (id) => {
     this.setState({selectedClassId: id});
