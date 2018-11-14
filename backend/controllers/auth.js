@@ -56,6 +56,7 @@ exports.login = (req, res) => {
     }
     res.status(200).json({
       _id: fetchedUser._id,
+      name: fetchedUser.name,
       pt: fetchedUser.pt,
       message: 'User Found!'
     });

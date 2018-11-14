@@ -16,6 +16,7 @@ class App extends Component {
     super(props);
     this.state = {
       isAuthenticated: false,
+      userName: '',
       userId: '',
       isPt: false
     };
@@ -29,6 +30,10 @@ class App extends Component {
     this.setState({ isAuthenticated: false, userId: '', isPt: false });
   };
 
+  handleUserName = (userName) => {
+    this.setState({ userName: userName });
+  }
+
   handlePtVerification = () => {
     this.setState({ isPt: true });
   }
@@ -36,7 +41,7 @@ class App extends Component {
   render () {
     let routes = (
         <Switch>
-          <Route path="/auth" render={props => <Auth onAuthComplete={this.handleAuthComplete} isPt={this.handlePtVerification} />} />
+          <Route path="/auth" render={props => <Auth onAuthComplete={this.handleAuthComplete} onUserName={this.handleUserName} isPt={this.handlePtVerification} />} />
           <Route path="/signup" component={Signup} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
@@ -49,7 +54,7 @@ class App extends Component {
           <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
           <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} />} />
           <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
-          <Route path="/createGymClass" component={CreateGymClass} />
+          <Route path="/createGymClass" render={(props) => <CreateGymClass {...props} userName={this.state.userName} />} />
           <Route path="/logout" render={(props) => <Logout onLogout={this.handleLogout} />} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />

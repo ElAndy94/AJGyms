@@ -24,6 +24,10 @@ const classSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  ptName: {
+    type: String,
+    required: true
+  },
   classMembers: [classMembersSchema]
 });
 

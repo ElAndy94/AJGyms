@@ -101,6 +101,7 @@ class CreateGymClass extends Component {
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
+    console.log(this.props.userName);
     const updatedFormElement = updateObject(this.state.createClassForm[inputIdentifier], {
         value: event.target.value,
         valid: checkValidity(event.target.value, this.state.createClassForm[inputIdentifier].validation),
@@ -123,12 +124,12 @@ class CreateGymClass extends Component {
       location: formData.gymLocation,
       type: formData.classType,
       name: formData.className,
-      time: formData.timeOfDay
+      time: formData.timeOfDay,
+      ptName: this.props.userName
     };
     axios.post('/api/classes', newClass)
       .then(response => {
         console.log(response);
-        // this.cancelNewClass();
       }).catch(error => {
         console.log(error);
       });
@@ -185,7 +186,7 @@ class CreateGymClass extends Component {
     return (
       <div className={classes.BackGround}>
         <div className={classes.CreateGymClass}>
-          <h3>Larry, <br/> Make sure all fields are correct before creating a class!</h3>
+          <h3>{this.props.userName}<br/> Make sure all fields are correct before creating a class!</h3>
           {form}
         </div>
         <div className={classes.CentreDiv}>

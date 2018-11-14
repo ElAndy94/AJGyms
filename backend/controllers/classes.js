@@ -38,7 +38,8 @@ exports.createClass = (req, res) => {
     location: req.body.location,
     type: req.body.type,
     name: req.body.name,
-    time: req.body.time
+    time: req.body.time,
+    ptName: req.body.ptName
   });
   gymClass.save()
     .then(createdClass => {

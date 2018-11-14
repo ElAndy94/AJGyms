@@ -178,7 +178,6 @@ class GymClasses extends Component {
       });
       // Update the state with the matching classes
       this.setState({filteredClasses: newFilteredClasses});
-      console.log(newFilteredClasses);
     }
   }
 

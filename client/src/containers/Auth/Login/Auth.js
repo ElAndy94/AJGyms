@@ -68,7 +68,9 @@ class Auth extends Component {
       axios.post('/api/auth/login', authenticationCheck)
         .then(response => {
           const userId = response.data._id;
+          const userName = response.data.name;
           this.props.onAuthComplete(userId);
+          this.props.onUserName(userName);
           if (response.data.pt === true) {
             this.props.isPt(true);
           }
