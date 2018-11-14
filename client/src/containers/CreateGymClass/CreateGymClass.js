@@ -71,7 +71,7 @@ class CreateGymClass extends Component {
             {value: 'Noon (21:00 - 22:00)', displayValue: 'Noon (21:00 - 22:00)'},
           ]
         },
-        value: '08:00',
+        value: 'Morning (06:00 - 07:00)',
         validation: {},
         valid: true
       },

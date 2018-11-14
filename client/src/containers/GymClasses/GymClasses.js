@@ -62,7 +62,7 @@ class GymClasses extends Component {
         elementType: 'select',
         elementConfig: {
           options: [
-            {value: 'All Day', displayValue: 'All Day'},
+            {value: 'All Day', displayValue: 'All Day' },
             {value: 'Morning (06:00 - 07:00)', displayValue: 'Morning (06:00 - 07:00)'},
             {value: 'Morning (07:00 - 08:00)', displayValue: 'Morning (07:00 - 08:00)'},
             {value: 'Morning (08:00 - 09:00)', displayValue: 'Morning (08:00 - 09:00)'},
@@ -83,7 +83,7 @@ class GymClasses extends Component {
         },
         value: 'All Day',
         validation: {},
-        valid: true
+        valid: true,
       },
     },
     formIsValid: false,
