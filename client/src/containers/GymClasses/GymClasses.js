@@ -28,22 +28,22 @@ class GymClasses extends Component {
         validation: {},
         valid: true
       },
-      trainer: {
-        elementType: 'select',
-        elementConfig: {
-          options: [
-            {value: 'All Trainers', displayValue: 'All Trainers'},
-            {value: 'Jeff Bren', displayValue: 'Jeff Bren'},
-            {value: 'Ralf Tomson', displayValue: 'Ralf Thomson'},
-            {value: 'Jessica White', displayValue: 'Jessica White'},
-            {value: 'Brenden Fin', displayValue: 'Brenden Fin'},
-            {value: 'Charles Kip', displayValue: 'Charles Kip'},
-          ]
-        },
-        value: 'All Trainers',
-        validation: {},
-        valid: true
-      },
+      // trainer: {
+      //   elementType: 'select',
+      //   elementConfig: {
+      //     options: [
+      //       {value: 'All Trainers', displayValue: 'All Trainers'},
+      //       {value: 'Jeff Bren', displayValue: 'Jeff Bren'},
+      //       {value: 'Ralf Tomson', displayValue: 'Ralf Thomson'},
+      //       {value: 'Jessica White', displayValue: 'Jessica White'},
+      //       {value: 'Brenden Fin', displayValue: 'Brenden Fin'},
+      //       {value: 'Charles Kip', displayValue: 'Charles Kip'},
+      //     ]
+      //   },
+      //   value: 'All Trainers',
+      //   validation: {},
+      //   valid: true
+      // },
       classType: {
         elementType: 'select',
         elementConfig: {
@@ -185,6 +185,14 @@ class GymClasses extends Component {
     this.setState({selectedClassId: id});
   }
 
+  handleDelete = (id) => {
+    const updatedFilteredClasses = this.state.gymClasses.filter( (value) => {
+      return value._id === !id;
+    });
+    this.setState({ filteredClasses: updatedFilteredClasses, selectedClassId: '' });
+    console.log(updatedFilteredClasses);
+  }
+
   render() {
     const gymClasses = this.state.filteredClasses.map(gymClass => {
       return  (
@@ -233,7 +241,7 @@ class GymClasses extends Component {
               {gymClasses}
             </div>
             <div className={classes.BackGroundTwo}>
-              <FullGymClass userId={this.props.userId} id={this.state.selectedClassId} />
+              <FullGymClass userId={this.props.userId} id={this.state.selectedClassId} onDelete={this.handleDelete} />
             </div>
         </div>
       </Aux>

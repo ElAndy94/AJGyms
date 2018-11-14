@@ -14,8 +14,7 @@ class FullGymClass extends Component {
           if ( !this.state.loadedClass || (this.state.loadedClass && this.state.loadedClass._id !== this.props.id) ) {
             axios.get( '/api/classes/' + this.props.id )
                 .then( response => {
-                    // console.log(response);
-                    this.setState( { loadedClass: response.data } );
+                  this.setState( { loadedClass: response.data } );
                 });
           }
       }
@@ -55,6 +54,8 @@ class FullGymClass extends Component {
       axios.delete('/api/classes/' + this.props.id)
         .then(response => {
           console.log(response);
+          this.props.onDelete(this.props.id);
+          this.setState({loadedClass: null});
         })
         .catch(error => {
           console.log(error);

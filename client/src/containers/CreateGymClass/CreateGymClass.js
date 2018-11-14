@@ -5,6 +5,7 @@ import axios from 'axios';
 import Input from '../../components/UI/Input/Input';
 import { updateObject, checkValidity } from '../../shared/utility';
 import Button from '../../components/UI/Button/Button';
+import { Redirect } from 'react-router-dom';
 // import Modal from '../../components/UI/Modal/Modal';
 
 class CreateGymClass extends Component {
@@ -79,6 +80,7 @@ class CreateGymClass extends Component {
     formIsValid: false,
     showConfirmation: false,
     currentClass: {},
+    classCreated: false,
   }
 
   createClassHandler = (event) => {
@@ -101,7 +103,6 @@ class CreateGymClass extends Component {
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
-    console.log(this.props.userName);
     const updatedFormElement = updateObject(this.state.createClassForm[inputIdentifier], {
         value: event.target.value,
         valid: checkValidity(event.target.value, this.state.createClassForm[inputIdentifier].validation),
@@ -129,6 +130,7 @@ class CreateGymClass extends Component {
     };
     axios.post('/api/classes', newClass)
       .then(response => {
+        this.setState({ classCreated: true });
         console.log(response);
       }).catch(error => {
         console.log(error);
@@ -136,6 +138,10 @@ class CreateGymClass extends Component {
   }
 
   render() {
+    if (this.state.classCreated === true) {
+      return <Redirect to="/classes" />
+    }
+
     const formElementsArray = [];
     for (let key in this.state.createClassForm) {
       formElementsArray.push({

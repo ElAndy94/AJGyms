@@ -4,6 +4,12 @@
   margin: auto;
 }
 
+.Headers {
+  color: black;
+  font-weight: 900;
+  font-size: 22px;
+}
+
 .UserProfile h1 {
   -webkit-text-stroke: 1px black;
   color: white;
