@@ -19,9 +19,6 @@
      1px -1px 0 #000,
      -1px 1px 0 #000,
       1px 1px 0 #000;
-  /* color: #FFF; */
-  /* color: rgba(255, 145, 0, 0.925); */
-  /* outline-color: #fff; */
   text-transform: uppercase;
   font-weight: 900;
   letter-spacing: 6px;
@@ -35,7 +32,7 @@
 
 .Box {
   border-radius: 5px;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .Card {

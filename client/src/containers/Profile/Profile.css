@@ -1,7 +1,6 @@
 .BackGround {
   text-align: center;
-  /* height: 100vh; */
-  height: 120vh;
+  height: 136vh;
   background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.4), rgba(83, 134, 211, 0.4)), url('../../assets/images/gym2.jpeg');
   background-size: cover;
 }
@@ -10,10 +9,30 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.ProfileForm {
+  position: relative;
+  top: 30px;
+  background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.8), rgba(83, 134, 211, 0.8));
+  color: #fff;
+  margin: 20px auto;
+  width: 35%;
+  text-align: center;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 1px 4px 6px 1px rgba(0,0,0,0.2);
+  border-radius: 23px;
+  line-height: 1;
+  /* transition: 0.3s; */
+}
+
 @media (min-width: 600px) {
   .Profile {
     width: 500px;
   }
+  /* .ProfileForm {
+    width: 500px;
+  } */
 }
 
 

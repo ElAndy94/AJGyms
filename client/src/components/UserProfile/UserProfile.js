@@ -2,10 +2,9 @@ import React from "react";
 
 import classes from './UserProfile.css';
 import Button from '../UI/Button/Button';
+// import Modal from '../UI/Modal/Modal';
 
 const userProfile = (props) => {
-  // props.user.address.map( line => <p>{line}</p> )
-  // <p>{props.user.address.map(i => <li>{i}</li>)}</p>
   return (
     <div className={classes.UserProfile}>
       <h1>Welcome Back {props.user.name}</h1>
