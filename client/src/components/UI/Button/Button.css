@@ -79,6 +79,21 @@
   animation: pulsate 1s infinite;
 }
 
+.Edit {
+  background-image: linear-gradient(
+    to right,
+    #ffee00,
+    #b4b102
+  );
+  box-shadow: 0 1rem 4rem rgba(0,0,0,.30);
+}
+
+.Edit:focus,
+.Edit:hover {
+  outline: none;
+  animation: pulsate 1s infinite;
+}
+
 @keyframes pulsate {
   0% {
     transform: scale(1);

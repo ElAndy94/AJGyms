@@ -81,23 +81,6 @@ class App extends Component {
       </Layout>
     );
   }
-  // render() {
-  //   return (
-  //     <div>
-  //       <Layout>
-  //         <Switch>
-  //           <Auth onAuthComplete={this.handleAuthComplete}/>
-  //           <Route path="/profile" component={Profile} />
-  //           <Route path="/createGymClass" component={CreateGymClass} />
-  //           <Route path="/classes" component={GymClasses} />
-  //           <Route path="/logout" component={Logout} />
-  //           <Route path="/" exact component={DashBoardBuilder} />
-  //           <Redirect to="/" />
-  //         </Switch>
-  //       </Layout>
-  //     </div>
-  //   );
-  // }
 }
 
 export default App;

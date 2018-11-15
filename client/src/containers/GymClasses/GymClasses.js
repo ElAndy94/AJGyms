@@ -189,7 +189,7 @@ class GymClasses extends Component {
     const updatedFilteredClasses = this.state.gymClasses.filter( (value) => {
       return value._id !== id;
     });
-    this.setState({ filteredClasses: updatedFilteredClasses });
+    this.setState({ filteredClasses: updatedFilteredClasses, selectedClassId: null });
   }
 
   render() {

@@ -34,11 +34,19 @@ class Profile extends Component {
     event.preventDefault();
   }
 
+  handleAddressChange = () => {
+    console.log('Address Change');
+  }
+
+  handleEmailChange = () => {
+    console.log('Email Change');
+  }
+
   render() {
     return (
       <Aux>
          <div className={classes.BackGround}>
-            <UserProfile user={this.state.user}/>
+            <UserProfile user={this.state.user} editAddress={this.handleAddressChange} editEmail={this.handleEmailChange}/>
          </div>
       </Aux>
     );

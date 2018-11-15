@@ -24,9 +24,9 @@ const userProfile = (props) => {
           <div className={classes.Card}>
                 <div className={classes.Container}>
                   <p className={classes.Headers}><b>Your Details</b></p>
-                  <p>{props.user.name}<br/>{props.user.email}</p>
+                  <p>{props.user.name}<br/>{props.user.email} <Button btnType="Edit" clicked={props.editEmail}>Edit</Button></p>
                   <p className={classes.Headers}><b>Address</b></p>
-                  <p>{props.user.address}<br/>M1 7DZ</p>
+                  <p>{props.user.address}<br/>M1 7DZ <Button btnType="Edit" clicked={props.editAddress}>Edit</Button> </p>
                   <p className={classes.Headers}><b>Payment Information</b></p>
                   <p>Direct Debit: Card ending 7070</p>
                   <Button btnType="Danger">Cancel Your Membership</Button>

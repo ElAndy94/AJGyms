@@ -55,7 +55,7 @@ class FullGymClass extends Component {
         .then(response => {
           console.log(response);
           this.props.onDelete(this.props.id);
-          // this.setState({loadedClass: null});
+          this.setState({loadedClass: null});
         })
         .catch(error => {
           console.log(error);
