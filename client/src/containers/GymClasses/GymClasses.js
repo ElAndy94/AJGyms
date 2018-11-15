@@ -187,10 +187,9 @@ class GymClasses extends Component {
 
   handleDelete = (id) => {
     const updatedFilteredClasses = this.state.gymClasses.filter( (value) => {
-      return value._id === !id;
+      return value._id !== id;
     });
-    this.setState({ filteredClasses: updatedFilteredClasses, selectedClassId: '' });
-    console.log(updatedFilteredClasses);
+    this.setState({ filteredClasses: updatedFilteredClasses });
   }
 
   render() {
