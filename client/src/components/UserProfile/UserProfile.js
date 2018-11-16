@@ -22,12 +22,14 @@ const userProfile = (props) => {
         <div className={classes.Box}>
           <div className={classes.Card}>
                 <div className={classes.Container}>
-                <Button btnType="Edit" clicked={props.edit}>Edit</Button>
-                  <p className={classes.Headers}><b>Your Details</b></p>
+                  <p className={classes.Headers}><b>Your Details</b>
+                  <Button btnType="Edit" clicked={props.edit}>Edit</Button>
+                  </p>
                   <p>{props.user.name}</p>
                   <p>{props.user.email} </p>
-                  <p className={classes.Headers}><b>Address</b></p>
-                  <p>{props.user.address}<br/>M1 7DZ</p>
+                  <p className={classes.Headers}>
+                  <b>Address</b></p>
+                  <p>{props.user.address}</p>
                   <p className={classes.Headers}><b>Payment Information</b></p>
                   <p>Direct Debit: Card ending 7070</p>
                   <Button btnType="Danger">Cancel Your Membership</Button>

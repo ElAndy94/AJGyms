@@ -40,6 +40,7 @@ class Profile extends Component {
         touched: false
       },
     },
+    showProfile: true,
     showForm: false,
   }
 
@@ -72,7 +73,7 @@ class Profile extends Component {
   }
 
   handleChange = () => {
-  this.setState({ showForm: true });
+  this.setState({ showForm: true, showProfile: false });
 
   let inputEmail = this.state.user.email;
   let statusCopy = Object.assign({}, this.state.controls);
@@ -93,11 +94,15 @@ class Profile extends Component {
     }
     axios.post('/api/auth/infoUpdate', userUpdate)
       .then(response => {
-        this.setState({ showForm: false });
+        this.setState({ showForm: false, showProfile: true  });
         console.log(response);
       }).catch(error => {
         console.log(error);
       });
+  }
+
+  cancelEdit = () => {
+    this.setState({ showForm: false, showProfile: true  });
   }
 
 
@@ -124,10 +129,11 @@ class Profile extends Component {
     return (
       <Aux>
          <div className={classes.BackGround}>
-            <UserProfile user={this.state.user} edit={this.handleChange} />
+            <UserProfile user={this.state.user} edit={this.handleChange} style={{display: this.state.showProfile ? 'block' : 'none' }} />
             <form onSubmit={this.submitHandler} className={classes.ProfileForm} style={{display: this.state.showForm ? 'block' : 'none' }}>
               {form}
               <Button btnType="Success">SUBMIT</Button>
+              <Button btnType="Danger" clicked={this.cancelEdit}>CANCEL</Button>
             </form>
          </div>
       </Aux>

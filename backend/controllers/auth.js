@@ -1,6 +1,15 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const nodemailer = require('nodemailer');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
+
 const User = require('../models/user');
+
+const transporter = nodemailer.createTransport(sendgridTransport({
+  auth: {
+    api_key: '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'
+  }
+}));
 
 exports.createUser = (req, res) => {
   bcrypt.hash(req.body.password, 10)
@@ -25,6 +34,12 @@ exports.createUser = (req, res) => {
             ...createdUser,
             id: createdUser._id,
           }
+        });
+        return transporter.sendMail({
+          to: emailLowerCase,
+          from: 'andrewpeliza@hotmail.com',
+          subject: 'Signup succeeded',
+          html: '<h1>You successfully signed up!</h1>'
         });
       })
       .catch(error => {
