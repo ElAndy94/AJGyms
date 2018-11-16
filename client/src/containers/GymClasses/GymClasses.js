@@ -156,27 +156,10 @@ class GymClasses extends Component {
 
   filterClasses(selectedValue, type) {
     // Filter through the classes and only have ones that apply the search term
-    let newFilteredClasses;
+    const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
+      return value[type] === selectedValue;
+    });
 
-    switch (type) {
-      case 'type':
-        newFilteredClasses = this.state.filteredClasses.filter( (value) => {
-          return value.type === selectedValue;
-        });
-        break;
-      case 'location':
-        newFilteredClasses = this.state.filteredClasses.filter( (value) => {
-          return value.location === selectedValue;
-        });
-        break;
-      case 'time':
-        newFilteredClasses = this.state.filteredClasses.filter( (value) => {
-          return value.time === selectedValue;
-        });
-        break;
-      default:
-        console.log('no classes found case');
-    }
     this.setState({filteredClasses: newFilteredClasses});
   }
 
