@@ -9,6 +9,8 @@ router.post('/login', UserController.login);
 
 router.post('/bookclass', UserController.bookClass);
 
+router.post('/infoUpdate', UserController.updateInfo);
+
 router.get('/:id', UserController.getUser);
 
 router.get('/booked/:id', UserController.bookedClasses);

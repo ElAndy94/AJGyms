@@ -72,19 +72,13 @@ class Profile extends Component {
   }
 
   handleChange = () => {
-    this.setState({ showForm: true });
-  //   this.setState(prevState => ({
-  //     controls: {
-  //         ...prevState.controls.email,
-  //         value: this.state.user.email
-  //     }
-  // }))
-  // this.setState({...this.state.controls.email.value, value: 'someothername'});
-  // let inputName = 'email';
+  this.setState({ showForm: true });
+
   let inputEmail = this.state.user.email;
   let statusCopy = Object.assign({}, this.state.controls);
     statusCopy.email.value = inputEmail;
     this.setState(statusCopy);
+
   let inputAddress = this.state.user.address;
   let statusCopyTwo = Object.assign({}, this.state.controls);
     statusCopyTwo.address.value = inputAddress;
@@ -97,8 +91,9 @@ class Profile extends Component {
       userAddress: this.state.controls.address.value,
       userId: this.props.userId
     }
-    axios.post('/api/auth/', userUpdate)
+    axios.post('/api/auth/infoUpdate', userUpdate)
       .then(response => {
+        this.setState({ showForm: false });
         console.log(response);
       }).catch(error => {
         console.log(error);

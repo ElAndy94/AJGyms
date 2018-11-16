@@ -5,9 +5,10 @@ const User = require('../models/user');
 exports.createUser = (req, res) => {
   bcrypt.hash(req.body.password, 10)
   .then(hash => {
+    let emailLowerCase = req.body.email.toLowerCase();
     const user = new User({
       name: req.body.name,
-      email: req.body.email,
+      email: emailLowerCase,
       password: hash,
       address: req.body.address,
       contract: req.body.contract,
@@ -36,8 +37,9 @@ exports.createUser = (req, res) => {
 
 exports.login = (req, res) => {
   let fetchedUser;
+  let emailLowerCase = req.body.email.toLowerCase();
   User.findOne({
-    email: req.body.email
+    email: emailLowerCase
   })
   .then(user => {
     if (!user) {
@@ -62,9 +64,8 @@ exports.login = (req, res) => {
     });
   })
   .catch(err => {
-    console.log(err);
-    return res.status(501).json({
-      message: "Invalid credentials!"
+     res.status(500).json({
+        message: "Invalid credentials!"
     });
   });
 }
@@ -160,4 +161,29 @@ exports.bookedClasses = (req, res) => {
         message: "Fetching User Classes Failed"
       });
     });
+}
+
+exports.updateInfo = (req, res) => {
+  let emailLowerCase = req.body.userEmail.toLowerCase();
+  User.findByIdAndUpdate({
+    _id: req.body.userId
+  }, {
+    $set: {
+      email: emailLowerCase,
+      address: req.body.userAddress
+    }
+  }, {
+    upsert: false
+  },
+  (err) => {
+    if (err) {
+      res.status(400).json({
+        message: "Error Occured"
+      })
+    } else {
+      res.status(200).json({
+        message: "Details Successfully Updated!"
+      })
+    }
+  });
 }
