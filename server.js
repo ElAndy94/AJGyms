@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const app = express();
+const logger = require('./backend/utility/logger');
 const path = require('path');
+// const winston = require('winston');
 
 const classesRoutes = require('./backend/routes/classes');
 const authRoutes = require('./backend/routes/auth');
@@ -11,7 +13,7 @@ const authRoutes = require('./backend/routes/auth');
 mongoose.set('useCreateIndex', true);
 mongoose.connect("mongodb://" + "Elandy" + ":" + "React123" + "@ds125263.mlab.com:25263/react-gym", { useNewUrlParser: true })
 .then(() => {
-    console.log('Connected to the database!')
+    logger.info('Connected to the database!')
   })
   .catch(() => {
     console.log('Connection failed')

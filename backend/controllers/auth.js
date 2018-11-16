@@ -5,6 +5,28 @@ const sendgridTransport = require('nodemailer-sendgrid-transport');
 
 const User = require('../models/user');
 
+// var transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'youremail@gmail.com',
+//     pass: 'yourpassword'
+//   }
+// });
+
+// var mailOptions = {
+//   from: 'youremail@gmail.com',
+//   to: 'myfriend@yahoo.com',
+//   subject: 'Sending Email using Node.js',
+//   text: 'That was easy!'
+// };
+// transporter.sendMail(mailOptions, (error, info) =>{
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log('Email sent: ' + info.response);
+//   }
+// });
+
 const transporter = nodemailer.createTransport(sendgridTransport({
   auth: {
     api_key: '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'

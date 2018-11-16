@@ -157,7 +157,7 @@ class GymClasses extends Component {
   filterClasses(selectedValue, type) {
     // Filter through the classes and only have ones that apply the search term
     if (type === 'type') {
-      const newFilteredClasses = this.state.gymClasses.filter( (value) => {
+      const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
         return value.type === selectedValue;
       });
       // Update the state with the matching classes
@@ -165,15 +165,14 @@ class GymClasses extends Component {
       console.log(newFilteredClasses);
 
     } else if (type === 'location') {
-      const newFilteredClasses = this.state.gymClasses.filter( (value) => {
+      const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
         return value.location === selectedValue;
       });
       // Update the state with the matching classes
       this.setState({filteredClasses: newFilteredClasses});
-      console.log(newFilteredClasses);
 
     } else if (type === 'time') {
-      const newFilteredClasses = this.state.gymClasses.filter( (value) => {
+      const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
         return value.time === selectedValue;
       });
       // Update the state with the matching classes
