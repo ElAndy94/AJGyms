@@ -18,7 +18,7 @@ class Profile extends Component {
           type: 'email',
           placeholder: 'Email'
         },
-        value: 'melissaastbury@hotmail.com',
+        value: 'Your New Email',
         validation: {
           required: true,
           isEmail: true
@@ -32,7 +32,7 @@ class Profile extends Component {
           type: 'text',
           placeholder: 'Address'
         },
-        value: '',
+        value: 'Your New Address',
         validation: {
           required: true,
         },
@@ -40,14 +40,14 @@ class Profile extends Component {
         touched: false
       },
     },
-    showFormEmail: false,
-    showFormAddress: false
+    showForm: false,
   }
 
   componentDidMount () {
     axios.get('/api/auth/' + this.props.userId )
       .then( response => {
           this.setState({ user: response.data });
+          // console.log(response.data);
           // console.log(this.state.user);
       });
   }
@@ -61,24 +61,40 @@ class Profile extends Component {
       })
     });
     this.setState({controls: updatedControls});
+    //   console.log(this.state.user.address);
+    //   console.log(this.state.user.gymLocation);
+    //   console.log(this.state.user.email);
   }
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.onSubmitData(this.state.controls.email.value);
+    this.onSubmitData(this.state.controls.email.value, this.state.controls.address.value);
   }
 
-  handleAddressChange = () => {
-    this.setState({ showFormAddress: true });
-  }
-
-  handleEmailChange = () => {
-    this.setState({ showFormEmail: true });
+  handleChange = () => {
+    this.setState({ showForm: true });
+  //   this.setState(prevState => ({
+  //     controls: {
+  //         ...prevState.controls.email,
+  //         value: this.state.user.email
+  //     }
+  // }))
+  // this.setState({...this.state.controls.email.value, value: 'someothername'});
+  // let inputName = 'email';
+  let inputEmail = this.state.user.email;
+  let statusCopy = Object.assign({}, this.state.controls);
+    statusCopy.email.value = inputEmail;
+    this.setState(statusCopy);
+  let inputAddress = this.state.user.address;
+  let statusCopyTwo = Object.assign({}, this.state.controls);
+    statusCopyTwo.address.value = inputAddress;
+    this.setState(statusCopyTwo);
   }
 
   onSubmitData = () => {
     const userUpdate = {
       userEmail: this.state.controls.email.value,
+      userAddress: this.state.controls.address.value,
       userId: this.props.userId
     }
     axios.post('/api/auth/', userUpdate)
@@ -113,12 +129,8 @@ class Profile extends Component {
     return (
       <Aux>
          <div className={classes.BackGround}>
-            <UserProfile user={this.state.user} editAddress={this.handleAddressChange} editEmail={this.handleEmailChange}/>
-            <form onSubmit={this.submitHandler} className={classes.ProfileForm} style={{display: this.state.showFormEmail ? 'block' : 'none' }}>
-              {form}
-              <Button btnType="Success">SUBMIT</Button>
-            </form>
-            <form onSubmit={this.submitHandler} className={classes.ProfileForm} style={{display: this.state.showFormAddress ? 'block' : 'none' }}>
+            <UserProfile user={this.state.user} edit={this.handleChange} />
+            <form onSubmit={this.submitHandler} className={classes.ProfileForm} style={{display: this.state.showForm ? 'block' : 'none' }}>
               {form}
               <Button btnType="Success">SUBMIT</Button>
             </form>
