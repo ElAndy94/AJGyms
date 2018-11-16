@@ -12,11 +12,11 @@ const authRoutes = require('./routes/auth');
 mongoose.set('useCreateIndex', true);
 mongoose.connect("mongodb://" + "Elandy" + ":" + "React123" + "@ds125263.mlab.com:25263/react-gym", { useNewUrlParser: true })
 .then(() => {
-    logger.info('Connected to the database!')
-  })
-  .catch(() => {
-    console.log('Connection failed')
-  });
+  logger.info('Connected to the database!')
+})
+.catch(() => {
+  console.log('Connection failed')
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

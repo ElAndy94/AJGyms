@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
+const logger = require('../utility/logger');
 
 const User = require('../models/user');
 

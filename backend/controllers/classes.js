@@ -6,23 +6,6 @@ const CLASS_NOT_FOUND = {
   message: 'Class not found!'
 };
 
-const classes = [
-  {
-      id: '676d34ffdgfdg433',
-      location: 'Market Street',
-      classType: 'Induction only',
-      className: 'Intro class',
-      startTime: '10:00'
-  },
-  {
-      id: '34dvf35df34dfvfd',
-      location: 'Portland Street',
-      classType: 'intermediate',
-      className: 'Mass Building',
-      startTime: '19:00'
-  },
-];
-
 exports.getAllClasses = (req, res) => {
   GymClass.find({}, (err, classes) => {
     if (err) {
@@ -156,15 +139,3 @@ exports.bookClass = (req, res) => {
     }
   });
 }
-
-// exports.getBookedClasses = (req, res) => {
-//   GymClass.findById(req.params.id)
-//     .then(gymClass => {
-//       res.status(200).json(gymClass);
-//     })
-//     .catch(error => {
-//       res.status(500).json({
-//         message: "No Class Found"
-//       })
-//     })
-// }
