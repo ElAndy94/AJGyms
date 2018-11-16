@@ -121,6 +121,7 @@ class GymClasses extends Component {
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
+    console.log(inputIdentifier);
     const updatedFormElement = updateObject(this.state.gymForm[inputIdentifier], {
         value: event.target.value,
         valid: checkValidity(event.target.value, this.state.gymForm[inputIdentifier].validation),
@@ -137,47 +138,30 @@ class GymClasses extends Component {
 
     const theEvent = event.target.value;
 
-    this.checkEvent(theEvent);
+    this.checkEvent(theEvent, inputIdentifier);
 
     this.setState({gymForm: updatedGymForm, formIsValid: formIsValid});
   }
 
-  checkEvent(theEvent) {
-    if (theEvent.includes("Morning") || theEvent.includes("Afternoon") || theEvent.includes("Evening") ||  theEvent.includes("Noon")) {
+  checkEvent(theEvent, inputIdentifier) {
+    if (inputIdentifier === 'timeOfDay') {
       this.filterClasses(theEvent, 'time');
 
-    } else if (theEvent.includes("Market Street") || theEvent.includes("Portland Street") || theEvent.includes("Oxford Road")) {
+    } else if (inputIdentifier === 'gymLocation') {
       this.filterClasses(theEvent, 'location');
 
-    } else if (theEvent.includes("Induction Only") || theEvent.includes("Digital Class Only") || theEvent.includes("Classes Only")) {
+    } else if (inputIdentifier === 'classType') {
       this.filterClasses(theEvent, 'type');
     }
   }
 
   filterClasses(selectedValue, type) {
     // Filter through the classes and only have ones that apply the search term
-    if (type === 'type') {
-      const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
-        return value.type === selectedValue;
-      });
-      // Update the state with the matching classes
-      this.setState({filteredClasses: newFilteredClasses});
-      console.log(newFilteredClasses);
+    const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
+      return value[type] === selectedValue;
+    });
 
-    } else if (type === 'location') {
-      const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
-        return value.location === selectedValue;
-      });
-      // Update the state with the matching classes
-      this.setState({filteredClasses: newFilteredClasses});
-
-    } else if (type === 'time') {
-      const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
-        return value.time === selectedValue;
-      });
-      // Update the state with the matching classes
-      this.setState({filteredClasses: newFilteredClasses});
-    }
+    this.setState({filteredClasses: newFilteredClasses});
   }
 
   classSelectedHandler = (id) => {

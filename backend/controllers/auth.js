@@ -90,10 +90,12 @@ exports.login = (req, res) => {
   })
   .then(result => {
     if (!result) {
+      logger.info(`User ${fetchedUser.name} entered an incorrect password.`);
       return res.status(401).json({
         message: 'Invalid Credentials'
       });
     }
+    logger.info(`User ${fetchedUser.name} logged in`);
     res.status(200).json({
       _id: fetchedUser._id,
       name: fetchedUser.name,
@@ -102,7 +104,8 @@ exports.login = (req, res) => {
     });
   })
   .catch(err => {
-     res.status(500).json({
+    logger.info(`User ${user.name} not found.`);
+    res.status(500).json({
         message: "Invalid credentials!"
     });
   });
