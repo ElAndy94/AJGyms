@@ -156,28 +156,28 @@ class GymClasses extends Component {
 
   filterClasses(selectedValue, type) {
     // Filter through the classes and only have ones that apply the search term
-    if (type === 'type') {
-      const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
-        return value.type === selectedValue;
-      });
-      // Update the state with the matching classes
-      this.setState({filteredClasses: newFilteredClasses});
-      console.log(newFilteredClasses);
+    let newFilteredClasses;
 
-    } else if (type === 'location') {
-      const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
-        return value.location === selectedValue;
-      });
-      // Update the state with the matching classes
-      this.setState({filteredClasses: newFilteredClasses});
-
-    } else if (type === 'time') {
-      const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
-        return value.time === selectedValue;
-      });
-      // Update the state with the matching classes
-      this.setState({filteredClasses: newFilteredClasses});
+    switch (type) {
+      case 'type':
+        newFilteredClasses = this.state.filteredClasses.filter( (value) => {
+          return value.type === selectedValue;
+        });
+        break;
+      case 'location':
+        newFilteredClasses = this.state.filteredClasses.filter( (value) => {
+          return value.location === selectedValue;
+        });
+        break;
+      case 'time':
+        newFilteredClasses = this.state.filteredClasses.filter( (value) => {
+          return value.time === selectedValue;
+        });
+        break;
+      default:
+        console.log('no classes found case');
     }
+    this.setState({filteredClasses: newFilteredClasses});
   }
 
   classSelectedHandler = (id) => {
