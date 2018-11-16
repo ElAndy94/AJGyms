@@ -105,7 +105,7 @@ exports.login = (req, res) => {
   })
   .catch(err => {
     logger.info(`User ${user.name} not found.`);
-     res.status(500).json({
+    res.status(500).json({
         message: "Invalid credentials!"
     });
   });
