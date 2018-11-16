@@ -2,14 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const app = express();
-const logger = require('./backend/utility/logger');
+const logger = require('./utility/logger');
 const path = require('path');
 // const winston = require('winston');
 
-const classesRoutes = require('./backend/routes/classes');
-const authRoutes = require('./backend/routes/auth');
+const classesRoutes = require('./routes/classes');
+const authRoutes = require('./routes/auth');
 
-// app.use(express.static(path.join(__dirname, 'build')));
 mongoose.set('useCreateIndex', true);
 mongoose.connect("mongodb://" + "Elandy" + ":" + "React123" + "@ds125263.mlab.com:25263/react-gym", { useNewUrlParser: true })
 .then(() => {
@@ -35,7 +34,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.listen(process.env.PORT || 8080);
-
 app.use('/api/classes', classesRoutes);
 app.use('/api/auth', authRoutes);
+
+module.exports = app;
