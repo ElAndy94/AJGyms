@@ -65,6 +65,47 @@ exports.getClassById = (req, res) => {
     });
 }
 
+// exports.deleteClass = (req, res) => {
+//   let classId = req.params.id;
+//   let users = [];
+//     GymClass.findById({
+//       _id: classId
+//     }, 'classMembers', (res ,err) => {
+//       if (err) {
+//         res.status(401).json({
+//           message: "Error Occured!"
+//         })
+//       } else {
+//         res.push(users);
+//         users.forEach(function(element) {
+//           console.log(element);
+//         });
+//         // users.forEach( (users.userId) => {
+//         //   console.log(users.userId);
+//         // });
+//           GymClass.find({
+//             "classMembers.userId" : ,
+//             },
+
+//           {
+//             $pull : { "classMembers" : { userId : req.params.userId } }
+//           }, (err, doc) => {
+//           if(err) {
+//             logger.error(`User ${userId} was not able to be deleted from the ${classId} class.`);
+//             res.status(401).json({
+//               message: "Error Occured!"
+//             })
+//           } else {
+//             change.change(`User ${userId} was deleted from the ${classId} class.`);
+//             res.status(200).json({
+//               message: "Success!"
+//             })
+//           }
+//         });
+//       }
+//     })
+// }
+
 exports.deleteClass = (req, res) => {
   let classId = req.params.id;
   GymClass.findByIdAndRemove({

@@ -69,7 +69,7 @@ exports.createUser = (req, res) => {
           html: '<h1>You successfully signed up!</h1>'
         });
       })
-      .catch(error => {
+      .catch(() => {
         res.status(500).json({
           message: "Creating User Failed!"
         });
