@@ -23,8 +23,8 @@ class Layout extends Component {
     render () {
       return (
         <Aux>
-          <Toolbar isAuthenticated={this.props.isAuthenticated} isPt={this.props.isPt} drawerToggleClicked={this.sideDrawerToggleHandler} />
-          <SideDrawer isAuthenticated={this.props.isAuthenticated} isPt={this.props.isPt} open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler}/>
+          <Toolbar isAuthenticated={this.props.isAuthenticated} isPt={this.props.isPt} isAdmin={this.props.isAdmin} drawerToggleClicked={this.sideDrawerToggleHandler} />
+          <SideDrawer isAuthenticated={this.props.isAuthenticated} isPt={this.props.isPt} isAdmin={this.props.isAdmin} open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler}/>
           <main className={classes.Content}>{this.props.children}</main>
         </Aux>
       );

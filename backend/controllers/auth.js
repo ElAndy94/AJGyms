@@ -104,6 +104,7 @@ exports.login = (req, res) => {
       _id: fetchedUser._id,
       name: fetchedUser.name,
       pt: fetchedUser.pt,
+      admin: fetchedUser.admin,
       message: 'User Found!'
     });
   })

@@ -10,6 +10,7 @@ import Auth from './containers/Auth/Login/Auth';
 import Logout from './containers/Auth/Logout/Logout';
 import Signup from './containers/Auth/Signup/Signup';
 import BookedGymClasses from './containers/GymClasses/BookedGymClasses/BookedGymClasses';
+import Admin from './containers/Admin/Admin';
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class App extends Component {
       isAuthenticated: false,
       userName: '',
       userId: '',
-      isPt: false
+      isPt: false,
+      isAdmin: false
     };
   }
 
@@ -27,7 +29,7 @@ class App extends Component {
   };
 
   handleLogout = () => {
-    this.setState({ isAuthenticated: false, userId: '', isPt: false });
+    this.setState({ isAuthenticated: false, userId: '', isPt: false, isAdmin: false });
   };
 
   handleUserName = (userName) => {
@@ -38,24 +40,43 @@ class App extends Component {
     this.setState({ isPt: true });
   }
 
+  handleAdminVerification = () => {
+    this.setState({ isAdmin: true });
+  }
+
   render () {
     let routes = (
         <Switch>
-          <Route path="/auth" render={props => <Auth onAuthComplete={this.handleAuthComplete} onUserName={this.handleUserName} isPt={this.handlePtVerification} />} />
+          <Route path="/auth" render={props => <Auth onAuthComplete={this.handleAuthComplete} onUserName={this.handleUserName} isPt={this.handlePtVerification} isAdmin={this.handleAdminVerification} />} />
           <Route path="/signup" component={Signup} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
         </Switch>
     );
 
-    if (this.state.isAuthenticated && this.state.isPt) {
+    if (this.state.isAuthenticated && this.state.isAdmin && this.state.isPt) {
       routes = (
         <Switch>
           <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
           <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} />} />
           <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
           <Route path="/createGymClass" render={(props) => <CreateGymClass {...props} userName={this.state.userName} />} />
-          <Route path="/logout" render={(props) => <Logout onLogout={this.handleLogout} />} />
+          <Route path="/admin" render={(props) => <Admin {...props} userName={this.state.userName} />} />
+          <Route path="/logout" render={() => <Logout onLogout={this.handleLogout} />} />
+          <Route path="/" exact component={DashBoardBuilder} />
+          <Redirect to="/" />
+        </Switch>
+      );
+    }
+
+    if (this.state.isAuthenticated && this.state.isPt && !this.state.isAdmin) {
+      routes = (
+        <Switch>
+          <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
+          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} />} />
+          <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
+          <Route path="/createGymClass" render={(props) => <CreateGymClass {...props} userName={this.state.userName} />} />
+          <Route path="/logout" render={() => <Logout onLogout={this.handleLogout} />} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
         </Switch>
@@ -68,7 +89,7 @@ class App extends Component {
           <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
           <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} />} />
           <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
-          <Route path="/logout" render={(props) => <Logout onLogout={this.handleLogout} />} />
+          <Route path="/logout" render={() => <Logout onLogout={this.handleLogout} />} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
         </Switch>
@@ -76,7 +97,7 @@ class App extends Component {
     }
 
     return (
-      <Layout isAuthenticated={this.state.isAuthenticated} isPt={this.state.isPt} >
+      <Layout isAuthenticated={this.state.isAuthenticated} isPt={this.state.isPt} isAdmin={this.state.isAdmin} >
         {routes}
       </Layout>
     );

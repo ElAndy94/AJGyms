@@ -12,7 +12,9 @@ class Admin extends Component {
   render() {
     return (
       <Aux>
-      <AdminComp />
+        <div className={classes.Heading}>
+          <AdminComp />
+        </div>
       </Aux>
     );
   }

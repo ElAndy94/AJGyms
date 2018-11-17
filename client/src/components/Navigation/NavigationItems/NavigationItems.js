@@ -4,10 +4,22 @@ import NavigationItem from './NavigationItem/NavigationItem';
 import classes from './NavigationItems.css';
 import Aux from '../../../hoc/ReactAux';
 
+
 const navigationItems = (props) => (
   <ul className={classes.NavigationItems}>
     <NavigationItem link="/" exact>Dash Board</NavigationItem>
-    { props.isAuthenticated && props.isPt ?
+    {
+      props.isAuthenticated && props.isPt && props.isAdmin ?
+      <Aux>
+        <NavigationItem link="/profile">Profile</NavigationItem>
+        <NavigationItem link="/classes">Classes</NavigationItem>
+        <NavigationItem link="/myclasses">Booked Class</NavigationItem>
+        <NavigationItem link="/createGymClass">Create Class</NavigationItem>
+        <NavigationItem link="/admin">Admin</NavigationItem>
+        <NavigationItem link="/logout">Logout</NavigationItem>
+      </Aux>
+      :
+      props.isAuthenticated && props.isPt && !props.isAdmin ?
       <Aux>
         <NavigationItem link="/profile">Profile</NavigationItem>
         <NavigationItem link="/classes">Classes</NavigationItem>

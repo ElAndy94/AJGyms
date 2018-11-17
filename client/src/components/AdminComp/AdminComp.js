@@ -3,7 +3,7 @@ import React from "react";
 import classes from './AdminComp.css';
 
 const AdminComp = (props) => (
-  <h1> Hello </h1>
+  <h1 className={classes.Heading}> Hello </h1>
   // <article className={classes.Class} onClick={props.clicked}>
   //       <h2>{props.location}</h2>
   //       <h1>{props.classType} <br/> {props.startTime}</h1>

@@ -74,6 +74,9 @@ class Auth extends Component {
           if (response.data.pt === true) {
             this.props.isPt(true);
           }
+          if (response.data.admin === true) {
+            this.props.isAdmin(true);
+          }
         }).catch(error => {
           console.log(error);
         });

@@ -100,7 +100,6 @@ class GymClasses extends Component {
           }
         });
         this.setState({gymClasses: updatedGymClasses, filteredClasses: updatedGymClasses});
-        console.log(this.state.gymClasses);
       })
       .catch(error => {
         console.log(error);
