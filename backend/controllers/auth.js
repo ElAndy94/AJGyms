@@ -78,39 +78,46 @@ exports.createUser = (req, res) => {
 }
 
 exports.login = (req, res) => {
-  let fetchedUser;
+
   let emailLowerCase = req.body.email.toLowerCase();
-  User.findOne({
-    email: emailLowerCase
-  })
-  .then(user => {
+  User.findOne({ email: emailLowerCase }, (err, user) => {
+    if (err) {
+      logger.error(`Error while finding user ${emailLowerCase}`);
+      res.status(500).json({
+        message: 'Server Error'
+      });
+    }
+    
     if (!user) {
-      return res.status(401).json({
+      logger.info(`Unable to find user ${emailLowerCase}`);
+      res.status(404).json({
         message: 'Invalid Credentials'
       });
-    }
-    fetchedUser = user;
-    return bcrypt.compare(req.body.password, user.password);
-  })
-  .then(result => {
-    if (!result) {
-      logger.info(`User ${fetchedUser.name} entered an incorrect password.`);
-      return res.status(401).json({
-        message: 'Invalid Credentials'
+    } else {
+      const hash = user.password;
+      const password = req.body.password;
+      bcrypt.compare(password, hash, (err, passwordMatches) => {
+        if (passwordMatches) {
+          logger.info(`User ${user.name} logged in`);
+          res.status(200).json({
+            _id: user._id,
+            name: user.name,
+            pt: user.pt,
+            message: 'User Found!'
+          });
+        } else {
+          logger.warn(`User ${user.email} attempted to log in`);
+          res.status(404).json({
+            message: 'Invalid Credentials'
+          });
+        }
       });
     }
-    accessed.accessed(`User ${fetchedUser.name} logged in`);
-    res.status(200).json({
-      _id: fetchedUser._id,
-      name: fetchedUser.name,
-      pt: fetchedUser.pt,
-      message: 'User Found!'
-    });
   })
-  .catch(err => {
-    logger.info(`User ${user.name} not found.`);
+  .catch( (err) => {
+    logger.log(err);    
     res.status(500).json({
-        message: "Invalid credentials!"
+      message: 'Server Error'
     });
   });
 }
