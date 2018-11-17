@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const logger = require('../utility/logger');
+const accessed = require('../utility/accessed');
+const change = require('../utility/change');
 
 const User = require('../models/user');
 
@@ -95,7 +97,7 @@ exports.login = (req, res) => {
         message: 'Invalid Credentials'
       });
     }
-    logger.info(`User ${fetchedUser.name} logged in`);
+    accessed.accessed(`User ${fetchedUser.name} logged in`);
     res.status(200).json({
       _id: fetchedUser._id,
       name: fetchedUser.name,
@@ -125,6 +127,7 @@ exports.getUser = (req, res) => {
 }
 
 exports.bookClass = (req, res) => {
+  let userId = req.body.userId;
   User.findById({
     _id: req.body.userId
   }, 'bookedClasses', (err) => {
@@ -147,6 +150,7 @@ exports.bookClass = (req, res) => {
               message: "Error Occured!"
             })
           } else {
+            change.change(`User ${userId} has booked themselves into a class.`);
             res.status(200).json({
               message: "Success!"
             })
@@ -158,6 +162,7 @@ exports.bookClass = (req, res) => {
 }
 
 exports.deleteClass = (req, res) => {
+  let userId = req.params.userId;
   User.findById({
     _id: req.params.userId
   }, 'bookedClasses', (err) => {
@@ -173,12 +178,11 @@ exports.deleteClass = (req, res) => {
         $pull : { "bookedClasses" : { classId : req.params.id } }
       }, (err) => {
         if(err) {
-          console.log('the error', err);
-          // console.log('auth down here');
-            res.status(401).json({
-              message: "Error Occured!"
-            })
+          res.status(401).json({
+            message: "Error Occured!"
+          })
         } else {
+          change.change(`User ${userId} has removed themselves from a class.`);
           res.status(200).json({
             message: "Success!"
           })
@@ -205,6 +209,7 @@ exports.bookedClasses = (req, res) => {
 }
 
 exports.updateInfo = (req, res) => {
+  let userId = req.body.userId;
   let emailLowerCase = req.body.userEmail.toLowerCase();
   User.findByIdAndUpdate({
     _id: req.body.userId
@@ -222,6 +227,7 @@ exports.updateInfo = (req, res) => {
         message: "Error Occured"
       })
     } else {
+      change.change(`User ${userId} has updated their email and address.`);
       res.status(200).json({
         message: "Details Successfully Updated!"
       })

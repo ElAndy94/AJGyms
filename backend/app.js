@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const app = express();
 const logger = require('./utility/logger');
 const path = require('path');
-// const winston = require('winston');
 
 const classesRoutes = require('./routes/classes');
 const authRoutes = require('./routes/auth');
@@ -15,7 +14,7 @@ mongoose.connect("mongodb://" + "Elandy" + ":" + "React123" + "@ds125263.mlab.co
   logger.info('Connected to the database!')
 })
 .catch(() => {
-  console.log('Connection failed')
+  logger.error('Connection failed')
 });
 
 app.use(bodyParser.json());
