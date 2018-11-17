@@ -40,6 +40,7 @@ exports.createUser = (req, res) => {
   bcrypt.hash(req.body.password, 10)
   .then(hash => {
     let emailLowerCase = req.body.email.toLowerCase();
+    let userName = req.body.name;
     const user = new User({
       name: req.body.name,
       email: emailLowerCase,
@@ -53,6 +54,7 @@ exports.createUser = (req, res) => {
     });
     user.save()
       .then(createdUser => {
+        change.change(`User ${userName} has created an account using this email: ${emailLowerCase}.`);
         res.status(201).json({
           message: "User added Successfully",
           gymClass: {
