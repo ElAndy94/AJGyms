@@ -61,7 +61,7 @@ class App extends Component {
           <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} />} />
           <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
           <Route path="/createGymClass" render={(props) => <CreateGymClass {...props} userName={this.state.userName} />} />
-          <Route path="/admin" render={(props) => <Admin {...props} userName={this.state.userName} />} />
+          <Route path="/admin" render={(props) => <Admin {...props} userId={this.state.userId} />} />
           <Route path="/logout" render={() => <Logout onLogout={this.handleLogout} />} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />

@@ -2,7 +2,6 @@ import React from "react";
 
 import classes from './UserProfile.css';
 import Button from '../UI/Button/Button';
-// import Modal from '../UI/Modal/Modal';
 
 const userProfile = (props) => {
   return (

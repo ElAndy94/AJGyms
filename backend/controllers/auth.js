@@ -129,6 +129,19 @@ exports.getUser = (req, res) => {
     });
 }
 
+exports.getUsers = (req, res) => {
+  User.find({}, (err, users) => {
+    if (err) {
+      logger.error(`Users could not be fetched.`);
+      return res.status(500).json({
+        message: "Users not found!"
+      });
+    }
+    logger.info(`Users has been requested.`);
+    return res.json(users);
+  });
+}
+
 exports.bookClass = (req, res) => {
   let userId = req.body.userId;
   User.findById({
