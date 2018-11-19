@@ -140,7 +140,8 @@ class Signup extends Component {
           valid: true
         },
       },
-      isSignup: true
+      isSignup: true,
+      fullDate: ''
     }
 
   inputChangedHandler = (event, controlName) => {
@@ -154,7 +155,15 @@ class Signup extends Component {
     this.setState({controls: updatedControls});
   }
 
+  formatDate = () => {
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const today  = new Date();
+  let todayDate = today.toLocaleDateString("en-US", options);
+  this.setState({ fullDate: todayDate });
+  }
+
   submitHandler = (event) => {
+    // this.formatDate();
     event.preventDefault();
     if (
       this.state.controls.password.value ===
@@ -163,7 +172,7 @@ class Signup extends Component {
       this.state.controls.email.valid &&
       this.state.controls.name.valid &&
       this.state.controls.address.valid === true
-      ){
+    ){
       this.onAuth(
         this.state.controls.name.value,
         this.state.controls.email.value,
@@ -179,6 +188,7 @@ class Signup extends Component {
   }
 
   onAuth = () => {
+      // console.log(this.state.fullDate);
       const authentication = {
         name: this.state.controls.name.value,
         email: this.state.controls.email.value,
@@ -189,6 +199,7 @@ class Signup extends Component {
         goal: this.state.controls.gymGoal.value,
         gymLocation: this.state.controls.gymLocation.value,
         date: new Date(),
+        // date: this.state.fullDate
       };
       axios.post('/api/auth', authentication)
         .then(response => {

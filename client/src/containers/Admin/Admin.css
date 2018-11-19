@@ -9,7 +9,7 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-h1 {
+.FancyFont {
   padding-top: 2em;
   -webkit-text-stroke: 1px black;
   color: white;

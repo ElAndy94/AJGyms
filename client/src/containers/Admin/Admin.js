@@ -60,7 +60,7 @@ class Admin extends Component {
       <Aux>
         <div className={classes.BackGround}>
           {/* <AdminComp user={this.state.user} /> */}
-          <h1> Users </h1>
+          <h1 className={classes.FancyFont}> Users </h1>
           <div className={classes.Users}>
             {users}
           </div>
