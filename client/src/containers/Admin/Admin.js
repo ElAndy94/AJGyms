@@ -6,6 +6,7 @@ import classes from './Admin.css';
 import GymTimetable from '../../components/GymTimetable/GymTimetable';
 import User from '../../components/User/User';
 import FullGymClass from '../../containers/GymClasses/FullGymClass/FullGymClass';
+// import Button from '../../components/UI/Button/Button';
 // import AdminComp from '../../components/AdminComp/AdminComp';
 
 class Admin extends Component {
@@ -106,6 +107,13 @@ class Admin extends Component {
             {gymClasses}
           </div>
           <FullGymClass userId={this.props.userId} isPt={this.props.isPt} isAdmin={this.props.isAdmin} id={this.state.selectedClassId} onDelete={this.handleDelete} />
+          {/*
+          <form onSubmit={this.submitHandler} className={classes.ProfileForm} style={{display: this.state.showForm ? 'block' : 'none' }}>
+              {form}
+              <Button btnType="Success">SUBMIT</Button>
+              <Button btnType="Danger" clicked={this.cancelEdit}>CANCEL</Button>
+          </form>
+          */}
         </div>
       </Aux>
     );

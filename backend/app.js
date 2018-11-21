@@ -4,12 +4,13 @@ const mongoose = require('mongoose');
 const app = express();
 const logger = require('./utility/logger');
 const path = require('path');
+const config = require('./config/config');
 
 const classesRoutes = require('./routes/classes');
 const authRoutes = require('./routes/auth');
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect("mongodb://" + "Elandy" + ":" + "React123" + "@ds125263.mlab.com:25263/react-gym", { useNewUrlParser: true })
+mongoose.connect(`mongodb://${config.name}:${config.pw}@ds125263.mlab.com:25263/react-gym`, { useNewUrlParser: true })
 .then(() => {
   logger.info('Connected to the database!')
 })
