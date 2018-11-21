@@ -9,7 +9,7 @@ import { updateObject, checkValidity } from '../../shared/utility';
 import Input from '../../components/UI/Input/Input';
 // import Button from '../../components/UI/Button/Button';
 
-class GymClasses extends Component {
+export class GymClasses extends Component {
   state = {
     gymClasses: [],
     filteredClasses: [],
@@ -90,6 +90,7 @@ class GymClasses extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.isPt);
     axios.get('/api/classes')
       .then(response => {
         const gymClasses = response.data;
@@ -212,20 +213,20 @@ class GymClasses extends Component {
         </form>
     );
     return (
-      <Aux>
-        <div className={classes.BackGround}>
-            <div className={classes.GymClasses}>
-              <h3>Select, book and enjoy!</h3>
-              {form}
-            </div>
-            <div className={classes.Classes}>
-              {gymClasses}
-            </div>
-            <div className={classes.BackGroundTwo}>
-              <FullGymClass userId={this.props.userId} id={this.state.selectedClassId} onDelete={this.handleDelete} />
-            </div>
+    <Aux>
+      <div className={classes.BackGround}>
+        <div className={classes.GymClasses}>
+          <h3>Select, book and enjoy!</h3>
+          {form}
         </div>
-      </Aux>
+        <div className={classes.Classes}>
+          {gymClasses}
+        </div>
+        <div className={classes.BackGroundTwo}>
+          <FullGymClass userId={this.props.userId} isPt={this.props.isPt} id={this.state.selectedClassId} onDelete={this.handleDelete} />
+        </div>
+      </div>
+    </Aux>
     );
   }
 };

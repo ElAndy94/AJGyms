@@ -5,86 +5,90 @@ import classes from './FullGymClass.css';
 import Button from '../../../components/UI/Button/Button';
 
 class FullGymClass extends Component {
-    state = {
-        loadedClass: null
-    }
+  state = {
+      loadedClass: null
+  }
 
-    componentDidUpdate () {
+  componentDidUpdate () {
+    if ( this.props.id ) {
+      if ( !this.state.loadedClass || (this.state.loadedClass && this.state.loadedClass._id !== this.props.id) ) {
+        axios.get( '/api/classes/' + this.props.id )
+            .then( response => {
+              this.setState( { loadedClass: response.data } );
+            });
+      }
+    }
+  }
+
+  bookUserHandler = () => {
+    const bookingData = {
+      userId: this.props.userId,
+      classId: this.props.id,
+      date: new Date()
+    }
+    axios.post('/api/auth/bookclass', bookingData)
+      .then( response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  bookClassHandler = () => {
+    this.bookUserHandler();
+    const bookingData = {
+      userId: this.props.userId,
+      classId: this.props.id,
+    }
+    axios.post('/api/classes/bookclass', bookingData)
+      .then( response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  deleteClassHandler = () => {
+    axios.delete('/api/classes/' + this.props.id)
+      .then(response => {
+        console.log(response);
+        this.props.onDelete(this.props.id);
+        this.setState({loadedClass: null});
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  render () {
+      let gymClass = <p style={{ textAlign: 'center', color: 'white', fontSize: '20px' }}>Please select a Class!</p>;
       if ( this.props.id ) {
-          if ( !this.state.loadedClass || (this.state.loadedClass && this.state.loadedClass._id !== this.props.id) ) {
-            axios.get( '/api/classes/' + this.props.id )
-                .then( response => {
-                  this.setState( { loadedClass: response.data } );
-                });
-          }
+        gymClass = <p style={{ textAlign: 'center' }}>Loading...!</p>;
       }
-    }
-
-    bookUserHandler = () => {
-      const bookingData = {
-        userId: this.props.userId,
-        classId: this.props.id,
-        date: new Date()
-      }
-      axios.post('/api/auth/bookclass', bookingData)
-        .then( response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-
-    bookClassHandler = () => {
-      this.bookUserHandler();
-      const bookingData = {
-        userId: this.props.userId,
-        classId: this.props.id,
-      }
-      axios.post('/api/classes/bookclass', bookingData)
-        .then( response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-
-    deleteClassHandler = () => {
-      axios.delete('/api/classes/' + this.props.id)
-        .then(response => {
-          console.log(response);
-          this.props.onDelete(this.props.id);
-          this.setState({loadedClass: null});
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-
-    render () {
-        let gymClass = <p style={{ textAlign: 'center', color: 'white', fontSize: '20px' }}>Please select a Class!</p>;
-        if ( this.props.id ) {
-          gymClass = <p style={{ textAlign: 'center' }}>Loading...!</p>;
-        }
-        if ( this.state.loadedClass ) {
-          gymClass = (
-            <div className={classes.BackGround}>
-              <div className={classes.FullGymClass}>
-                <h1>{this.state.loadedClass.location}</h1>
-                <p>{this.state.loadedClass.type}</p>
-                <p>{this.state.loadedClass.name}</p>
-                <p>{this.state.loadedClass.time}</p>
-                <div className={classes.Edit}>
-                  <Button btnType="Success" clicked={this.bookClassHandler}>Book Class</Button>
+      if ( this.state.loadedClass ) {
+        gymClass = (
+          <div className={classes.BackGround}>
+            <div className={classes.FullGymClass}>
+              <h1>{this.state.loadedClass.location}</h1>
+              <p>{this.state.loadedClass.type}</p>
+              <p>{this.state.loadedClass.name}</p>
+              <p>{this.state.loadedClass.time}</p>
+              <div className={classes.Edit}>
+                {
+                  this.props.isPt || this.props.isAdmin ?
                   <Button btnType="Danger" clicked={this.deleteClassHandler}>Delete</Button>
-                </div>
+                  :
+                  <Button btnType="Success" clicked={this.bookClassHandler}>Book Class</Button>
+                }
               </div>
             </div>
-            );
-        }
-        return gymClass;
-    }
+          </div>
+          );
+      }
+      return gymClass;
+  }
 }
 
 export default FullGymClass;

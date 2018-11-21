@@ -20,7 +20,6 @@ configure({adapter: new Adapter()});
     });
 
     it('should render five <NavigationItem /> elements if authenticated', () => {
-      // wrapper = shallow(<NavigationItems isAuthenticated />);
       wrapper.setProps({ isAuthenticated: true });
       expect(wrapper.find(NavigationItem)).toHaveLength(5);
     });
@@ -33,5 +32,10 @@ configure({adapter: new Adapter()});
     it('should render seven <NavigationItem /> elements if authenticated', () => {
       wrapper.setProps({ isAuthenticated: true, isPt: true, isAdmin: true });
       expect(wrapper.find(NavigationItem)).toHaveLength(7);
+    });
+
+    it('Logout should render if you are authenticated', () => {
+      wrapper.setProps({ isAuthenticated: true });
+      expect(wrapper.contains(<NavigationItem link="/logout">Logout</NavigationItem>)).toEqual(true);
     });
 });

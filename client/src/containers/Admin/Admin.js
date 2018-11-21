@@ -3,16 +3,22 @@ import axios from 'axios';
 
 import Aux from '../../hoc/ReactAux';
 import classes from './Admin.css';
-// import AdminComp from '../../components/AdminComp/AdminComp';
+import GymTimetable from '../../components/GymTimetable/GymTimetable';
 import User from '../../components/User/User';
+import FullGymClass from '../../containers/GymClasses/FullGymClass/FullGymClass';
+// import AdminComp from '../../components/AdminComp/AdminComp';
 
 class Admin extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
     user: {},
     users: [],
-    filteredUsers: []
+    filteredUsers: [],
+    gymClasses: [],
+    filteredClasses: [],
   }
-
+}
   componentDidMount () {
     axios.get('/api/auth/' + this.props.userId )
       .then( response => {
@@ -32,10 +38,28 @@ class Admin extends Component {
       .catch(error => {
         console.log(error);
       });
+
+      axios.get('/api/classes')
+      .then(response => {
+        const gymClasses = response.data;
+        const updatedGymClasses = gymClasses.map(gymClass => {
+          return {
+            ...gymClass,
+          }
+        });
+        this.setState({gymClasses: updatedGymClasses, filteredClasses: updatedGymClasses});
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   userSelectedHandler = (id) => {
     this.setState({selectedUserId: id});
+  }
+
+  classSelectedHandler = (id) => {
+    this.setState({selectedClassId: id});
   }
 
   render() {
@@ -56,6 +80,19 @@ class Admin extends Component {
       );
     });
 
+    const gymClasses = this.state.filteredClasses.map(gymClass => {
+      return  (
+      <GymTimetable
+        key={gymClass._id}
+        location={gymClass.location}
+        classType={gymClass.type}
+        className={gymClass.name}
+        startTime={gymClass.time}
+        ptName={gymClass.ptName}
+        clicked={() => this.classSelectedHandler(gymClass._id)}/>
+      );
+    });
+
     return (
       <Aux>
         <div className={classes.BackGround}>
@@ -64,6 +101,11 @@ class Admin extends Component {
           <div className={classes.Users}>
             {users}
           </div>
+          <h1 className={classes.FancyFont}> Gym Classes </h1>
+          <div className={classes.GymClasses}>
+            {gymClasses}
+          </div>
+          <FullGymClass userId={this.props.userId} isPt={this.props.isPt} isAdmin={this.props.isAdmin} id={this.state.selectedClassId} onDelete={this.handleDelete} />
         </div>
       </Aux>
     );

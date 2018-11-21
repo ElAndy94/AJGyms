@@ -80,9 +80,9 @@ exports.getClassById = (req, res) => {
 //         users.forEach(function(element) {
 //           console.log(element);
 //         });
-//         // users.forEach( (users.userId) => {
-//         //   console.log(users.userId);
-//         // });
+//           users.forEach( (users.userId) => {
+//             console.log(users.userId);
+//           });
 //           GymClass.find({
 //             "classMembers.userId" : ,
 //             },

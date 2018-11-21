@@ -47,7 +47,7 @@ class App extends Component {
   render () {
     let routes = (
         <Switch>
-          <Route path="/auth" render={props => <Auth onAuthComplete={this.handleAuthComplete} onUserName={this.handleUserName} isPt={this.handlePtVerification} isAdmin={this.handleAdminVerification} />} />
+          <Route path="/auth" render={(props) => <Auth {...props} onAuthComplete={this.handleAuthComplete} onUserName={this.handleUserName} isPt={this.handlePtVerification} isAdmin={this.handleAdminVerification} />} />
           <Route path="/signup" component={Signup} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
@@ -58,10 +58,10 @@ class App extends Component {
       routes = (
         <Switch>
           <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
-          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} />} />
+          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} isPt={this.state.isPt} isAdmin={this.state.isAdmin} />} />
           <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
           <Route path="/createGymClass" render={(props) => <CreateGymClass {...props} userName={this.state.userName} />} />
-          <Route path="/admin" render={(props) => <Admin {...props} userId={this.state.userId} />} />
+          <Route path="/admin" render={(props) => <Admin {...props} userId={this.state.userId} isPt={this.state.isPt} isAdmin={this.state.isAdmin} />} />
           <Route path="/logout" render={() => <Logout onLogout={this.handleLogout} />} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
@@ -73,7 +73,7 @@ class App extends Component {
       routes = (
         <Switch>
           <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
-          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} />} />
+          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} isPt={this.state.isPt} />} />
           <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
           <Route path="/createGymClass" render={(props) => <CreateGymClass {...props} userName={this.state.userName} />} />
           <Route path="/logout" render={() => <Logout onLogout={this.handleLogout} />} />

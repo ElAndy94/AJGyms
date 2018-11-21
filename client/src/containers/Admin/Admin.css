@@ -1,6 +1,6 @@
 .BackGround {
   text-align: center;
-  height: 136vh;
+  height: 400vh;
   background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.4), rgba(83, 134, 211, 0.4)), url('../../assets/images/gym2.jpeg');
   background-size: cover;
 }
@@ -50,6 +50,18 @@
   width: 80%;
   margin: auto;
   /* box-shadow: 1px 4px 6px 1px rgba(0,0,0,0.2); */
+}
+
+.GymClasses {
+  position: relative;
+  top: 30px;
+  color: #fff;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+  padding-bottom: 20px;
 }
 
 @media (min-width: 600px) {
