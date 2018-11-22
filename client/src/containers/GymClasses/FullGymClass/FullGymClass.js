@@ -85,7 +85,7 @@ class FullGymClass extends Component {
               </div>
             </div>
           </div>
-          );
+        );
       }
       return gymClass;
   }

@@ -6,6 +6,7 @@ import classes from './Admin.css';
 import GymTimetable from '../../components/GymTimetable/GymTimetable';
 import User from '../../components/User/User';
 import FullGymClass from '../../containers/GymClasses/FullGymClass/FullGymClass';
+import SelectedUser from './SelectedUser/SelectedUser';
 // import Button from '../../components/UI/Button/Button';
 // import AdminComp from '../../components/AdminComp/AdminComp';
 
@@ -102,6 +103,7 @@ class Admin extends Component {
           <div className={classes.Users}>
             {users}
           </div>
+          <SelectedUser userId={this.props.userId} isAdmin={this.props.isAdmin} id={this.state.selectedUserId} onDelete={this.handleDelete} />
           <h1 className={classes.FancyFont}> Gym Classes </h1>
           <div className={classes.GymClasses}>
             {gymClasses}
