@@ -20,23 +20,23 @@ class FullGymClass extends Component {
     }
   }
 
-  bookUserHandler = () => {
-    const bookingData = {
-      userId: this.props.userId,
-      classId: this.props.id,
-      date: new Date()
-    }
-    axios.post('/api/auth/bookclass', bookingData)
-      .then( response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+  // bookUserHandler = () => {
+  //   const bookingData = {
+  //     userId: this.props.userId,
+  //     classId: this.props.id,
+  //     date: new Date()
+  //   }
+  //   axios.post('/api/auth/bookclass', bookingData)
+  //     .then( response => {
+  //       console.log(response);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // }
 
   bookClassHandler = () => {
-    this.bookUserHandler();
+    // this.bookUserHandler();
     const bookingData = {
       userId: this.props.userId,
       classId: this.props.id,

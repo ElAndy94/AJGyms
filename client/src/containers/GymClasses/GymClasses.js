@@ -90,7 +90,6 @@ export class GymClasses extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.isPt);
     axios.get('/api/classes')
       .then(response => {
         const gymClasses = response.data;

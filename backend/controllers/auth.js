@@ -8,6 +8,7 @@ const change = require('../utility/change');
 const config = require('../config/config');
 
 const User = require('../models/user');
+const GymClass = require('../models/classes');
 
 // var transporter = nodemailer.createTransport({
 //   service: 'gmail',
@@ -143,41 +144,43 @@ exports.getUsers = (req, res) => {
   });
 }
 
-exports.bookClass = (req, res) => {
-  let userId = req.body.userId;
-  User.findById({
-    _id: req.body.userId
-  }, 'bookedClasses', (err) => {
-    if (err) {
-      res.status(401).json({
-        message: "Error Occured!"
-      })
-    } else {
-      const classToAdd = {
-        classId: mongoose.Types.ObjectId(req.body.classId),
-        dateBooked: (req.body.date)
-      };
-      User.findByIdAndUpdate({
-        _id: mongoose.Types.ObjectId(req.body.userId)
-      },
-      {$push: { bookedClasses : classToAdd }},
-        (err) => {
-          if(err) {
-            res.status(401).json({
-              message: "Error Occured!"
-            })
-          } else {
-            change.change(`User ${userId} has booked themselves into a class.`);
-            res.status(200).json({
-              message: "Success!"
-            })
-          }
-        }
-      );
-    }
-  });
-}
+// exports.bookClass = (req, res) => {
+//   let userId = req.body.userId;
+//   User.findById({
+//     _id: req.body.userId
+//   }, 'bookedClasses', (err) => {
+//     if (err) {
+//       res.status(401).json({
+//         message: "Error Occured!"
+//       })
+//     } else {
+//       const classToAdd = {
+//         classId: mongoose.Types.ObjectId(req.body.classId),
+//         dateBooked: (req.body.date)
+//       };
+//       User.findByIdAndUpdate({
+//         _id: mongoose.Types.ObjectId(req.body.userId)
+//       },
+//       {$push: { bookedClasses : classToAdd }},
+//         (err) => {
+//           if(err) {
+//             res.status(401).json({
+//               message: "Error Occured!"
+//             })
+//           } else {
+//             change.change(`User ${userId} has booked themselves into a class.`);
+//             res.status(200).json({
+//               message: "Success!"
+//             })
+//           }
+//         }
+//       );
+//     }
+//   });
+// }
 
+
+/// THIS NEEDS FIXING TOO!
 exports.deleteClass = (req, res) => {
   let userId = req.params.userId;
   User.findById({
@@ -208,22 +211,86 @@ exports.deleteClass = (req, res) => {
     }
   })
 }
+///// FIXING TOO ^^^^
+
+
+
 
 exports.bookedClasses = (req, res) => {
-  User.findById(req.params.id)
-    .populate({
-      path: 'bookedClasses.classId',
-      model: 'createClass'
-    })
-    .then(user => {
-      res.status(200).json(user.bookedClasses);
-    })
-    .catch(error => {
-      res.status(500).json({
-        message: "Fetching User Classes Failed"
+  const userId = req.params.id;
+  const userClasses = [];
+  GymClass.find({}, (err, classes) => {
+    if (err) {
+      logger.error(`Classes could not be fetched.`);
+      return res.status(500).json({
+        message: "Classes not found!"
+      });
+    }
+     classes.map( (gymClass) => {
+      const attendees = gymClass.classMembers;
+
+      attendees.forEach((attendee) =>{
+        if (attendee.userId.equals(userId)) {
+          userClasses.push(gymClass._id);
+        }
       });
     });
+    console.log(userClasses);
+    // const updatedClasses = classes.map(bookedClass => ({...bookedClass.classId}));
+
+    // console.log(newFilteredClasses);
+    // const updatedClasses = classes.map(bookedClass => ({...bookedClass.classId}));
+
+    // GymClass.find({
+    //   userId: {$elemMatch:{userId: userId}}
+    //   // "classMembers.userId" : mongoose.Types.ObjectId(userId),
+    // }, (err, classes) => {
+    //   if(err) {
+    //     res.status(401).json({
+    //       message: "Error Occured!"
+    //     })
+    //   } else {
+    //     console.log(classes);
+    //     res.status(200).json({
+    //       message: "Success!"
+    //     })
+    //     return classes;
+    //   }
+    // });
+  });
 }
+
+  // exports.bookedClasses = (req, res) => {
+  //   GymClass.find({})
+  //     .populate({
+  //       path: 'classMembers.userId',
+  //       model: 'createClass'
+  //     })
+  //     .then(user => {
+  //       res.status(200).json(user.bookedClasses);
+  //     })
+  //     .catch(() => {
+  //       res.status(500).json({
+  //         message: "Fetching User Classes Failed"
+  //       });
+  //     })
+  // }
+
+// exports.bookedClasses = (req, res) => {
+//   User.findById(req.params.id)
+//     .populate({
+//       path: 'bookedClasses.classId',
+//       model: 'createClass'
+//     })
+//     .then(user => {
+//       res.status(200).json(user.bookedClasses);
+//     })
+//     .catch(error => {
+//       res.status(500).json({
+//         message: "Fetching User Classes Failed"
+//       });
+//     });
+// }
 
 exports.updateInfo = (req, res) => {
   let userId = req.body.userId;

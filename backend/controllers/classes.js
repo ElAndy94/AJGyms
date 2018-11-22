@@ -3,15 +3,13 @@ const GymClass = require('../models/classes');
 const logger = require('../utility/logger');
 const change = require('../utility/change');
 
-const CLASS_NOT_FOUND = {
-  message: 'Class not found!'
-};
 
 exports.getAllClasses = (req, res) => {
   GymClass.find({}, (err, classes) => {
     if (err) {
-      console.log(err);
-      return res.status(500).json(CLASS_NOT_FOUND);
+      return res.status(500).json({
+        message: "Classes Not Found!"
+      });
     }
     logger.info(`Classes has been requested.`);
     return res.json(classes);
