@@ -10,49 +10,21 @@ class SelectedUser extends Component {
   }
 
   componentDidUpdate () {
-    console.log(this.props.id);
-    console.log(this.props.loadedUser);
     if ( this.props.id ) {
       if ( !this.state.loadedUser || (this.state.loadedUser && this.state.loadedUser._id !== this.props.id) ) {
         axios.get( '/api/auth/' + this.props.id )
-            .then( response => {
-              this.setState( { loadedUser: response.data } );
-            });
+          .then( response => {
+            this.setState( { loadedUser: response.data } );
+          });
       }
     }
   }
 
-  // bookUserHandler = () => {
-  //   const bookingData = {
-  //     userId: this.props.userId,
-  //     classId: this.props.id,
-  //     date: new Date()
-  //   }
-  //   axios.post('/api/auth/bookclass', bookingData)
-  //     .then( response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
+  editUserHandler = () => {
 
-  // bookClassHandler = () => {
-  //   this.bookUserHandler();
-  //   const bookingData = {
-  //     userId: this.props.userId,
-  //     classId: this.props.id,
-  //   }
-  //   axios.post('/api/classes/bookclass', bookingData)
-  //     .then( response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
+  }
 
-  deleteClassHandler = () => {
+  deleteUserHandler = () => {
     // axios.delete('/api/classes/' + this.props.id)
     //   .then(response => {
     //     console.log(response);
@@ -65,7 +37,7 @@ class SelectedUser extends Component {
   }
 
   render () {
-      let user = <p style={{ textAlign: 'center', color: 'white', fontSize: '20px' }}>Please select a User!</p>;
+      let user = <p style={{ textAlign: 'center', color: 'white', fontSize: '20px',  marginTop: '5px'}}>Please select a User!</p>;
       if ( this.props.id ) {
         user = <p style={{ textAlign: 'center' }}>Loading...!</p>;
       }
@@ -82,8 +54,8 @@ class SelectedUser extends Component {
                 {
                   this.props.isAdmin ?
                   <div>
-                    <Button btnType="Success" clicked={this.bookClassHandler}>Edit User</Button>
-                    <Button btnType="Danger" clicked={this.deleteClassHandler}>Delete</Button>
+                    <Button btnType="Success" clicked={this.editUserHandler}>Edit User</Button>
+                    <Button btnType="Danger" clicked={this.deleteUserHandler}>Delete User</Button>
                   </div>
                   :
                   <div> </div>

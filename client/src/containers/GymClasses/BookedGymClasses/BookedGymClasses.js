@@ -15,10 +15,12 @@ class BookedGymClasses extends Component {
     axios.get('/api/auth/booked/' + this.props.userId)
       .then(response => {
         const classes = response.data;
-        const updatedClasses = classes.map(bookedClass => ({...bookedClass.classId}));
-          // return {
-          //   ...bookedClass.classId
-          // }
+        // const updatedClasses = classes.map(bookedClass => ({...bookedClass.classId}));
+        const updatedClasses = classes.map(gymClass => {
+          return {
+            ...gymClass,
+          }
+        });
         this.setState({classes: updatedClasses});
       })
       .catch(error => {

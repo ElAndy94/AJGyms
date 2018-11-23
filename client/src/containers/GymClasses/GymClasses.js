@@ -90,7 +90,6 @@ export class GymClasses extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.isPt);
     axios.get('/api/classes')
       .then(response => {
         const gymClasses = response.data;
@@ -209,7 +208,6 @@ export class GymClasses extends Component {
                 invalid={!formElement.config.valid}
                 changed={(event) => this.inputChangedHandler(event, formElement.id)} />
           ))}
-          {/* <Button btnType="Success" disabled={!this.state.formIsValid}>Book Class</Button> */}
         </form>
     );
     return (

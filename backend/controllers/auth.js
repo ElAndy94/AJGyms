@@ -1,35 +1,12 @@
 const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const logger = require('../utility/logger');
-const accessed = require('../utility/accessed');
 const change = require('../utility/change');
 const config = require('../config/config');
 
 const User = require('../models/user');
-
-// var transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: 'youremail@gmail.com',
-//     pass: 'yourpassword'
-//   }
-// });
-
-// var mailOptions = {
-//   from: 'youremail@gmail.com',
-//   to: 'myfriend@yahoo.com',
-//   subject: 'Sending Email using Node.js',
-//   text: 'That was easy!'
-// };
-// transporter.sendMail(mailOptions, (error, info) =>{
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log('Email sent: ' + info.response);
-//   }
-// });
+const GymClass = require('../models/classes');
 
 const transporter = nodemailer.createTransport(sendgridTransport({
   auth: {
@@ -79,40 +56,45 @@ exports.createUser = (req, res) => {
 }
 
 exports.login = (req, res) => {
-  let fetchedUser;
   let emailLowerCase = req.body.email.toLowerCase();
-  User.findOne({
-    email: emailLowerCase
-  })
-  .then(user => {
+  User.findOne({ email: emailLowerCase }, (err, user) => {
+    if (err) {
+      logger.error(`Error while finding user ${emailLowerCase}`);
+      res.status(500).json({
+        message: 'Server Error'
+      });
+    }
+
     if (!user) {
-      return res.status(401).json({
+      logger.info(`Unable to find user ${emailLowerCase}`);
+      res.status(404).json({
         message: 'Invalid Credentials'
       });
-    }
-    fetchedUser = user;
-    return bcrypt.compare(req.body.password, user.password);
-  })
-  .then(result => {
-    if (!result) {
-      logger.info(`User ${fetchedUser.name} entered an incorrect password.`);
-      return res.status(401).json({
-        message: 'Invalid Credentials'
+    } else {
+      const hash = user.password;
+      const password = req.body.password;
+      bcrypt.compare(password, hash, (err, passwordMatches) => {
+        if (passwordMatches) {
+          logger.info(`User ${user.name} logged in`);
+          res.status(200).json({
+            _id: user._id,
+            name: user.name,
+            pt: user.pt,
+            message: 'User Found!'
+          });
+        } else {
+          logger.warn(`User ${user.email} attempted to log in`);
+          res.status(404).json({
+            message: 'Invalid Credentials'
+          });
+        }
       });
     }
-    accessed.accessed(`User ${fetchedUser.name} logged in`);
-    res.status(200).json({
-      _id: fetchedUser._id,
-      name: fetchedUser.name,
-      pt: fetchedUser.pt,
-      admin: fetchedUser.admin,
-      message: 'User Found!'
-    });
   })
-  .catch(err => {
-    logger.info(`User ${user.name} not found.`);
+  .catch( (err) => {
+    logger.log(err);
     res.status(500).json({
-        message: "Invalid credentials!"
+      message: 'Server Error'
     });
   });
 }
@@ -120,10 +102,18 @@ exports.login = (req, res) => {
 exports.getUser = (req, res) => {
   User.findById(req.params.id)
     .then(user => {
-      // console.log(user);
-      res.status(200).json(user);
+      res.status(200).json({
+        _id: user._id,
+        name: user.name,
+        pt: user.pt,
+        address: user.address,
+        email: user.email,
+        contract: user.contract,
+        date: user.date,
+        gymLocation: user.gymLocation
+      });
     })
-    .catch(error => {
+    .catch(() => {
       res.status(500).json({
         message: "Fetching User Failed"
       });
@@ -143,86 +133,45 @@ exports.getUsers = (req, res) => {
   });
 }
 
-exports.bookClass = (req, res) => {
-  let userId = req.body.userId;
-  User.findById({
-    _id: req.body.userId
-  }, 'bookedClasses', (err) => {
-    if (err) {
-      res.status(401).json({
-        message: "Error Occured!"
-      })
-    } else {
-      const classToAdd = {
-        classId: mongoose.Types.ObjectId(req.body.classId),
-        dateBooked: (req.body.date)
-      };
-      User.findByIdAndUpdate({
-        _id: mongoose.Types.ObjectId(req.body.userId)
-      },
-      {$push: { bookedClasses : classToAdd }},
-        (err) => {
-          if(err) {
-            res.status(401).json({
-              message: "Error Occured!"
-            })
-          } else {
-            change.change(`User ${userId} has booked themselves into a class.`);
-            res.status(200).json({
-              message: "Success!"
-            })
-          }
-        }
-      );
-    }
-  });
-}
-
-exports.deleteClass = (req, res) => {
-  let userId = req.params.userId;
-  User.findById({
-    _id: req.params.userId
-  }, 'bookedClasses', (err) => {
-    if (err) {
-      res.status(401).json({
-        message: "Error Occured!"
-      })
-    } else {
-      User.findOneAndUpdate({
-        "bookedClasses.classId" : mongoose.Types.ObjectId(req.params.id),
-        },
-      {
-        $pull : { "bookedClasses" : { classId : req.params.id } }
-      }, (err) => {
-        if(err) {
-          res.status(401).json({
-            message: "Error Occured!"
-          })
-        } else {
-          change.change(`User ${userId} has removed themselves from a class.`);
-          res.status(200).json({
-            message: "Success!"
-          })
-        }
-      });
-    }
-  })
-}
-
 exports.bookedClasses = (req, res) => {
-  User.findById(req.params.id)
-    .populate({
-      path: 'bookedClasses.classId',
-      model: 'createClass'
-    })
-    .then(user => {
-      res.status(200).json(user.bookedClasses);
-    })
-    .catch(error => {
-      res.status(500).json({
-        message: "Fetching User Classes Failed"
+  const userId = req.params.id;
+  const userClasses = [];
+  const filteredClasses = [];
+  GymClass.find({}, (err, classes) => {
+    if (err) {
+      logger.error(`Classes could not be fetched.`);
+      return res.status(500).json({
+        message: "Classes not found!"
       });
-    });
+    }
+    classes.map( (gymClass) => {
+      const attendees = gymClass.classMembers;
+
+      attendees.forEach((attendee) =>{
+        if (attendee.userId.equals(userId)) {
+          userClasses.push(gymClass._id);
+        }
+      });
+    }, (err) => {
+      if(err) {
+        res.status(401).json({
+          message: "Error Occured!"
+        })
+      }
+    })
+    classes.map( (gymClass) => {
+      if (userClasses.includes(gymClass._id)) {
+        filteredClasses.push(gymClass);
+      }
+    }, (err) => {
+      if(err) {
+        res.status(401).json({
+          message: "Error Occured!"
+        })
+      }
+    })
+    res.status(200).json(filteredClasses);
+  });
 }
 
 exports.updateInfo = (req, res) => {

@@ -7,7 +7,6 @@ import Button from '../UI/Button/Button';
 import GymImg from '../../assets/images/thegym.png';
 
 const dashBoard = (props) => {
-
   return (
     <div className={classes.DashBoard}>
       <h2>AJ GYMS</h2>
@@ -18,7 +17,6 @@ const dashBoard = (props) => {
         <p>Join today and pay no joining fee.</p>
         <p>Bring a friend, signup and first month becomes FREE!</p>
         <Button btnType="Signup">Join Now</Button>
-        {/* clicked={props.history.push("/signup")} */}
     </div>
   );
 }

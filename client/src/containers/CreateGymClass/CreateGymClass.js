@@ -6,7 +6,6 @@ import Input from '../../components/UI/Input/Input';
 import { updateObject, checkValidity } from '../../shared/utility';
 import Button from '../../components/UI/Button/Button';
 import { Redirect } from 'react-router-dom';
-// import Modal from '../../components/UI/Modal/Modal';
 
 class CreateGymClass extends Component {
   state = {
@@ -197,8 +196,6 @@ class CreateGymClass extends Component {
         </div>
         <div className={classes.CentreDiv}>
             {confirmation}
-            {/* <Button btnType="Success" onClick={this.createGymClassHandler}>Create Class</Button> */}
-            {/* <button onClick={this.createGymClassHandler}>Add Post</button> */}
         </div>
       </div>
      );

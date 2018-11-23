@@ -3,7 +3,6 @@
   text-align: center;
   background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.4), rgba(83, 134, 211, 0.4)), url('../../assets/images/gym2.jpeg');
   background-size: cover;
-  /* height: 150vh; */
 }
 
 .BackGroundTwo {
@@ -43,7 +42,6 @@
   justify-content: center;
   width: 80%;
   margin: auto;
-  /* box-shadow: 1px 4px 6px 1px rgba(0,0,0,0.2); */
 }
 
 @media (min-width: 600px) {

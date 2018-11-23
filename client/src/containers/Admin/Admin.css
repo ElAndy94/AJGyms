@@ -1,6 +1,6 @@
 .BackGround {
   text-align: center;
-  height: 400vh;
+  height: 250vh;
   background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.4), rgba(83, 134, 211, 0.4)), url('../../assets/images/gym2.jpeg');
   background-size: cover;
 }
@@ -24,53 +24,20 @@
   letter-spacing: 6px;
 }
 
-/* .ProfileForm {
-  position: relative;
-  top: 30px;
-  background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.8), rgba(83, 134, 211, 0.8));
-  color: #fff;
-  margin: 20px auto;
-  width: 40%;
-  text-align: center;
-  box-shadow: 0 2px 3px #ccc;
-  padding: 10px;
-  box-sizing: border-box;
-  box-shadow: 1px 4px 6px 1px rgba(0,0,0,0.2);
-  border-radius: 23px;
-  line-height: 1;
-} */
-
 .Users {
   position: relative;
-  top: 30px;
   color: #fff;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   width: 80%;
   margin: auto;
-  /* box-shadow: 1px 4px 6px 1px rgba(0,0,0,0.2); */
-}
-
-.GymClasses {
-  position: relative;
-  top: 30px;
-  color: #fff;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  width: 80%;
-  margin: auto;
-  padding-bottom: 20px;
 }
 
 @media (min-width: 600px) {
   .Profile {
     width: 500px;
   }
-  /* .ProfileForm {
-    width: 60%;
-  } */
 }
 
 @media (max-width: 600px) {

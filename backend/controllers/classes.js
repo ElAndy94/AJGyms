@@ -3,15 +3,13 @@ const GymClass = require('../models/classes');
 const logger = require('../utility/logger');
 const change = require('../utility/change');
 
-const CLASS_NOT_FOUND = {
-  message: 'Class not found!'
-};
 
 exports.getAllClasses = (req, res) => {
   GymClass.find({}, (err, classes) => {
     if (err) {
-      console.log(err);
-      return res.status(500).json(CLASS_NOT_FOUND);
+      return res.status(500).json({
+        message: "Classes Not Found!"
+      });
     }
     logger.info(`Classes has been requested.`);
     return res.json(classes);
@@ -64,47 +62,6 @@ exports.getClassById = (req, res) => {
       });
     });
 }
-
-// exports.deleteClass = (req, res) => {
-//   let classId = req.params.id;
-//   let users = [];
-//     GymClass.findById({
-//       _id: classId
-//     }, 'classMembers', (res ,err) => {
-//       if (err) {
-//         res.status(401).json({
-//           message: "Error Occured!"
-//         })
-//       } else {
-//         res.push(users);
-//         users.forEach(function(element) {
-//           console.log(element);
-//         });
-//           users.forEach( (users.userId) => {
-//             console.log(users.userId);
-//           });
-//           GymClass.find({
-//             "classMembers.userId" : ,
-//             },
-
-//           {
-//             $pull : { "classMembers" : { userId : req.params.userId } }
-//           }, (err, doc) => {
-//           if(err) {
-//             logger.error(`User ${userId} was not able to be deleted from the ${classId} class.`);
-//             res.status(401).json({
-//               message: "Error Occured!"
-//             })
-//           } else {
-//             change.change(`User ${userId} was deleted from the ${classId} class.`);
-//             res.status(200).json({
-//               message: "Success!"
-//             })
-//           }
-//         });
-//       }
-//     })
-// }
 
 exports.deleteClass = (req, res) => {
   let classId = req.params.id;
@@ -194,3 +151,44 @@ exports.bookClass = (req, res) => {
     }
   });
 }
+
+// exports.deleteClass = (req, res) => {
+//   let classId = req.params.id;
+//   let users = [];
+//     GymClass.findById({
+//       _id: classId
+//     }, 'classMembers', (res ,err) => {
+//       if (err) {
+//         res.status(401).json({
+//           message: "Error Occured!"
+//         })
+//       } else {
+//         res.push(users);
+//         users.forEach(function(element) {
+//           console.log(element);
+//         });
+//           users.forEach( (users.userId) => {
+//             console.log(users.userId);
+//           });
+//           GymClass.find({
+//             "classMembers.userId" : ,
+//             },
+
+//           {
+//             $pull : { "classMembers" : { userId : req.params.userId } }
+//           }, (err, doc) => {
+//           if(err) {
+//             logger.error(`User ${userId} was not able to be deleted from the ${classId} class.`);
+//             res.status(401).json({
+//               message: "Error Occured!"
+//             })
+//           } else {
+//             change.change(`User ${userId} was deleted from the ${classId} class.`);
+//             res.status(200).json({
+//               message: "Success!"
+//             })
+//           }
+//         });
+//       }
+//     })
+// }
