@@ -3,10 +3,10 @@ import axios from 'axios';
 
 import Aux from '../../hoc/ReactAux';
 import classes from './Admin.css';
-import GymTimetable from '../../components/GymTimetable/GymTimetable';
 import User from '../../components/User/User';
-import FullGymClass from '../../containers/GymClasses/FullGymClass/FullGymClass';
 import SelectedUser from './SelectedUser/SelectedUser';
+// import FullGymClass from '../../containers/GymClasses/FullGymClass/FullGymClass';
+// import GymTimetable from '../../components/GymTimetable/GymTimetable';
 // import Button from '../../components/UI/Button/Button';
 // import AdminComp from '../../components/AdminComp/AdminComp';
 
@@ -17,8 +17,8 @@ class Admin extends Component {
     user: {},
     users: [],
     filteredUsers: [],
-    gymClasses: [],
-    filteredClasses: [],
+    // gymClasses: [],
+    // filteredClasses: [],
   }
 }
   componentDidMount () {
@@ -41,28 +41,28 @@ class Admin extends Component {
         console.log(error);
       });
 
-      axios.get('/api/classes')
-      .then(response => {
-        const gymClasses = response.data;
-        const updatedGymClasses = gymClasses.map(gymClass => {
-          return {
-            ...gymClass,
-          }
-        });
-        this.setState({gymClasses: updatedGymClasses, filteredClasses: updatedGymClasses});
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      // axios.get('/api/classes')
+      // .then(response => {
+      //   const gymClasses = response.data;
+      //   const updatedGymClasses = gymClasses.map(gymClass => {
+      //     return {
+      //       ...gymClass,
+      //     }
+      //   });
+      //   this.setState({gymClasses: updatedGymClasses, filteredClasses: updatedGymClasses});
+      // })
+      // .catch(error => {
+      //   console.log(error);
+      // });
   }
 
   userSelectedHandler = (id) => {
     this.setState({selectedUserId: id});
   }
 
-  classSelectedHandler = (id) => {
-    this.setState({selectedClassId: id});
-  }
+  // classSelectedHandler = (id) => {
+  //   this.setState({selectedClassId: id});
+  // }
 
   render() {
     const users = this.state.filteredUsers.map(user => {
@@ -82,18 +82,18 @@ class Admin extends Component {
       );
     });
 
-    const gymClasses = this.state.filteredClasses.map(gymClass => {
-      return  (
-      <GymTimetable
-        key={gymClass._id}
-        location={gymClass.location}
-        classType={gymClass.type}
-        className={gymClass.name}
-        startTime={gymClass.time}
-        ptName={gymClass.ptName}
-        clicked={() => this.classSelectedHandler(gymClass._id)}/>
-      );
-    });
+    // const gymClasses = this.state.filteredClasses.map(gymClass => {
+    //   return  (
+    //   <GymTimetable
+    //     key={gymClass._id}
+    //     location={gymClass.location}
+    //     classType={gymClass.type}
+    //     className={gymClass.name}
+    //     startTime={gymClass.time}
+    //     ptName={gymClass.ptName}
+    //     clicked={() => this.classSelectedHandler(gymClass._id)}/>
+    //   );
+    // });
 
     return (
       <Aux>
@@ -104,7 +104,7 @@ class Admin extends Component {
             {users}
           </div>
           <SelectedUser userId={this.props.userId} isAdmin={this.props.isAdmin} id={this.state.selectedUserId} onDelete={this.handleDelete} />
-          <h1 className={classes.FancyFont}> Gym Classes </h1>
+          {/* <h1 className={classes.FancyFont}> Gym Classes </h1>
           <div className={classes.GymClasses}>
             {gymClasses}
           </div>

@@ -15,7 +15,7 @@ router.post('/login', UserController.login);
 
 router.post('/infoUpdate', UserController.updateInfo);
 
-router.delete('/:id/user/:userId', UserController.deleteClass);
+// router.delete('/:id/user/:userId', UserController.deleteClass);
 
 // router.post('/bookclass', UserController.bookClass);
 

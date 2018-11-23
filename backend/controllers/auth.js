@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const logger = require('../utility/logger');
@@ -144,78 +143,6 @@ exports.getUsers = (req, res) => {
   });
 }
 
-// exports.bookClass = (req, res) => {
-//   let userId = req.body.userId;
-//   User.findById({
-//     _id: req.body.userId
-//   }, 'bookedClasses', (err) => {
-//     if (err) {
-//       res.status(401).json({
-//         message: "Error Occured!"
-//       })
-//     } else {
-//       const classToAdd = {
-//         classId: mongoose.Types.ObjectId(req.body.classId),
-//         dateBooked: (req.body.date)
-//       };
-//       User.findByIdAndUpdate({
-//         _id: mongoose.Types.ObjectId(req.body.userId)
-//       },
-//       {$push: { bookedClasses : classToAdd }},
-//         (err) => {
-//           if(err) {
-//             res.status(401).json({
-//               message: "Error Occured!"
-//             })
-//           } else {
-//             change.change(`User ${userId} has booked themselves into a class.`);
-//             res.status(200).json({
-//               message: "Success!"
-//             })
-//           }
-//         }
-//       );
-//     }
-//   });
-// }
-
-
-/// THIS NEEDS FIXING TOO!
-exports.deleteClass = (req, res) => {
-  let userId = req.params.userId;
-  User.findById({
-    _id: req.params.userId
-  }, 'bookedClasses', (err) => {
-    if (err) {
-      res.status(401).json({
-        message: "Error Occured!"
-      })
-    } else {
-      User.findOneAndUpdate({
-        "bookedClasses.classId" : mongoose.Types.ObjectId(req.params.id),
-        },
-      {
-        $pull : { "bookedClasses" : { classId : req.params.id } }
-      }, (err) => {
-        if(err) {
-          res.status(401).json({
-            message: "Error Occured!"
-          })
-        } else {
-          change.change(`User ${userId} has removed themselves from a class.`);
-          res.status(200).json({
-            message: "Success!"
-          })
-        }
-      });
-    }
-  })
-}
-///// FIXING TOO ^^^^
-
-
-
-
 exports.bookedClasses = (req, res) => {
   const userId = req.params.id;
   const userClasses = [];
@@ -257,38 +184,6 @@ exports.bookedClasses = (req, res) => {
   });
 }
 
-  // exports.bookedClasses = (req, res) => {
-  //   GymClass.find({})
-  //     .populate({
-  //       path: 'classMembers.userId',
-  //       model: 'createClass'
-  //     })
-  //     .then(user => {
-  //       res.status(200).json(user.bookedClasses);
-  //     })
-  //     .catch(() => {
-  //       res.status(500).json({
-  //         message: "Fetching User Classes Failed"
-  //       });
-  //     })
-  // }
-
-// exports.bookedClasses = (req, res) => {
-//   User.findById(req.params.id)
-//     .populate({
-//       path: 'bookedClasses.classId',
-//       model: 'createClass'
-//     })
-//     .then(user => {
-//       res.status(200).json(user.bookedClasses);
-//     })
-//     .catch(error => {
-//       res.status(500).json({
-//         message: "Fetching User Classes Failed"
-//       });
-//     });
-// }
-
 exports.updateInfo = (req, res) => {
   let userId = req.body.userId;
   let emailLowerCase = req.body.userEmail.toLowerCase();
@@ -315,3 +210,34 @@ exports.updateInfo = (req, res) => {
     }
   });
 }
+
+// exports.deleteClass = (req, res) => {
+//   let userId = req.params.userId;
+//   User.findById({
+//     _id: req.params.userId
+//   }, 'bookedClasses', (err) => {
+//     if (err) {
+//       res.status(401).json({
+//         message: "Error Occured!"
+//       })
+//     } else {
+//       User.findOneAndUpdate({
+//         "bookedClasses.classId" : mongoose.Types.ObjectId(req.params.id),
+//         },
+//       {
+//         $pull : { "bookedClasses" : { classId : req.params.id } }
+//       }, (err) => {
+//         if(err) {
+//           res.status(401).json({
+//             message: "Error Occured!"
+//           })
+//         } else {
+//           change.change(`User ${userId} has removed themselves from a class.`);
+//           res.status(200).json({
+//             message: "Success!"
+//           })
+//         }
+//       });
+//     }
+//   })
+// }

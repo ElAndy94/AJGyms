@@ -10,7 +10,7 @@ class SelectedUser extends Component {
   }
 
   componentDidUpdate () {
-    console.log(this.props.id);
+    // console.log(this.props.id);
     console.log(this.props.loadedUser);
     if ( this.props.id ) {
       if ( !this.state.loadedUser || (this.state.loadedUser && this.state.loadedUser._id !== this.props.id) ) {
