@@ -10,14 +10,12 @@ class SelectedUser extends Component {
   }
 
   componentDidUpdate () {
-    // console.log(this.props.id);
-    // console.log(this.state.loadedUser);
     if ( this.props.id ) {
       if ( !this.state.loadedUser || (this.state.loadedUser && this.state.loadedUser._id !== this.props.id) ) {
         axios.get( '/api/auth/' + this.props.id )
-            .then( response => {
-              this.setState( { loadedUser: response.data } );
-            });
+          .then( response => {
+            this.setState( { loadedUser: response.data } );
+          });
       }
     }
   }
@@ -65,7 +63,7 @@ class SelectedUser extends Component {
   }
 
   render () {
-      let user = <p style={{ textAlign: 'center', color: 'white', fontSize: '20px' }}>Please select a User!</p>;
+      let user = <p style={{ textAlign: 'center', color: 'white', fontSize: '20px',  marginTop: '5px'}}>Please select a User!</p>;
       if ( this.props.id ) {
         user = <p style={{ textAlign: 'center' }}>Loading...!</p>;
       }

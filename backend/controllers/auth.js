@@ -109,7 +109,7 @@ exports.login = (req, res) => {
       message: 'User Found!'
     });
   })
-  .catch(err => {
+  .catch(() => {
     logger.info(`User ${user.name} not found.`);
     res.status(500).json({
         message: "Invalid credentials!"
@@ -120,10 +120,18 @@ exports.login = (req, res) => {
 exports.getUser = (req, res) => {
   User.findById(req.params.id)
     .then(user => {
-      // console.log(user);
-      res.status(200).json(user);
+      res.status(200).json({
+        _id: user._id,
+        name: user.name,
+        pt: user.pt,
+        address: user.address,
+        email: user.email,
+        contract: user.contract,
+        date: user.date,
+        gymLocation: user.gymLocation
+      });
     })
-    .catch(error => {
+    .catch(() => {
       res.status(500).json({
         message: "Fetching User Failed"
       });
