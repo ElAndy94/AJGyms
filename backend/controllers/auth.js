@@ -219,6 +219,7 @@ exports.deleteClass = (req, res) => {
 exports.bookedClasses = (req, res) => {
   const userId = req.params.id;
   const userClasses = [];
+  const filteredClasses = [];
   GymClass.find({}, (err, classes) => {
     if (err) {
       logger.error(`Classes could not be fetched.`);
@@ -226,7 +227,7 @@ exports.bookedClasses = (req, res) => {
         message: "Classes not found!"
       });
     }
-     classes.map( (gymClass) => {
+    classes.map( (gymClass) => {
       const attendees = gymClass.classMembers;
 
       attendees.forEach((attendee) =>{
@@ -234,29 +235,25 @@ exports.bookedClasses = (req, res) => {
           userClasses.push(gymClass._id);
         }
       });
-    });
-    console.log(userClasses);
-    // const updatedClasses = classes.map(bookedClass => ({...bookedClass.classId}));
-
-    // console.log(newFilteredClasses);
-    // const updatedClasses = classes.map(bookedClass => ({...bookedClass.classId}));
-
-    // GymClass.find({
-    //   userId: {$elemMatch:{userId: userId}}
-    //   // "classMembers.userId" : mongoose.Types.ObjectId(userId),
-    // }, (err, classes) => {
-    //   if(err) {
-    //     res.status(401).json({
-    //       message: "Error Occured!"
-    //     })
-    //   } else {
-    //     console.log(classes);
-    //     res.status(200).json({
-    //       message: "Success!"
-    //     })
-    //     return classes;
-    //   }
-    // });
+    }, (err) => {
+      if(err) {
+        res.status(401).json({
+          message: "Error Occured!"
+        })
+      }
+    })
+    classes.map( (gymClass) => {
+      if (userClasses.includes(gymClass._id)) {
+        filteredClasses.push(gymClass);
+      }
+    }, (err) => {
+      if(err) {
+        res.status(401).json({
+          message: "Error Occured!"
+        })
+      }
+    })
+    res.status(200).json(filteredClasses);
   });
 }
 
