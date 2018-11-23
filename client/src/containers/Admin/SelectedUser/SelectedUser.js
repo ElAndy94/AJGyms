@@ -11,7 +11,7 @@ class SelectedUser extends Component {
 
   componentDidUpdate () {
     // console.log(this.props.id);
-    console.log(this.props.loadedUser);
+    // console.log(this.state.loadedUser);
     if ( this.props.id ) {
       if ( !this.state.loadedUser || (this.state.loadedUser && this.state.loadedUser._id !== this.props.id) ) {
         axios.get( '/api/auth/' + this.props.id )

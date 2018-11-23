@@ -17,9 +17,7 @@ class Admin extends Component {
     user: {},
     users: [],
     filteredUsers: [],
-    // gymClasses: [],
-    // filteredClasses: [],
-  }
+    }
 }
   componentDidMount () {
     axios.get('/api/auth/' + this.props.userId )
@@ -40,29 +38,11 @@ class Admin extends Component {
       .catch(error => {
         console.log(error);
       });
-
-      // axios.get('/api/classes')
-      // .then(response => {
-      //   const gymClasses = response.data;
-      //   const updatedGymClasses = gymClasses.map(gymClass => {
-      //     return {
-      //       ...gymClass,
-      //     }
-      //   });
-      //   this.setState({gymClasses: updatedGymClasses, filteredClasses: updatedGymClasses});
-      // })
-      // .catch(error => {
-      //   console.log(error);
-      // });
   }
 
   userSelectedHandler = (id) => {
     this.setState({selectedUserId: id});
   }
-
-  // classSelectedHandler = (id) => {
-  //   this.setState({selectedClassId: id});
-  // }
 
   render() {
     const users = this.state.filteredUsers.map(user => {
@@ -82,19 +62,6 @@ class Admin extends Component {
       );
     });
 
-    // const gymClasses = this.state.filteredClasses.map(gymClass => {
-    //   return  (
-    //   <GymTimetable
-    //     key={gymClass._id}
-    //     location={gymClass.location}
-    //     classType={gymClass.type}
-    //     className={gymClass.name}
-    //     startTime={gymClass.time}
-    //     ptName={gymClass.ptName}
-    //     clicked={() => this.classSelectedHandler(gymClass._id)}/>
-    //   );
-    // });
-
     return (
       <Aux>
         <div className={classes.BackGround}>
@@ -104,18 +71,6 @@ class Admin extends Component {
             {users}
           </div>
           <SelectedUser userId={this.props.userId} isAdmin={this.props.isAdmin} id={this.state.selectedUserId} onDelete={this.handleDelete} />
-          {/* <h1 className={classes.FancyFont}> Gym Classes </h1>
-          <div className={classes.GymClasses}>
-            {gymClasses}
-          </div>
-          <FullGymClass userId={this.props.userId} isPt={this.props.isPt} isAdmin={this.props.isAdmin} id={this.state.selectedClassId} onDelete={this.handleDelete} />
-          {/*
-          <form onSubmit={this.submitHandler} className={classes.ProfileForm} style={{display: this.state.showForm ? 'block' : 'none' }}>
-              {form}
-              <Button btnType="Success">SUBMIT</Button>
-              <Button btnType="Danger" clicked={this.cancelEdit}>CANCEL</Button>
-          </form>
-          */}
         </div>
       </Aux>
     );
