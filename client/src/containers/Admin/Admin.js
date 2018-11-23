@@ -5,10 +5,7 @@ import Aux from '../../hoc/ReactAux';
 import classes from './Admin.css';
 import User from '../../components/User/User';
 import SelectedUser from './SelectedUser/SelectedUser';
-// import FullGymClass from '../../containers/GymClasses/FullGymClass/FullGymClass';
-// import GymTimetable from '../../components/GymTimetable/GymTimetable';
 // import Button from '../../components/UI/Button/Button';
-// import AdminComp from '../../components/AdminComp/AdminComp';
 
 class Admin extends Component {
   constructor(props) {
@@ -65,7 +62,6 @@ class Admin extends Component {
     return (
       <Aux>
         <div className={classes.BackGround}>
-          {/* <AdminComp user={this.state.user} /> */}
           <h1 className={classes.FancyFont}> Users </h1>
           <div className={classes.Users}>
             {users}

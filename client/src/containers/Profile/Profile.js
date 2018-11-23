@@ -60,9 +60,6 @@ class Profile extends Component {
       })
     });
     this.setState({controls: updatedControls});
-    //   console.log(this.state.user.address);
-    //   console.log(this.state.user.gymLocation);
-    //   console.log(this.state.user.email);
   }
 
   submitHandler = (event) => {

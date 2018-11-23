@@ -2,34 +2,11 @@ const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const logger = require('../utility/logger');
-const accessed = require('../utility/accessed');
 const change = require('../utility/change');
 const config = require('../config/config');
 
 const User = require('../models/user');
 const GymClass = require('../models/classes');
-
-// var transporter = nodemailer.createTransport({
-//   service: 'gmail',
-//   auth: {
-//     user: 'youremail@gmail.com',
-//     pass: 'yourpassword'
-//   }
-// });
-
-// var mailOptions = {
-//   from: 'youremail@gmail.com',
-//   to: 'myfriend@yahoo.com',
-//   subject: 'Sending Email using Node.js',
-//   text: 'That was easy!'
-// };
-// transporter.sendMail(mailOptions, (error, info) =>{
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log('Email sent: ' + info.response);
-//   }
-// });
 
 const transporter = nodemailer.createTransport(sendgridTransport({
   auth: {
@@ -223,34 +200,3 @@ exports.updateInfo = (req, res) => {
     }
   });
 }
-
-// exports.deleteClass = (req, res) => {
-//   let userId = req.params.userId;
-//   User.findById({
-//     _id: req.params.userId
-//   }, 'bookedClasses', (err) => {
-//     if (err) {
-//       res.status(401).json({
-//         message: "Error Occured!"
-//       })
-//     } else {
-//       User.findOneAndUpdate({
-//         "bookedClasses.classId" : mongoose.Types.ObjectId(req.params.id),
-//         },
-//       {
-//         $pull : { "bookedClasses" : { classId : req.params.id } }
-//       }, (err) => {
-//         if(err) {
-//           res.status(401).json({
-//             message: "Error Occured!"
-//           })
-//         } else {
-//           change.change(`User ${userId} has removed themselves from a class.`);
-//           res.status(200).json({
-//             message: "Success!"
-//           })
-//         }
-//       });
-//     }
-//   })
-// }

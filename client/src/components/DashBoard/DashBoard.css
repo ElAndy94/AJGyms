@@ -8,8 +8,7 @@
   font-size: 1.2rem;
   overflow-y:hidden;
   background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.4), rgba(83, 134, 211, 0.4)), url('../../assets/images/gym.jpeg');
-  /* height: 250px; */
-  /* overflow: scroll; */
+
 }
 
 .DashBoard h2 {
@@ -21,9 +20,6 @@
      1px -1px 0 #000,
      -1px 1px 0 #000,
       1px 1px 0 #000;
-  /* color: #FFF; */
-  /* color: rgba(255, 145, 0, 0.925); */
-  /* outline-color: #fff; */
   text-transform: uppercase;
   font-weight: 900;
   letter-spacing: 6px;
@@ -46,8 +42,6 @@
 }
 
 .DashBoard p:hover {
-  /* skewY(2deg) skewX(15deg) */
-  -webkit-text-stroke: none;
   transform: scale(1.2);
   text-shadow: 0.5rem 0.1rem 2rem rgba(0, 0, 0, 0.2);
   font-weight: 500;
@@ -57,19 +51,6 @@
   width: 10%;
   height: 10%;
 }
-
-/* .DashBoard Button {
-  padding-left: 10px !important;
-  font-size: 26px;
-  text-align: center;
-  background-color: #d7f1d4;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-
-.DashBoard Button:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-} */
 
 /* @media (min-width: 420px) and (min-height: 400px) {
   .DashBoard {

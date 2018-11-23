@@ -33,7 +33,6 @@
     #009900
   );
   box-shadow: 0 1rem 4rem rgba(0,0,0,.30);
-  /* color: #5C9210; */
 }
 
 .Success:focus,
@@ -49,7 +48,6 @@
     #800000
   );
   box-shadow: 0 1rem 4rem rgba(0,0,0,.30);
-  /* color: #944317; */
 }
 
 .Danger:focus,
@@ -65,11 +63,6 @@
     rgba(252, 180, 86, 0.925),
     rgba(255, 145, 0, 0.925)
   );
-  /* background-image: linear-gradient(
-    to right,
-    #40A4C8,
-    #2a517e
-  ); */
   box-shadow: 0 1rem 4rem rgba(0,0,0,.30);
 }
 
@@ -87,7 +80,6 @@
   );
   box-shadow: 0 1rem 4rem rgba(0,0,0,.30);
   font-size: 16px;
-  /* margin-left: 20px !important; */
 }
 
 .Edit:focus,

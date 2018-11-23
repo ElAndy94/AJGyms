@@ -32,16 +32,12 @@
   justify-content: center;
   width: 80%;
   margin: auto;
-  /* top: 30px; */
 }
 
 @media (min-width: 600px) {
   .Profile {
     width: 500px;
   }
-  /* .ProfileForm {
-    width: 60%;
-  } */
 }
 
 @media (max-width: 600px) {

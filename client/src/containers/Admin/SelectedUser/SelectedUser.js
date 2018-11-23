@@ -20,37 +20,11 @@ class SelectedUser extends Component {
     }
   }
 
-  // bookUserHandler = () => {
-  //   const bookingData = {
-  //     userId: this.props.userId,
-  //     classId: this.props.id,
-  //     date: new Date()
-  //   }
-  //   axios.post('/api/auth/bookclass', bookingData)
-  //     .then( response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
+  editUserHandler = () => {
 
-  // bookClassHandler = () => {
-  //   this.bookUserHandler();
-  //   const bookingData = {
-  //     userId: this.props.userId,
-  //     classId: this.props.id,
-  //   }
-  //   axios.post('/api/classes/bookclass', bookingData)
-  //     .then( response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // }
+  }
 
-  deleteClassHandler = () => {
+  deleteUserHandler = () => {
     // axios.delete('/api/classes/' + this.props.id)
     //   .then(response => {
     //     console.log(response);
@@ -80,8 +54,8 @@ class SelectedUser extends Component {
                 {
                   this.props.isAdmin ?
                   <div>
-                    <Button btnType="Success" clicked={this.bookClassHandler}>Edit User</Button>
-                    <Button btnType="Danger" clicked={this.deleteClassHandler}>Delete</Button>
+                    <Button btnType="Success" clicked={this.editUserHandler}>Edit User</Button>
+                    <Button btnType="Danger" clicked={this.deleteUserHandler}>Delete User</Button>
                   </div>
                   :
                   <div> </div>
