@@ -6,7 +6,7 @@ import classes from './DashBoard.css';
 import Button from '../UI/Button/Button';
 import GymImg from '../../assets/images/thegym.png';
 
-const dashBoard = (props) => {
+const dashBoard = () => {
   return (
     <div className={classes.DashBoard}>
       <h2>AJ GYMS</h2>

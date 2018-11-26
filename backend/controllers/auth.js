@@ -80,6 +80,7 @@ exports.login = (req, res) => {
             _id: user._id,
             name: user.name,
             pt: user.pt,
+            admin: user.admin,
             message: 'User Found!'
           });
         } else {
