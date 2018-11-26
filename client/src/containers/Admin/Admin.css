@@ -5,9 +5,9 @@
   background-size: cover;
 }
 
-.Profile:hover {
+/* .Profile:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+} */
 
 .FancyFont {
   padding-top: 2em;
@@ -34,7 +34,14 @@
   margin: auto;
 }
 
-@media (min-width: 600px) {
+.DropDown {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* @media (min-width: 600px) {
   .Profile {
     width: 500px;
   }
@@ -44,6 +51,6 @@
   .ProfileForm {
     width: 90%;
   }
-}
+} */
 
 

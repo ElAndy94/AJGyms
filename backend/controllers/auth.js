@@ -1,18 +1,18 @@
 const bcrypt = require('bcryptjs');
-const nodemailer = require('nodemailer');
-const sendgridTransport = require('nodemailer-sendgrid-transport');
 const logger = require('../utility/logger');
 const change = require('../utility/change');
-const config = require('../config/config');
+// const nodemailer = require('nodemailer');
+// const sendgridTransport = require('nodemailer-sendgrid-transport');
+// const config = require('../config/config');
 
 const User = require('../models/user');
 const GymClass = require('../models/classes');
 
-const transporter = nodemailer.createTransport(sendgridTransport({
-  auth: {
-    api_key: `${config.sendEmail}`
-  }
-}));
+// const transporter = nodemailer.createTransport(sendgridTransport({
+//   auth: {
+//     api_key: `${config.sendEmail}`
+//   }
+// }));
 
 exports.createUser = (req, res) => {
   bcrypt.hash(req.body.password, 10)
@@ -40,12 +40,12 @@ exports.createUser = (req, res) => {
             id: createdUser._id,
           }
         });
-        return transporter.sendMail({
-          to: emailLowerCase,
-          from: 'andrewpeliza@hotmail.com',
-          subject: 'Signup succeeded',
-          html: '<h1>You successfully signed up!</h1>'
-        });
+        // return transporter.sendMail({
+        //   to: emailLowerCase,
+        //   from: 'andrewpeliza@hotmail.com',
+        //   subject: 'Signup succeeded',
+        //   html: '<h1>You successfully signed up!</h1>'
+        // });
       })
       .catch(() => {
         res.status(500).json({

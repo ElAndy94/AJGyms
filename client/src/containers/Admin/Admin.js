@@ -132,8 +132,10 @@ class Admin extends Component {
     return (
       <Aux>
         <div className={classes.BackGround}>
-            {form}
           <h1 className={classes.FancyFont}> Users </h1>
+          <div className={classes.DropDown}>
+            {form}
+          </div>
           <div className={classes.Users}>
             {users}
           </div>
