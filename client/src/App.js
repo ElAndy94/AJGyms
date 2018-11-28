@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+// import { connect } from 'react-redux';
 
 import Layout from './components/Layout/Layout';
 import DashBoardBuilder from './containers/DashBoard/DashBoardBuilder';
@@ -11,6 +12,7 @@ import Logout from './containers/Auth/Logout/Logout';
 import Signup from './containers/Auth/Signup/Signup';
 import BookedGymClasses from './containers/GymClasses/BookedGymClasses/BookedGymClasses';
 import Admin from './containers/Admin/Admin';
+// import * as actionTypes from './store/actions/actionTypes';
 
 class App extends Component {
   constructor(props) {
@@ -104,4 +106,17 @@ class App extends Component {
   }
 }
 
+// const mapStateToProps = state => {
+//   return {
+//     info: state.user
+//   };
+// }
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onAuth: (userInfo) => dispatch({type: actionTypes.IS_AUTH, userInfo: userInfo})
+//   };
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default App;
