@@ -12,15 +12,15 @@ import Logout from './containers/Auth/Logout/Logout';
 import Signup from './containers/Auth/Signup/Signup';
 import BookedGymClasses from './containers/GymClasses/BookedGymClasses/BookedGymClasses';
 import Admin from './containers/Admin/Admin';
-// import * as actionTypes from './store/actions/actionTypes';
+// import * as actions from './store/actions/index';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isAuthenticated: false,
-      userName: '',
       userId: '',
+      userName: '',
       isPt: false,
       isAdmin: false
     };
@@ -108,9 +108,13 @@ class App extends Component {
 
 // const mapStateToProps = state => {
 //   return {
-//     info: state.user
+//     isAuthenticated: state.auth.userId !== '',
+//     userId: state.auth.userId,
+//     userName: state.auth.name,
+//     isAdmin: state.auth.isAdmin,
+//     isPt: state.auth.isPt
 //   };
-// }
+// };
 
 // const mapDispatchToProps = dispatch => {
 //   return {
@@ -118,5 +122,12 @@ class App extends Component {
 //   };
 // }
 
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onTryAutoSignup: () => dispatch( actions.authCheckState() )
+//   };
+// };
+
 // export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps)(App);
 export default App;

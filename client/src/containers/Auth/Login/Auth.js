@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
 import axios from 'axios';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import Aux from '../../../hoc/ReactAux';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 import classes from './Auth.css';
 import { updateObject, checkValidity } from '../../../shared/utility';
-import * as actions from '../../../store/actions/index';
+// import * as actions from '../../../store/actions/index';
 
 class Auth extends Component {
     state = {
@@ -58,32 +59,32 @@ class Auth extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
+    // this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
     // this.props.onAuthComplete();
-    // this.onAuth(this.state.controls.email.value, this.state.controls.password.value);
+    this.onAuth(this.state.controls.email.value, this.state.controls.password.value);
   }
 
-  // onAuth = () => {
-  //     const authenticationCheck = {
-  //       email: this.state.controls.email.value,
-  //       password: this.state.controls.password.value,
-  //     };
-  //     axios.post('/api/auth/login', authenticationCheck)
-  //       .then(response => {
-  //         const userId = response.data._id;
-  //         const userName = response.data.name;
-  //         this.props.onAuthComplete(userId);
-  //         this.props.onUserName(userName);
-  //         if (response.data.pt === true) {
-  //           this.props.isPt(true);
-  //         }
-  //         if (response.data.admin === true) {
-  //           this.props.isAdmin(true);
-  //         }
-  //       }).catch(error => {
-  //         console.log(error);
-  //       });
-  //   }
+  onAuth = () => {
+    const authenticationCheck = {
+      email: this.state.controls.email.value,
+      password: this.state.controls.password.value,
+    };
+    axios.post('/api/auth/login', authenticationCheck)
+      .then(response => {
+        const userId = response.data._id;
+        const userName = response.data.name;
+        this.props.onAuthComplete(userId);
+        this.props.onUserName(userName);
+        if (response.data.pt === true) {
+          this.props.isPt(true);
+        }
+        if (response.data.admin === true) {
+          this.props.isAdmin(true);
+        }
+      }).catch(error => {
+        console.log(error);
+      });
+  }
 
   render () {
     if (this.state.signedIn === true) {
@@ -98,17 +99,21 @@ class Auth extends Component {
         });
       }
 
-      let form = formElementsArray.map(formElement => (
-        <Input
-          key={formElement.id}
-          elementType={formElement.config.elementType}
-          elementConfig={formElement.config.elementConfig}
-          value={formElement.config.value}
-          shouldValidate={formElement.config.validation}
-          touched={formElement.config.touched}
-          invalid={!formElement.config.valid}
-          changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-      ));
+    let form = formElementsArray.map(formElement => (
+      <Input
+        key={formElement.id}
+        elementType={formElement.config.elementType}
+        elementConfig={formElement.config.elementConfig}
+        value={formElement.config.value}
+        shouldValidate={formElement.config.validation}
+        touched={formElement.config.touched}
+        invalid={!formElement.config.valid}
+        changed={(event) => this.inputChangedHandler(event, formElement.id)} />
+    ));
+
+    // if (this.props.loading) {
+    //   form = <Spinner />
+    // }
 
     let errorMessage = null;
 
@@ -135,18 +140,19 @@ class Auth extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-      loading: state.auth.loading,
-      error: state.auth.error,
-      isAuthenticated: state.auth.token !== null,
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//       loading: state.auth.loading,
+//       error: state.auth.error,
+//       isAuthenticated: state.auth.userId !== null,
+//   };
+// };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onAuth: (email, password) => dispatch(actions.auth(email, password))
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onAuth: (email, password) => dispatch(actions.auth(email, password))
+//   };
+// };
 
-export default connect(null, mapDispatchToProps)(Auth);
+// export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default Auth;
