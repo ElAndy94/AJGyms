@@ -9,6 +9,7 @@ export const authStart = () => {
 };
 
 export const authSuccess = (userId, name, isAdmin, isPt) => {
+    console.log('%c User Info', 'color: orange; font-weight: bold;', [userId, name, isAdmin, isPt]);
     return {
         type: actionTypes.AUTH_SUCCESS,
         userId: userId,
@@ -48,7 +49,9 @@ export const auth = (email, password) => {
         };
         axios.post('/api/auth/login', authData)
             .then(res => {
-                dispatch(authSuccess(res.data._id, res.data.name, res.data.isAdmin, res.data.isPt));
+                // console.log('%c User Info Response', 'color: orange; font-weight: bold;');
+                // console.table([res.data._id, res.data.name, res.data.admin, res.data.pt]);
+                dispatch(authSuccess(res.data._id, res.data.name, res.data.admin, res.data.pt));
             })
             .catch(err => {
                 dispatch(authFail(err.response.data.error));

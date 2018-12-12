@@ -43,4 +43,11 @@ const navigationItems = (props) => (
   </ul>
 );
 
+// const mapStateToProps = state => ({
+//   isAuthenticated: state.auth.userId !== '',
+//   isAdmin: state.auth.isAdmin,
+//   isPt: state.auth.isPt
+// });
+
+
 export default navigationItems;

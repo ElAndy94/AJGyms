@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-// import { connect } from 'react-redux';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Layout from './components/Layout/Layout';
 import DashBoardBuilder from './containers/DashBoard/DashBoardBuilder';
@@ -15,37 +15,6 @@ import Admin from './containers/Admin/Admin';
 // import * as actions from './store/actions/index';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isAuthenticated: false,
-      userId: '',
-      userName: '',
-      isPt: false,
-      isAdmin: false
-    };
-  }
-
-  handleAuthComplete = (userId) => {
-    this.setState({ isAuthenticated: true, userId: userId });
-  };
-
-  handleLogout = () => {
-    this.setState({ isAuthenticated: false, userId: '', isPt: false, isAdmin: false });
-  };
-
-  handleUserName = (userName) => {
-    this.setState({ userName: userName });
-  }
-
-  handlePtVerification = () => {
-    this.setState({ isPt: true });
-  }
-
-  handleAdminVerification = () => {
-    this.setState({ isAdmin: true });
-  }
-
   render () {
     let routes = (
         <Switch>
@@ -56,14 +25,14 @@ class App extends Component {
         </Switch>
     );
 
-    if (this.state.isAuthenticated && this.state.isAdmin && this.state.isPt) {
+    if (this.props.isAuthenticated && this.props.isAdmin && this.props.isPt) {
       routes = (
         <Switch>
-          <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
-          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} isPt={this.state.isPt} isAdmin={this.state.isAdmin} />} />
-          <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
-          <Route path="/createGymClass" render={(props) => <CreateGymClass {...props} userName={this.state.userName} />} />
-          <Route path="/admin" render={(props) => <Admin {...props} userId={this.state.userId} isPt={this.state.isPt} isAdmin={this.state.isAdmin} />} />
+          <Route path="/profile" render={(props) => <Profile {...props} userId={this.props.userId} />} />
+          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.props.userId} isPt={this.props.isPt} isAdmin={this.props.isAdmin} />} />
+          <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.props.userId} />} />
+          <Route path="/createGymClass" render={(props) => <CreateGymClass {...props} userName={this.props.userName} />} />
+          <Route path="/admin" render={(props) => <Admin {...props} userId={this.props.userId} isPt={this.props.isPt} isAdmin={this.props.isAdmin} />} />
           <Route path="/logout" render={() => <Logout onLogout={this.handleLogout} />} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
@@ -71,13 +40,13 @@ class App extends Component {
       );
     }
 
-    if (this.state.isAuthenticated && this.state.isPt && !this.state.isAdmin) {
+    if (this.props.isAuthenticated && this.props.isPt && !this.props.isAdmin) {
       routes = (
         <Switch>
-          <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
-          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} isPt={this.state.isPt} />} />
-          <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
-          <Route path="/createGymClass" render={(props) => <CreateGymClass {...props} userName={this.state.userName} />} />
+          <Route path="/profile" render={(props) => <Profile {...props} userId={this.props.userId} />} />
+          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.props.userId} isPt={this.props.isPt} />} />
+          <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.props.userId} />} />
+          <Route path="/createGymClass" render={(props) => <CreateGymClass {...props} userName={this.props.userName} />} />
           <Route path="/logout" render={() => <Logout onLogout={this.handleLogout} />} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
@@ -85,12 +54,12 @@ class App extends Component {
       );
     }
 
-    if (this.state.isAuthenticated && !this.state.isPt) {
+    if (this.props.isAuthenticated && !this.props.isPt) {
       routes = (
         <Switch>
-          <Route path="/profile" render={(props) => <Profile {...props} userId={this.state.userId} />} />
-          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.state.userId} />} />
-          <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.state.userId} />} />
+          <Route path="/profile" render={(props) => <Profile {...props} userId={this.props.userId} />} />
+          <Route path="/classes" render={(props) => <GymClasses {...props} userId={this.props.userId} />} />
+          <Route path="/myclasses" render={(props) => <BookedGymClasses {...props} userId={this.props.userId} />} />
           <Route path="/logout" render={() => <Logout onLogout={this.handleLogout} />} />
           <Route path="/" exact component={DashBoardBuilder} />
           <Redirect to="/" />
@@ -99,22 +68,20 @@ class App extends Component {
     }
 
     return (
-      <Layout isAuthenticated={this.state.isAuthenticated} isPt={this.state.isPt} isAdmin={this.state.isAdmin} >
+      <Layout isAuthenticated={this.props.isAuthenticated} isPt={this.props.isPt} isAdmin={this.props.isAdmin} >
         {routes}
       </Layout>
     );
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     isAuthenticated: state.auth.userId !== '',
-//     userId: state.auth.userId,
-//     userName: state.auth.name,
-//     isAdmin: state.auth.isAdmin,
-//     isPt: state.auth.isPt
-//   };
-// };
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.userId !== '',
+  userId: state.auth.userId,
+  userName: state.auth.name,
+  isAdmin: state.auth.isAdmin,
+  isPt: state.auth.isPt
+});
 
 // const mapDispatchToProps = dispatch => {
 //   return {
@@ -129,5 +96,5 @@ class App extends Component {
 // };
 
 // export default connect(mapStateToProps, mapDispatchToProps)(App);
-// export default connect(mapStateToProps)(App);
-export default App;
+// export default App;
+export default withRouter(connect(mapStateToProps, null)(App));

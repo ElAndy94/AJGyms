@@ -1,5 +1,5 @@
 .Logo {
-  background-color: white;
+  /* background-color: white; */
   padding: 8px;
   height: 100%;
   box-sizing: border-box;
@@ -8,12 +8,20 @@
 
 .Logo img {
   height: 100%;
-  animation: Logo-spin infinite 10s linear;
+  animation: Logo-spin infinite 5s linear;
 }
+
+  .Logo img:hover,
+  .Logo img:focus {
+    animation: Logo-spin infinite 2s linear;
+  }
 
 @keyframes Logo-spin {
   from {
     transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-180deg);
   }
   to {
     transform: rotate(360deg);
