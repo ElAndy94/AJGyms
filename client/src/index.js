@@ -11,6 +11,7 @@ import thunk from 'redux-thunk';
 import App from './App';
 import './index.css';
 import authReducer from './store/reducers/auth';
+import classesReducer from './store/reducers/classes';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -19,6 +20,7 @@ axios.defaults.baseURL = 'http://localhost:3000'
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  classes: classesReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

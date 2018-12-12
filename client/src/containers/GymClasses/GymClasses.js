@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+// import axios from 'axios';
 
 import Aux from '../../hoc/ReactAux';
 import GymTimetable from '../../components/GymTimetable/GymTimetable';
@@ -7,6 +8,7 @@ import classes from './GymClasses.css';
 import FullGymClass from './FullGymClass/FullGymClass';
 import { updateObject, checkValidity } from '../../shared/utility';
 import Input from '../../components/UI/Input/Input';
+import * as actions from '../../store/actions/index';
 // import Button from '../../components/UI/Button/Button';
 
 export class GymClasses extends Component {
@@ -28,22 +30,6 @@ export class GymClasses extends Component {
         validation: {},
         valid: true
       },
-      // trainer: {
-      //   elementType: 'select',
-      //   elementConfig: {
-      //     options: [
-      //       {value: 'All Trainers', displayValue: 'All Trainers'},
-      //       {value: 'Jeff Bren', displayValue: 'Jeff Bren'},
-      //       {value: 'Ralf Tomson', displayValue: 'Ralf Thomson'},
-      //       {value: 'Jessica White', displayValue: 'Jessica White'},
-      //       {value: 'Brenden Fin', displayValue: 'Brenden Fin'},
-      //       {value: 'Charles Kip', displayValue: 'Charles Kip'},
-      //     ]
-      //   },
-      //   value: 'All Trainers',
-      //   validation: {},
-      //   valid: true
-      // },
       classType: {
         elementType: 'select',
         elementConfig: {
@@ -89,21 +75,23 @@ export class GymClasses extends Component {
     formIsValid: false,
   }
 
-  componentDidMount() {
-    axios.get('/api/classes')
-      .then(response => {
-        const gymClasses = response.data;
-        const updatedGymClasses = gymClasses.map(gymClass => {
-          return {
-            ...gymClass,
-            // author: 'Andrew'
-          }
-        });
-        this.setState({gymClasses: updatedGymClasses, filteredClasses: updatedGymClasses});
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  componentWillMount() {
+    this.props.onFetchClasses();
+    // this.setState({ gymClasses: this.props.gymClasses, filteredClasses: this.props.filteredClasses });
+    // axios.get('/api/classes')
+    //   .then(response => {
+    //     const gymClasses = response.data;
+    //     const updatedGymClasses = gymClasses.map(gymClass => {
+    //       return {
+    //         ...gymClass,
+    //         // author: 'Andrew'
+    //       }
+    //     });
+    //     this.setState({gymClasses: updatedGymClasses, filteredClasses: updatedGymClasses});
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
   }
 
   classBookHandler = (event) => {
@@ -156,7 +144,7 @@ export class GymClasses extends Component {
 
   filterClasses(selectedValue, type) {
     // Filter through the classes and only have ones that apply the search term
-    const newFilteredClasses = this.state.filteredClasses.filter( (value) => {
+    const newFilteredClasses = this.props.filteredClasses.filter( (value) => {
       return value[type] === selectedValue;
     });
 
@@ -175,7 +163,9 @@ export class GymClasses extends Component {
   }
 
   render() {
-    const gymClasses = this.state.filteredClasses.map(gymClass => {
+    console.table([this.props.gymClasses]);
+    console.table([this.props.filteredClasses]);
+    const gymClasses = this.props.filteredClasses.map(gymClass => {
       return  (
       <GymTimetable
         key={gymClass._id}
@@ -229,4 +219,13 @@ export class GymClasses extends Component {
   }
 };
 
-export default GymClasses;
+const mapStateToProps = state => ({
+  gymClasses: state.classes.gymClasses,
+  filteredClasses: state.classes.filteredClasses
+});
+
+const mapDispatchToProps = dispatch => ({
+  onFetchClasses: () => dispatch( actions.fetchClasses() )
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GymClasses);

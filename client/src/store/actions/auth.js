@@ -9,7 +9,7 @@ export const authStart = () => {
 };
 
 export const authSuccess = (userId, name, isAdmin, isPt) => {
-    console.log('%c User Info', 'color: orange; font-weight: bold;', [userId, name, isAdmin, isPt]);
+    // console.log('%c User Info', 'color: orange; font-weight: bold;', [userId, name, isAdmin, isPt]);
     return {
         type: actionTypes.AUTH_SUCCESS,
         userId: userId,
@@ -32,14 +32,6 @@ export const logout = () => {
     };
 };
 
-// export const checkAuthTimeout = (experationTime) => {
-//     return dispatch => {
-//         setTimeout(() => {
-//             dispatch(logout());
-//         }, experationTime * 1000);
-//     }
-// } 
-
 export const auth = (email, password) => {
     return dispatch => {
         dispatch(authStart());
@@ -49,8 +41,6 @@ export const auth = (email, password) => {
         };
         axios.post('/api/auth/login', authData)
             .then(res => {
-                // console.log('%c User Info Response', 'color: orange; font-weight: bold;');
-                // console.table([res.data._id, res.data.name, res.data.admin, res.data.pt]);
                 dispatch(authSuccess(res.data._id, res.data.name, res.data.admin, res.data.pt));
             })
             .catch(err => {
@@ -59,6 +49,14 @@ export const auth = (email, password) => {
 
     };
 };
+
+// export const checkAuthTimeout = (experationTime) => {
+//     return dispatch => {
+//         setTimeout(() => {
+//             dispatch(logout());
+//         }, experationTime * 1000);
+//     }
+// } 
 
 // export const authCheckState = () => {
     // return dispatch => {
