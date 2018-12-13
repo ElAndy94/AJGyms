@@ -1,31 +1,17 @@
 import React, { Component } from 'react'
-import axios from 'axios';
+// import axios from 'axios';
+import { connect } from 'react-redux';
 
 import Aux from '../../../hoc/ReactAux';
 import BookedClasses from '../../../components/BookedClasses/BookedClasses';
 import classes from './BookedGymClasses.css';
 import BookedClass from './BookedClass/BookedClass';
+import * as actions from '../../../store/actions/index';
 
 class BookedGymClasses extends Component {
-  state = {
-    classes: []
-  }
 
-  componentDidMount() {
-    axios.get('/api/auth/booked/' + this.props.userId)
-      .then(response => {
-        const classes = response.data;
-        // const updatedClasses = classes.map(bookedClass => ({...bookedClass.classId}));
-        const updatedClasses = classes.map(gymClass => {
-          return {
-            ...gymClass,
-          }
-        });
-        this.setState({classes: updatedClasses});
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  componentWillMount() {
+    this.props.bookedClasses(this.props.userId);
   }
 
   classSelectedHandler = (id) => {
@@ -33,7 +19,7 @@ class BookedGymClasses extends Component {
   }
 
   render() {
-      const gymClasses = this.state.classes.map(gymClass => {
+      const gymClasses = this.props.classes.map(gymClass => {
         return  (
         <BookedClasses
           key={gymClass._id}
@@ -51,11 +37,19 @@ class BookedGymClasses extends Component {
           <section className={classes.Classes}>
             {gymClasses}
           </section>
-          <BookedClass userId={this.props.userId} id={this.state.selectedClassId} />
+          <BookedClass userId={this.props.userId} id={this.props.selectedClassId} />
         </div>
       </Aux>
     );
   }
 }
 
-export default BookedGymClasses;
+const mapStateToProps = state => ({
+  classes: state.classes.classes
+});
+
+const mapDispatchToProps = dispatch => ({
+  bookedClasses: (id) => dispatch( actions.bookedClasses(id) ),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookedGymClasses);

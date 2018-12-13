@@ -6,5 +6,6 @@ export {
 export {
     fetchClasses,
     filterClasses,
-    deleteClass
+    deleteClass,
+    bookedClasses
 } from './classes';

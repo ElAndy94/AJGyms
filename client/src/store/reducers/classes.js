@@ -4,6 +4,7 @@ import { updateObject } from '../../shared/utility';
 const initialState = {
     gymClasses: [],
     filteredClasses: [],
+    classes: [],
     error: null,
     loading: false
 };
@@ -41,6 +42,12 @@ const deleteClass = (state, action) => {
     });
 }
 
+const bookedClasses = (state, action) => {
+    return updateObject(state, {
+        classes: action.classes
+    })
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_CLASSES_START: return fetchClassesStart(state, action);
@@ -48,6 +55,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_CLASSES_FAIL: return fetchClassesFail(state, action);
         case actionTypes.FILTER_CLASSES: return filterClasses(state, action);
         case actionTypes.DELETE_CLASS: return deleteClass(state, action);
+        case actionTypes.BOOKED_CLASSES: return bookedClasses(state, action);
         default: 
             return state;
     }

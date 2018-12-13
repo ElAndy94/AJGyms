@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import axios from 'axios';
 
 import Aux from '../../hoc/ReactAux';
 import GymTimetable from '../../components/GymTimetable/GymTimetable';
@@ -9,12 +8,9 @@ import FullGymClass from './FullGymClass/FullGymClass';
 import { updateObject, checkValidity } from '../../shared/utility';
 import Input from '../../components/UI/Input/Input';
 import * as actions from '../../store/actions/index';
-// import Button from '../../components/UI/Button/Button';
 
 export class GymClasses extends Component {
   state = {
-    gymClasses: [],
-    filteredClasses: [],
     gymForm: {
       gymLocation: {
         elementType: 'select',

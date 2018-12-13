@@ -54,3 +54,28 @@ export const deleteClass = (updatedFilteredClasses) => ({
     gymClasses: updatedFilteredClasses,
     filteredClasses: updatedFilteredClasses
 })
+
+export const bookedClasses = (id) => {
+    return dispatch => {
+        axios.get('/api/auth/booked/' + id)
+        .then(response => {
+            const classes = response.data;
+            console.log(classes);
+            const updatedClasses = classes.map(gymClass => {
+            return {
+                ...gymClass,
+            }
+            });
+            console.log(updatedClasses);
+            dispatch(bookedClassesSuccess(updatedClasses));
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    };
+}
+
+export const bookedClassesSuccess = (updatedClasses) => ({
+    type: actionTypes.BOOKED_CLASSES,
+    classes: updatedClasses
+});
