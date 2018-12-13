@@ -77,21 +77,6 @@ export class GymClasses extends Component {
 
   componentWillMount() {
     this.props.onFetchClasses();
-    // this.setState({ gymClasses: this.props.gymClasses, filteredClasses: this.props.filteredClasses });
-    // axios.get('/api/classes')
-    //   .then(response => {
-    //     const gymClasses = response.data;
-    //     const updatedGymClasses = gymClasses.map(gymClass => {
-    //       return {
-    //         ...gymClass,
-    //         // author: 'Andrew'
-    //       }
-    //     });
-    //     this.setState({gymClasses: updatedGymClasses, filteredClasses: updatedGymClasses});
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
   }
 
   classBookHandler = (event) => {
@@ -147,8 +132,7 @@ export class GymClasses extends Component {
     const newFilteredClasses = this.props.filteredClasses.filter( (value) => {
       return value[type] === selectedValue;
     });
-
-    this.setState({filteredClasses: newFilteredClasses});
+    this.props.onFilterClasses(newFilteredClasses);
   }
 
   classSelectedHandler = (id) => {
@@ -159,12 +143,12 @@ export class GymClasses extends Component {
     const updatedFilteredClasses = this.state.gymClasses.filter( (value) => {
       return value._id !== id;
     });
-    this.setState({ filteredClasses: updatedFilteredClasses, selectedClassId: null });
+    this.setState({ selectedClassId: null });
+    this.props.onDeleteClass(updatedFilteredClasses);
   }
 
   render() {
-    console.table([this.props.gymClasses]);
-    console.table([this.props.filteredClasses]);
+    // console.table([this.props.filteredClasses]);
     const gymClasses = this.props.filteredClasses.map(gymClass => {
       return  (
       <GymTimetable
@@ -225,7 +209,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onFetchClasses: () => dispatch( actions.fetchClasses() )
+  onFetchClasses: () => dispatch( actions.fetchClasses() ),
+  onFilterClasses: (newFilteredClasses) => dispatch( actions.filterClasses(newFilteredClasses) ),
+  onDeleteClass: (updatedFilteredClasses) => dispatch( actions.deleteClass(updatedFilteredClasses) )
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GymClasses);

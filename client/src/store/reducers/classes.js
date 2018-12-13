@@ -13,7 +13,6 @@ const fetchClassesStart = (state, action) => {
 };
 
 const fetchClassesSuccess = (state, action) => {
-    console.table('reducer ', [state]);
     return updateObject(state, { 
         gymClasses: action.gymClasses,
         filteredClasses: action.filteredClasses,
@@ -28,11 +27,27 @@ const fetchClassesFail = (state, action) => {
     });
 };
 
+const filterClasses = (state, action) => {
+    return updateObject(state, {
+        gymClasses: action.gymClasses,
+        filteredClasses: action.filteredClasses
+    });
+}
+
+const deleteClass = (state, action) => {
+    return updateObject(state, {
+        gymClasses: action.gymClasses,
+        filteredClasses: action.filteredClasses
+    });
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_CLASSES_START: return fetchClassesStart(state, action);
         case actionTypes.FETCH_CLASSES_SUCCESS: return fetchClassesSuccess(state, action);
         case actionTypes.FETCH_CLASSES_FAIL: return fetchClassesFail(state, action);
+        case actionTypes.FILTER_CLASSES: return filterClasses(state, action);
+        case actionTypes.DELETE_CLASS: return deleteClass(state, action);
         default: 
             return state;
     }

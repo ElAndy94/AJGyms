@@ -36,12 +36,21 @@ export const fetchClasses = () => {
                 }
                 });
                 dispatch(fetchClassesSuccess(updatedGymClasses));
-                // dispatch(fetchClassesSuccess(res.data._id, res.data.name, res.data.admin, res.data.pt));
-                // this.setState({gymClasses: updatedGymClasses, filteredClasses: updatedGymClasses});
             })
             .catch(err => {
-                // dispatch(fetchClassesFail(err.response.data.error));
                 console.log(err);
             });
     };
 };
+
+export const filterClasses = (newFilteredClasses) => ({
+    type: actionTypes.FILTER_CLASSES,
+    gymClasses: newFilteredClasses,
+    filteredClasses: newFilteredClasses
+});
+
+export const deleteClass = (updatedFilteredClasses) => ({
+    type: actionTypes.DELETE_CLASS,
+    gymClasses: updatedFilteredClasses,
+    filteredClasses: updatedFilteredClasses
+})

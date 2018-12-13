@@ -4,5 +4,7 @@ export {
 } from './auth';
 
 export {
-    fetchClasses
+    fetchClasses,
+    filterClasses,
+    deleteClass
 } from './classes';
