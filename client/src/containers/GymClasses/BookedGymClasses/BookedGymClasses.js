@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import axios from 'axios';
 import { connect } from 'react-redux';
 
 import Aux from '../../../hoc/ReactAux';
@@ -9,13 +8,14 @@ import BookedClass from './BookedClass/BookedClass';
 import * as actions from '../../../store/actions/index';
 
 class BookedGymClasses extends Component {
+  state = {};
 
   componentWillMount() {
     this.props.bookedClasses(this.props.userId);
   }
 
-  classSelectedHandler = (id) => {
-    this.setState({selectedClassId: id});
+  classSelectedHandler = (classId) => {
+    this.setState({selectedClassId: classId});
   }
 
   render() {
@@ -37,7 +37,7 @@ class BookedGymClasses extends Component {
           <section className={classes.Classes}>
             {gymClasses}
           </section>
-          <BookedClass userId={this.props.userId} id={this.props.selectedClassId} />
+          <BookedClass userId={this.props.userId} classId={this.state.selectedClassId} />
         </div>
       </Aux>
     );

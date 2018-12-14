@@ -9,7 +9,7 @@ export const fetchStart = () => {
 };
 
 export const fetchClassesSuccess = (updatedGymClasses) => {
-    console.log('%c Gym Classes', 'color: orange; font-weight: bold;', [updatedGymClasses]);
+    // console.log('%c Gym Classes', 'color: orange; font-weight: bold;', [updatedGymClasses]);
     return {
         type: actionTypes.FETCH_CLASSES_SUCCESS,
         gymClasses: updatedGymClasses,
@@ -60,13 +60,11 @@ export const bookedClasses = (id) => {
         axios.get('/api/auth/booked/' + id)
         .then(response => {
             const classes = response.data;
-            console.log(classes);
             const updatedClasses = classes.map(gymClass => {
             return {
                 ...gymClass,
             }
             });
-            console.log(updatedClasses);
             dispatch(bookedClassesSuccess(updatedClasses));
         })
         .catch(error => {

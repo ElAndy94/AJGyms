@@ -10,9 +10,10 @@ class BookedClass extends Component {
     }
 
     componentDidUpdate () {
-      if ( this.props.id ) {
-          if ( !this.state.loadedClass || (this.state.loadedClass && this.state.loadedClass._id !== this.props.id) ) {
-            axios.get( '/api/classes/' + this.props.id )
+      console.log(this.props);
+      if ( this.props.classId ) {
+          if ( !this.state.loadedClass || (this.state.loadedClass && this.state.loadedClass._id !== this.props.classId) ) {
+            axios.get( '/api/classes/' + this.props.classId )
                 .then( response => {
                     this.setState( { loadedClass: response.data } );
                 });
@@ -21,7 +22,7 @@ class BookedClass extends Component {
     }
 
     deleteClassHandler = () => {
-      axios.delete('/api/classes/' + this.props.id + '/user/' + this.props.userId)
+      axios.delete('/api/classes/' + this.props.classId + '/user/' + this.props.userId)
         .then(response => {
           console.log(response);
         })
@@ -31,7 +32,7 @@ class BookedClass extends Component {
     }
 
     deleteUserClassHandler = () => {
-      axios.delete('/api/auth/' + this.props.id + '/user/' + this.props.userId)
+      axios.delete('/api/auth/' + this.props.classId + '/user/' + this.props.userId)
         .then(response => {
           console.log(response);
         })
@@ -42,8 +43,9 @@ class BookedClass extends Component {
 
     render () {
         let gymClass = '';
+        console.log(this.props.classId);
         // let gymClass = <p style={{ textAlign: 'center', color: 'white', fontSize: '26px', fontWeight: '400'}}>Please select a Class!</p>;
-        if ( this.props.id ) {
+        if ( this.props.classId ) {
            gymClass = <p style={{ textAlign: 'center' }}>Loading...!</p>;
         }
         if ( this.state.loadedClass ) {
