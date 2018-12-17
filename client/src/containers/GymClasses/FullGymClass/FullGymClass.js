@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 import classes from './FullGymClass.css';
 import Button from '../../../components/UI/Button/Button';
+import * as actions from '../../../store/actions/index';
 
 class FullGymClass extends Component {
   state = {
@@ -25,16 +27,11 @@ class FullGymClass extends Component {
       userId: this.props.userId,
       classId: this.props.id,
     }
-    axios.post('/api/classes/bookclass', bookingData)
-      .then( response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.props.onBookClass(bookingData);
   }
 
   deleteClassHandler = () => {
+    // this.props.onDeleteClass(this.props.id);
     axios.delete('/api/classes/' + this.props.id)
       .then(response => {
         console.log(response);
@@ -75,4 +72,13 @@ class FullGymClass extends Component {
   }
 }
 
-export default FullGymClass;
+// const mapStateToProps = state => ({
+
+// });
+
+const mapDispatchToProps = dispatch => ({
+  onBookClass: (bookingData) => dispatch( actions.bookClass(bookingData) ),
+  // onDeleteClass: (classId) => dispatch( actions.deleteClass(classId) )
+});
+
+export default connect(null, mapDispatchToProps)(FullGymClass);

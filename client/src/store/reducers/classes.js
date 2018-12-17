@@ -35,6 +35,10 @@ const filterClasses = (state, action) => {
     });
 }
 
+const classBooked = (state, action) => {
+    return updateObject(state, { loading: false });
+}
+
 const deleteClass = (state, action) => {
     return updateObject(state, {
         gymClasses: action.gymClasses,
@@ -45,7 +49,7 @@ const deleteClass = (state, action) => {
 const bookedClasses = (state, action) => {
     return updateObject(state, {
         classes: action.classes
-    })
+    });
 }
 
 const reducer = (state = initialState, action) => {
@@ -54,6 +58,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_CLASSES_SUCCESS: return fetchClassesSuccess(state, action);
         case actionTypes.FETCH_CLASSES_FAIL: return fetchClassesFail(state, action);
         case actionTypes.FILTER_CLASSES: return filterClasses(state, action);
+        case actionTypes.CLASS_BOOKED: return classBooked(state, action);
         case actionTypes.DELETE_CLASS: return deleteClass(state, action);
         case actionTypes.BOOKED_CLASSES: return bookedClasses(state, action);
         default: 

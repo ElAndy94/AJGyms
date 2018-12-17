@@ -10,7 +10,6 @@ class BookedClass extends Component {
     }
 
     componentDidUpdate () {
-      console.log(this.props);
       if ( this.props.classId ) {
           if ( !this.state.loadedClass || (this.state.loadedClass && this.state.loadedClass._id !== this.props.classId) ) {
             axios.get( '/api/classes/' + this.props.classId )
@@ -31,19 +30,18 @@ class BookedClass extends Component {
         });
     }
 
-    deleteUserClassHandler = () => {
-      axios.delete('/api/auth/' + this.props.classId + '/user/' + this.props.userId)
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+    // deleteUserClassHandler = () => {
+    //   axios.delete('/api/auth/' + this.props.classId + '/user/' + this.props.userId)
+    //     .then(response => {
+    //       console.log(response);
+    //     })
+    //     .catch(error => {
+    //       // console.log(error);
+    //     });
+    // }
 
     render () {
         let gymClass = '';
-        console.log(this.props.classId);
         // let gymClass = <p style={{ textAlign: 'center', color: 'white', fontSize: '26px', fontWeight: '400'}}>Please select a Class!</p>;
         if ( this.props.classId ) {
            gymClass = <p style={{ textAlign: 'center' }}>Loading...!</p>;
@@ -56,7 +54,8 @@ class BookedClass extends Component {
                   <p>{this.state.loadedClass.name}</p>
                   <p>{this.state.loadedClass.time}</p>
                   <div className={classes.Edit}>
-                    <Button clicked={() => {this.deleteClassHandler(); this.deleteUserClassHandler();}} btnType="Danger">Delete</Button>
+                  {/* this.deleteUserClassHandler(); */}
+                    <Button clicked={() => {this.deleteClassHandler(); }} btnType="Danger">Delete</Button>
                   </div>
               </div>
 

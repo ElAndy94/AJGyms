@@ -53,7 +53,23 @@ export const deleteClass = (updatedFilteredClasses) => ({
     type: actionTypes.DELETE_CLASS,
     gymClasses: updatedFilteredClasses,
     filteredClasses: updatedFilteredClasses
-})
+});
+
+export const classBookedSuccess = (data) => ({
+    type: actionTypes.CLASS_BOOKED
+});
+
+export const bookClass = (bookingData) => {
+    return dispatch => {
+        axios.post('/api/classes/bookclass', bookingData)
+            .then( response => {
+                dispatch(classBookedSuccess(response));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
 
 export const bookedClasses = (id) => {
     return dispatch => {

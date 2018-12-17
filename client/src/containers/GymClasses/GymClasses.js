@@ -89,7 +89,7 @@ export class GymClasses extends Component {
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
-    console.log(inputIdentifier);
+    // console.log(inputIdentifier);
     const updatedFormElement = updateObject(this.state.gymForm[inputIdentifier], {
         value: event.target.value,
         valid: checkValidity(event.target.value, this.state.gymForm[inputIdentifier].validation),
