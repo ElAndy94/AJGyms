@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -6,7 +5,6 @@ import { connect } from 'react-redux';
 import Aux from '../../../hoc/ReactAux';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
-// import Spinner from '../../../components/UI/Spinner/Spinner';
 import classes from './Auth.css';
 import { updateObject, checkValidity } from '../../../shared/utility';
 import * as actions from '../../../store/actions/index';
@@ -20,7 +18,7 @@ class Auth extends Component {
             type: 'email',
             placeholder: 'Email'
           },
-          value: 'melissaastbury@hotmail.com',
+          value: '',
           validation: {
             required: true,
             isEmail: true
@@ -34,7 +32,7 @@ class Auth extends Component {
             type: 'password',
             placeholder: 'Password'
           },
-          value: '123456',
+          value: '',
           validation: {
             required: true,
             minLength: 6

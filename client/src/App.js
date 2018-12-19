@@ -12,7 +12,6 @@ import Logout from './containers/Auth/Logout/Logout';
 import Signup from './containers/Auth/Signup/Signup';
 import BookedGymClasses from './containers/GymClasses/BookedGymClasses/BookedGymClasses';
 import Admin from './containers/Admin/Admin';
-// import * as actions from './store/actions/index';
 
 class App extends Component {
   render () {
@@ -83,18 +82,4 @@ const mapStateToProps = state => ({
   isPt: state.auth.isPt
 });
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onAuth: (userInfo) => dispatch({type: actionTypes.IS_AUTH, userInfo: userInfo})
-//   };
-// }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onTryAutoSignup: () => dispatch( actions.authCheckState() )
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
-// export default App;
 export default withRouter(connect(mapStateToProps, null)(App));

@@ -15,8 +15,8 @@ import classesReducer from './store/reducers/classes';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// axios.defaults.baseURL = 'http://reactnode-env.cypaiqpzpu.eu-west-2.elasticbeanstalk.com/api'
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://reactnode-env.cypaiqpzpu.eu-west-2.elasticbeanstalk.com/'
+// axios.defaults.baseURL = 'http://localhost:3000'
 
 const rootReducer = combineReducers({
   auth: authReducer,

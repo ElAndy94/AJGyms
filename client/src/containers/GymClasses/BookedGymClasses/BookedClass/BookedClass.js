@@ -30,16 +30,6 @@ class BookedClass extends Component {
         });
     }
 
-    // deleteUserClassHandler = () => {
-    //   axios.delete('/api/auth/' + this.props.classId + '/user/' + this.props.userId)
-    //     .then(response => {
-    //       console.log(response);
-    //     })
-    //     .catch(error => {
-    //       // console.log(error);
-    //     });
-    // }
-
     render () {
         let gymClass = '';
         // let gymClass = <p style={{ textAlign: 'center', color: 'white', fontSize: '26px', fontWeight: '400'}}>Please select a Class!</p>;
@@ -54,7 +44,6 @@ class BookedClass extends Component {
                   <p>{this.state.loadedClass.name}</p>
                   <p>{this.state.loadedClass.time}</p>
                   <div className={classes.Edit}>
-                  {/* this.deleteUserClassHandler(); */}
                     <Button clicked={() => {this.deleteClassHandler(); }} btnType="Danger">Delete</Button>
                   </div>
               </div>
