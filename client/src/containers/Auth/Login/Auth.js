@@ -30,7 +30,8 @@ class Auth extends Component {
           elementType: 'input',
           elementConfig: {
             type: 'password',
-            placeholder: 'Password'
+            placeholder: 'Password',
+            id: 'myPass'
           },
           value: '',
           validation: {
@@ -62,27 +63,14 @@ class Auth extends Component {
     // this.onAuth(this.state.controls.email.value, this.state.controls.password.value);
   }
 
-  // onAuth = () => {
-  //   const authenticationCheck = {
-  //     email: this.state.controls.email.value,
-  //     password: this.state.controls.password.value,
-  //   };
-  //   axios.post('/api/auth/login', authenticationCheck)
-  //     .then(response => {
-  //       const userId = response.data._id;
-  //       const userName = response.data.name;
-  //       this.props.onAuthComplete(userId);
-  //       this.props.onUserName(userName);
-  //       if (response.data.pt === true) {
-  //         this.props.isPt(true);
-  //       }
-  //       if (response.data.admin === true) {
-  //         this.props.isAdmin(true);
-  //       }
-  //     }).catch(error => {
-  //       console.log(error);
-  //     });
-  // }
+  handleShowPass = () => {
+    let x = document.getElementById("myPass");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
 
   render () {
     if (this.state.signedIn === true) {
@@ -109,10 +97,6 @@ class Auth extends Component {
         changed={(event) => this.inputChangedHandler(event, formElement.id)} />
     ));
 
-    // if (this.props.loading) {
-    //   form = <Spinner />
-    // }
-
     let errorMessage = null;
 
     if (this.props.error) {
@@ -129,6 +113,11 @@ class Auth extends Component {
                 <h2>LOGIN</h2>
                 <form className={classes.BT} onSubmit={this.submitHandler}>
                     {form}
+                    <label> Show Password: &nbsp;
+                        <input name="image" type="checkbox" onClick={this.handleShowPass} />
+                    </label>
+                    <br />
+                    {/* <input type="checkbox" onClick={this.showPass}>Show Password</input> */}
                     <Button btnType="Success">SUBMIT</Button>
                 </form>
             </div>

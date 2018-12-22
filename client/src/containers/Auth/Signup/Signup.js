@@ -45,7 +45,8 @@ class Signup extends Component {
           elementType: 'input',
           elementConfig: {
             type: 'password',
-            placeholder: 'Password'
+            placeholder: 'Password',
+            id: 'myPass'
           },
           value: '',
           validation: {
@@ -60,7 +61,8 @@ class Signup extends Component {
           elementType: 'input',
           elementConfig: {
             type: 'password',
-            placeholder: 'Password'
+            placeholder: 'Password',
+            id: 'myPass2'
           },
           value: '',
           validation: {
@@ -75,7 +77,7 @@ class Signup extends Component {
           elementType: 'input',
           elementConfig: {
             type: 'text',
-            placeholder: 'Address'
+            placeholder: 'Address',
           },
           value: '',
           validation: {
@@ -210,6 +212,21 @@ class Signup extends Component {
         });
   }
 
+  handleShowPass = () => {
+    let x = document.getElementById("myPass");
+    let y = document.getElementById('myPass2');
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+    if (y.type === "password") {
+      y.type = "text";
+    } else {
+      y.type = "password";
+    }
+  }
+
   render () {
     if (this.state.isSignup === false) {
       return <Redirect to="/auth" />
@@ -251,6 +268,10 @@ class Signup extends Component {
             <h2>SIGN UP</h2>
             <form className={classes.BT} onSubmit={this.submitHandler}>
                 {form}
+                <label> Show Password: &nbsp;
+                  <input name="image" type="checkbox" onClick={this.handleShowPass} />
+                </label>
+                <br />
             <Button btnType="Success">SUBMIT</Button>
             </form>
           </div>
