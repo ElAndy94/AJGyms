@@ -168,8 +168,7 @@ class Signup extends Component {
     // this.formatDate();
     event.preventDefault();
     if (
-      this.state.controls.password.value ===
-      this.state.controls.password2.value &&
+      this.state.controls.password.value === this.state.controls.password2.value &&
       this.state.controls.password.valid &&
       this.state.controls.email.valid &&
       this.state.controls.name.valid &&

@@ -117,7 +117,6 @@ class Auth extends Component {
                         <input name="image" type="checkbox" onClick={this.handleShowPass} />
                     </label>
                     <br />
-                    {/* <input type="checkbox" onClick={this.showPass}>Show Password</input> */}
                     <Button btnType="Success">SUBMIT</Button>
                 </form>
             </div>
