@@ -33,7 +33,6 @@
 
 .Box {
   border-radius: 5px;
-  /* padding: 20px; */
 }
 
 .Card {
@@ -53,7 +52,6 @@
 
 .Container {
   padding: 2px 2px;
-  /* padding: 2px 16px; */
 }
 
 @media (min-width: 600px) {
