@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Aux from '../../hoc/ReactAux';
 import GymTimetable from '../../components/GymTimetable/GymTimetable';
-import classes from './GymClasses.css';
+import './GymClasses.scss';
 import FullGymClass from './FullGymClass/FullGymClass';
 import { updateObject, checkValidity } from '../../shared/utility';
 import Input from '../../components/UI/Input/Input';
@@ -16,10 +16,10 @@ export class GymClasses extends Component {
         elementType: 'select',
         elementConfig: {
           options: [
-            {value: 'All Gyms', displayValue: 'All Gyms'},
-            {value: 'Market Street', displayValue: 'Market Street'},
-            {value: 'Portland Street', displayValue: 'Portland Street'},
-            {value: 'Oxford Road', displayValue: 'Oxford Road'},
+            { value: 'All Gyms', displayValue: 'All Gyms' },
+            { value: 'Market Street', displayValue: 'Market Street' },
+            { value: 'Portland Street', displayValue: 'Portland Street' },
+            { value: 'Oxford Road', displayValue: 'Oxford Road' }
           ]
         },
         value: 'All Gyms',
@@ -30,10 +30,13 @@ export class GymClasses extends Component {
         elementType: 'select',
         elementConfig: {
           options: [
-            {value: 'All Classes', displayValue: 'All Classes'},
-            {value: 'Induction Only', displayValue: 'Induction Only'},
-            {value: 'Classes Only', displayValue: 'Classes Only'},
-            {value: 'Digital Classes Only', displayValue: 'Digital Classes Only'},
+            { value: 'All Classes', displayValue: 'All Classes' },
+            { value: 'Induction Only', displayValue: 'Induction Only' },
+            { value: 'Classes Only', displayValue: 'Classes Only' },
+            {
+              value: 'Digital Classes Only',
+              displayValue: 'Digital Classes Only'
+            }
           ]
         },
         value: 'All Classes',
@@ -44,57 +47,113 @@ export class GymClasses extends Component {
         elementType: 'select',
         elementConfig: {
           options: [
-            {value: 'All Day', displayValue: 'All Day' },
-            {value: 'Morning (06:00 - 07:00)', displayValue: 'Morning (06:00 - 07:00)'},
-            {value: 'Morning (07:00 - 08:00)', displayValue: 'Morning (07:00 - 08:00)'},
-            {value: 'Morning (08:00 - 09:00)', displayValue: 'Morning (08:00 - 09:00)'},
-            {value: 'Morning (09:00 - 10:00)', displayValue: 'Morning (09:00 - 10:00)'},
-            {value: 'Morning (10:00 - 11:00)', displayValue: 'Morning (10:00 - 11:00)'},
-            {value: 'Morning (11:00 - 12:00)', displayValue: 'Morning (11:00 - 12:00)'},
-            {value: 'Afternoon (12:00 - 13:00)', displayValue: 'Afternoon (12:00 - 13:00)'},
-            {value: 'Afternoon (13:00 - 14:00)', displayValue: 'Afternoon (13:00 - 14:00)'},
-            {value: 'Afternoon (14:00 - 15:00)', displayValue: 'Afternoon (14:00 - 15:00)'},
-            {value: 'Afternoon (15:00 - 16:00)', displayValue: 'Afternoon (15:00 - 16:00)'},
-            {value: 'Afternoon (16:00 - 17:00)', displayValue: 'Afternoon (16:00 - 17:00)'},
-            {value: 'Evening (17:00 - 18:00)', displayValue: 'Evening (17:00 - 18:00)'},
-            {value: 'Evening (18:00 - 19:00)', displayValue: 'Evening (18:00 - 19:00)'},
-            {value: 'Evening (19:00 - 20:00)', displayValue: 'Evening (19:00 - 20:00)'},
-            {value: 'Evening (20:00 - 21:00)', displayValue: 'Evening (20:00 - 21:00)'},
-            {value: 'Noon (21:00 - 22:00)', displayValue: 'Noon (21:00 - 22:00)'},
+            { value: 'All Day', displayValue: 'All Day' },
+            {
+              value: 'Morning (06:00 - 07:00)',
+              displayValue: 'Morning (06:00 - 07:00)'
+            },
+            {
+              value: 'Morning (07:00 - 08:00)',
+              displayValue: 'Morning (07:00 - 08:00)'
+            },
+            {
+              value: 'Morning (08:00 - 09:00)',
+              displayValue: 'Morning (08:00 - 09:00)'
+            },
+            {
+              value: 'Morning (09:00 - 10:00)',
+              displayValue: 'Morning (09:00 - 10:00)'
+            },
+            {
+              value: 'Morning (10:00 - 11:00)',
+              displayValue: 'Morning (10:00 - 11:00)'
+            },
+            {
+              value: 'Morning (11:00 - 12:00)',
+              displayValue: 'Morning (11:00 - 12:00)'
+            },
+            {
+              value: 'Afternoon (12:00 - 13:00)',
+              displayValue: 'Afternoon (12:00 - 13:00)'
+            },
+            {
+              value: 'Afternoon (13:00 - 14:00)',
+              displayValue: 'Afternoon (13:00 - 14:00)'
+            },
+            {
+              value: 'Afternoon (14:00 - 15:00)',
+              displayValue: 'Afternoon (14:00 - 15:00)'
+            },
+            {
+              value: 'Afternoon (15:00 - 16:00)',
+              displayValue: 'Afternoon (15:00 - 16:00)'
+            },
+            {
+              value: 'Afternoon (16:00 - 17:00)',
+              displayValue: 'Afternoon (16:00 - 17:00)'
+            },
+            {
+              value: 'Evening (17:00 - 18:00)',
+              displayValue: 'Evening (17:00 - 18:00)'
+            },
+            {
+              value: 'Evening (18:00 - 19:00)',
+              displayValue: 'Evening (18:00 - 19:00)'
+            },
+            {
+              value: 'Evening (19:00 - 20:00)',
+              displayValue: 'Evening (19:00 - 20:00)'
+            },
+            {
+              value: 'Evening (20:00 - 21:00)',
+              displayValue: 'Evening (20:00 - 21:00)'
+            },
+            {
+              value: 'Noon (21:00 - 22:00)',
+              displayValue: 'Noon (21:00 - 22:00)'
+            }
           ]
         },
         value: 'All Day',
         validation: {},
-        valid: true,
-      },
+        valid: true
+      }
     },
-    formIsValid: false,
-  }
+    formIsValid: false
+  };
 
   componentWillMount() {
     this.props.onFetchClasses();
   }
 
-  classBookHandler = (event) => {
+  classBookHandler = event => {
     event.preventDefault();
     const formData = {};
     for (let formElementIdentifier in this.state.gymForm) {
-      formData[formElementIdentifier] = this.state.gymForm[formElementIdentifier].value;
+      formData[formElementIdentifier] = this.state.gymForm[
+        formElementIdentifier
+      ].value;
     }
     const selectedClass = {
       classData: formData,
       userId: this.props.userId
-    }
+    };
     this.props.onCreateClass(selectedClass);
-  }
+  };
 
   inputChangedHandler = (event, inputIdentifier) => {
     // console.log(inputIdentifier);
-    const updatedFormElement = updateObject(this.state.gymForm[inputIdentifier], {
+    const updatedFormElement = updateObject(
+      this.state.gymForm[inputIdentifier],
+      {
         value: event.target.value,
-        valid: checkValidity(event.target.value, this.state.gymForm[inputIdentifier].validation),
+        valid: checkValidity(
+          event.target.value,
+          this.state.gymForm[inputIdentifier].validation
+        ),
         touched: true
-    });
+      }
+    );
     const updatedGymForm = updateObject(this.state.gymForm, {
       [inputIdentifier]: updatedFormElement
     });
@@ -108,16 +167,14 @@ export class GymClasses extends Component {
 
     this.checkEvent(theEvent, inputIdentifier);
 
-    this.setState({gymForm: updatedGymForm, formIsValid: formIsValid});
-  }
+    this.setState({ gymForm: updatedGymForm, formIsValid: formIsValid });
+  };
 
   checkEvent(theEvent, inputIdentifier) {
     if (inputIdentifier === 'timeOfDay') {
       this.filterClasses(theEvent, 'time');
-
     } else if (inputIdentifier === 'gymLocation') {
       this.filterClasses(theEvent, 'location');
-
     } else if (inputIdentifier === 'classType') {
       this.filterClasses(theEvent, 'type');
     }
@@ -125,36 +182,37 @@ export class GymClasses extends Component {
 
   filterClasses(selectedValue, type) {
     // Filter through the classes and only have ones that apply the search term
-    const newFilteredClasses = this.props.filteredClasses.filter( (value) => {
+    const newFilteredClasses = this.props.filteredClasses.filter(value => {
       return value[type] === selectedValue;
     });
     this.props.onFilterClasses(newFilteredClasses);
   }
 
-  classSelectedHandler = (id) => {
-    this.setState({selectedClassId: id});
-  }
+  classSelectedHandler = id => {
+    this.setState({ selectedClassId: id });
+  };
 
-  handleDelete = (id) => {
-    const updatedFilteredClasses = this.state.gymClasses.filter( (value) => {
+  handleDelete = id => {
+    const updatedFilteredClasses = this.state.gymClasses.filter(value => {
       return value._id !== id;
     });
     this.setState({ selectedClassId: null });
     this.props.onDeleteClass(updatedFilteredClasses);
-  }
+  };
 
   render() {
     // console.table([this.props.filteredClasses]);
     const gymClasses = this.props.filteredClasses.map(gymClass => {
-      return  (
-      <GymTimetable
-        key={gymClass._id}
-        location={gymClass.location}
-        classType={gymClass.type}
-        className={gymClass.name}
-        startTime={gymClass.time}
-        ptName={gymClass.ptName}
-        clicked={() => this.classSelectedHandler(gymClass._id)}/>
+      return (
+        <GymTimetable
+          key={gymClass._id}
+          location={gymClass.location}
+          classType={gymClass.type}
+          className={gymClass.name}
+          startTime={gymClass.time}
+          ptName={gymClass.ptName}
+          clicked={() => this.classSelectedHandler(gymClass._id)}
+        />
       );
     });
 
@@ -167,37 +225,41 @@ export class GymClasses extends Component {
     }
     let form = (
       <form onSubmit={this.classBookHandler}>
-          {formElementsArray.map(formElement => (
-            <Input
-                key={formElement.id}
-                elementType={formElement.config.elementType}
-                elementConfig={formElement.config.elementConfig}
-                value={formElement.config.value}
-                shouldValidate={formElement.config.validation}
-                touched={formElement.config.touched}
-                invalid={!formElement.config.valid}
-                changed={(event) => this.inputChangedHandler(event, formElement.id)} />
-          ))}
-        </form>
+        {formElementsArray.map(formElement => (
+          <Input
+            key={formElement.id}
+            elementType={formElement.config.elementType}
+            elementConfig={formElement.config.elementConfig}
+            value={formElement.config.value}
+            shouldValidate={formElement.config.validation}
+            touched={formElement.config.touched}
+            invalid={!formElement.config.valid}
+            changed={event => this.inputChangedHandler(event, formElement.id)}
+          />
+        ))}
+      </form>
     );
     return (
-    <Aux>
-      <div className={classes.BackGround}>
-        <div className={classes.GymClasses}>
-          <h3>Select, book and enjoy!</h3>
-          {form}
+      <Aux>
+        <div className='BackGround'>
+          <div className='GymClasses'>
+            <h3>Select, book and enjoy!</h3>
+            {form}
+          </div>
+          <div className='Classes'>{gymClasses}</div>
+          <div className='BackGroundTwo'>
+            <FullGymClass
+              userId={this.props.userId}
+              isPt={this.props.isPt}
+              id={this.state.selectedClassId}
+              onDelete={this.handleDelete}
+            />
+          </div>
         </div>
-        <div className={classes.Classes}>
-          {gymClasses}
-        </div>
-        <div className={classes.BackGroundTwo}>
-          <FullGymClass userId={this.props.userId} isPt={this.props.isPt} id={this.state.selectedClassId} onDelete={this.handleDelete} />
-        </div>
-      </div>
-    </Aux>
+      </Aux>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   gymClasses: state.classes.gymClasses,
@@ -205,9 +267,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onFetchClasses: () => dispatch( actions.fetchClasses() ),
-  onFilterClasses: (newFilteredClasses) => dispatch( actions.filterClasses(newFilteredClasses) ),
-  onDeleteClass: (updatedFilteredClasses) => dispatch( actions.deleteClass(updatedFilteredClasses) )
+  onFetchClasses: () => dispatch(actions.fetchClasses()),
+  onFilterClasses: newFilteredClasses =>
+    dispatch(actions.filterClasses(newFilteredClasses)),
+  onDeleteClass: updatedFilteredClasses =>
+    dispatch(actions.deleteClass(updatedFilteredClasses))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GymClasses);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GymClasses);

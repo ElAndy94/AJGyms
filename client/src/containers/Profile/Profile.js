@@ -5,7 +5,7 @@ import UserProfile from '../../components/UserProfile/UserProfile';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Aux from '../../hoc/ReactAux';
-import classes from './Profile.scss';
+import './Profile.scss';
 import { updateObject, checkValidity } from '../../shared/utility';
 
 class Profile extends Component {
@@ -130,7 +130,7 @@ class Profile extends Component {
 
     return (
       <Aux>
-        <div className={classes.BackGround}>
+        <div className='BackGround'>
           <UserProfile
             user={this.state.user}
             edit={this.handleChange}
@@ -138,7 +138,7 @@ class Profile extends Component {
           />
           <form
             onSubmit={this.submitHandler}
-            className={classes.ProfileForm}
+            className='ProfileForm'
             style={{ display: this.state.showForm ? 'block' : 'none' }}
           >
             {form}

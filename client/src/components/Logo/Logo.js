@@ -1,11 +1,11 @@
 import React from 'react';
 
 import logoImg from '../../assets/images/logo.svg';
-import classes from './Logo.css';
+import './Logo.scss';
 
-const logo = (props) => (
-  <div className={classes.Logo} style={{height: props.height}}>
-    <img src={logoImg} alt="AJGYM" />
+const logo = props => (
+  <div className='Logo' style={{ height: props.height }}>
+    <img src={logoImg} alt='AJGYM' />
   </div>
 );
 
