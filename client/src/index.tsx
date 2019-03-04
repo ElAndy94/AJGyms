@@ -9,13 +9,15 @@ import thunk from 'redux-thunk';
 // import registerServiceWorker from './registerServiceWorker';
 
 import App from './App';
-import './index.css';
+import './index.scss';
 import authReducer from './store/reducers/auth';
 import classesReducer from './store/reducers/classes';
 
+//@ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-axios.defaults.baseURL = 'http://reactnode-env.cypaiqpzpu.eu-west-2.elasticbeanstalk.com/'
+axios.defaults.baseURL =
+  'http://reactnode-env.cypaiqpzpu.eu-west-2.elasticbeanstalk.com/';
 // axios.defaults.baseURL = 'http://localhost:3000'
 
 const rootReducer = combineReducers({
@@ -23,9 +25,10 @@ const rootReducer = combineReducers({
   classes: classesReducer
 });
 
-const store = createStore(rootReducer, composeEnhancers(
-  applyMiddleware(thunk)
-));
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 const app = (
   <Provider store={store}>
