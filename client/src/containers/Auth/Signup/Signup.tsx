@@ -7,7 +7,11 @@ import Button from '../../../components/UI/Button/Button';
 import './Signup.scss';
 import { updateObject, checkValidity } from '../../../shared/utility';
 
-class Signup extends Component {
+interface Props {
+  error: [];
+}
+
+class Signup extends Component<Props> {
   state = {
     controls: {
       name: {
@@ -194,16 +198,7 @@ class Signup extends Component {
       this.state.controls.name.valid &&
       this.state.controls.address.valid === true
     ) {
-      this.onAuth(
-        this.state.controls.name.value,
-        this.state.controls.email.value,
-        this.state.controls.password.value,
-        this.state.controls.address.value,
-        this.state.controls.membershipType.value,
-        this.state.controls.payment.value,
-        this.state.controls.gymGoal.value,
-        this.state.controls.gymLocation.value
-      );
+      this.onAuth();
     }
     // this.errorMessage = <p>Passwords Need To Match</p>;
   };
@@ -236,14 +231,21 @@ class Signup extends Component {
   handleShowPass = () => {
     let x = document.getElementById('myPass');
     let y = document.getElementById('myPass2');
+
+    //@ts-ignore
     if (x.type === 'password') {
+      //@ts-ignore
       x.type = 'text';
     } else {
+      //@ts-ignore
       x.type = 'password';
     }
+    //@ts-ignore
     if (y.type === 'password') {
+      //@ts-ignore
       y.type = 'text';
     } else {
+      //@ts-ignore
       y.type = 'password';
     }
   };
@@ -277,6 +279,7 @@ class Signup extends Component {
     let errorMessage = null;
 
     if (this.props.error) {
+      //@ts-ignore
       errorMessage = <p>{this.props.error.message}</p>;
     }
 
