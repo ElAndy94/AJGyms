@@ -35,18 +35,18 @@ const app = (props: Props) => {
     routes = (
       <Switch>
         <Route path='/profile' component={Profile} userId={props.userId} />
-        {/* <Route path='/profile' render={props => <Profile {...props} />} /> */}
-        <Route path='/classes' render={props => <GymClasses {...props} />} />
+        <Route path='/classes' component={GymClasses} userId={props.userId} />
         <Route
           path='/myclasses'
-          render={props => <BookedGymClasses {...props} />}
+          component={BookedGymClasses}
+          userId={props.userId}
         />
         <Route
           path='/createGymClass'
-          render={props => <CreateGymClass {...props} />}
+          component={CreateGymClass}
+          userId={props.userId}
         />
         <Route path='/admin' component={Admin} />
-        {/* <Route path='/admin' render={props => <Admin {...props} />} /> */}
         <Route path='/logout' render={() => <Logout />} />
         <Route path='/' exact component={DashBoardBuilder} />
         <Redirect to='/' />
@@ -58,15 +58,16 @@ const app = (props: Props) => {
     routes = (
       <Switch>
         <Route path='/profile' component={Profile} userId={props.userId} />
-        {/* <Route path='/profile' render={props => <Profile {...props} />} /> */}
-        <Route path='/classes' render={props => <GymClasses {...props} />} />
+        <Route path='/classes' component={GymClasses} userId={props.userId} />
         <Route
           path='/myclasses'
-          render={props => <BookedGymClasses {...props} />}
+          component={BookedGymClasses}
+          userId={props.userId}
         />
         <Route
           path='/createGymClass'
-          render={props => <CreateGymClass {...props} />}
+          component={CreateGymClass}
+          userId={props.userId}
         />
         <Route path='/logout' render={() => <Logout />} />
         <Route path='/' exact component={DashBoardBuilder} />
@@ -79,11 +80,11 @@ const app = (props: Props) => {
     routes = (
       <Switch>
         <Route path='/profile' component={Profile} userId={props.userId} />
-        {/* <Route path='/profile' render={props => <Profile {...props} />} /> */}
-        <Route path='/classes' render={props => <GymClasses {...props} />} />
+        <Route path='/classes' component={GymClasses} userId={props.userId} />
         <Route
           path='/myclasses'
-          render={props => <BookedGymClasses {...props} />}
+          component={BookedGymClasses}
+          userId={props.userId}
         />
         <Route path='/logout' render={() => <Logout />} />
         <Route path='/' exact component={DashBoardBuilder} />
