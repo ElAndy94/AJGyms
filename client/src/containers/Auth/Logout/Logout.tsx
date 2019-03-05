@@ -6,8 +6,7 @@ import * as actions from '../../../store/actions/index';
 
 const logout = (props: any) => {
   useEffect(() => {
-    //@ts-ignore
-    this.props.onLogout();
+    props.onLogout();
   }, []);
 
   return <Redirect to='/' />;

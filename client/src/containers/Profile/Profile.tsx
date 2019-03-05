@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 import UserProfile from '../../components/UserProfile/UserProfile';
@@ -49,6 +50,9 @@ class Profile extends Component<Props> {
 
   componentDidMount() {
     console.log(this.props.userId);
+    if (this.props.userId === undefined) {
+      return;
+    }
     axios.get('/api/auth/' + this.props.userId).then(response => {
       this.setState({ user: response.data });
     });
@@ -135,7 +139,7 @@ class Profile extends Component<Props> {
 
     return (
       <React.Fragment>
-        <div className='BackGround'>
+        <div className='Profile__BackGround'>
           <UserProfile
             user={this.state.user}
             edit={this.handleChange}
@@ -158,4 +162,11 @@ class Profile extends Component<Props> {
   }
 }
 
-export default Profile;
+const mapStateToProps = (state: any) => ({
+  userId: state.auth.userId
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Profile);

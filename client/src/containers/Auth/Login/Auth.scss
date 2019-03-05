@@ -1,39 +1,35 @@
-.BackGround {
+.BackGround__Auth {
   text-align: center;
   height: 100vh;
-  /* background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.4), rgba(83, 134, 211, 0.4)), url('../../../assets/images/gym2.jpeg'); */
-  background-size: cover;
-}
+  background-color: rgba(111, 172, 213, 0.4);
+  overflow-x: hidden;
+  overflow-y: auto;
 
-.Auth {
-  position: relative;
-  top: 50px;
-  margin: 20px auto;
-  width: 80%;
-  text-align: center;
-  box-shadow: 0 2px 3px #ccc;
-  background-image: linear-gradient(
-    to right bottom,
-    rgba(111, 172, 213, 0.8),
-    rgba(83, 134, 211, 0.8)
-  );
-  padding: 10px;
-  box-sizing: border-box;
-  box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 23px;
-}
+  & .Auth__form {
+    position: relative;
+    margin: 10rem auto;
+    width: 35%;
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(111, 172, 213, 0.8),
+      rgba(83, 134, 211, 0.8)
+    );
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 23px;
 
-.BT input {
-  font-weight: 700;
-}
-
-.Auth:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    & .Auth__form--style input {
+      font-weight: 700;
+    }
+  }
 }
 
 @media (min-width: 600px) {
-  .Auth {
+  .Auth__form {
     width: 500px;
   }
 }

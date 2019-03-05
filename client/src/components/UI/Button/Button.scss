@@ -3,7 +3,7 @@
   border: none;
   color: white;
   outline: none;
-  border-radius: 100px;
+  border-radius: 10px;
   padding: 5px 10px 5px 10px !important;
   margin: 10px !important;
   font-weight: bold;
@@ -29,6 +29,9 @@
 .Success {
   background-image: linear-gradient(to right, #00cc00, #009900);
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3);
+  color: black !important;
+  font-size: 16px;
+  width: 6rem;
 }
 
 .Success:focus,
@@ -65,9 +68,12 @@
 }
 
 .Edit {
-  background-image: linear-gradient(to right, #ffee00, #b4b102);
-  box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3);
+  background-color: #dcd800 !important;
+  color: black !important;
   font-size: 16px;
+  width: 4rem;
+  box-shadow: 0 1rem 6rem rgba(0, 0, 0, 0.3);
+  // background-image: linear-gradient(to right, #ffee00, #b4b102);
 }
 
 .Edit:focus,

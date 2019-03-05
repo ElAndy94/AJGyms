@@ -24,7 +24,7 @@ interface Props {
 const app = (props: Props) => {
   let routes = (
     <Switch>
-      <Route path='/auth' render={props => <Auth {...props} />} />
+      <Route path='/auth' component={Auth} />
       <Route path='/signup' component={Signup} />
       <Route path='/' exact component={DashBoardBuilder} />
       <Redirect to='/' />
@@ -34,7 +34,7 @@ const app = (props: Props) => {
   if (props.isAuthenticated && props.isAdmin && props.isPt) {
     routes = (
       <Switch>
-        <Route path='/profile' component={Profile} userId={props.userId} />
+        <Route path='/profile' component={Profile} />
         <Route path='/classes' component={GymClasses} userId={props.userId} />
         <Route
           path='/myclasses'
@@ -79,7 +79,7 @@ const app = (props: Props) => {
   if (props.isAuthenticated && !props.isPt) {
     routes = (
       <Switch>
-        <Route path='/profile' component={Profile} userId={props.userId} />
+        <Route path='/profile' component={Profile} />
         <Route path='/classes' component={GymClasses} userId={props.userId} />
         <Route
           path='/myclasses'

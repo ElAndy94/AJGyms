@@ -8,7 +8,12 @@ import './Auth.scss';
 import { updateObject, checkValidity } from '../../../shared/utility';
 import * as actions from '../../../store/actions/index';
 
-class Auth extends Component {
+interface Props {
+  onAuth: (x: string, y: string) => void;
+  error: [];
+}
+
+class Auth extends Component<Props> {
   state = {
     controls: {
       email: {
@@ -17,7 +22,7 @@ class Auth extends Component {
           type: 'email',
           placeholder: 'Email'
         },
-        value: '',
+        value: 'test@test.com',
         validation: {
           required: true,
           isEmail: true
@@ -32,7 +37,7 @@ class Auth extends Component {
           placeholder: 'Password',
           id: 'myPass'
         },
-        value: '',
+        value: 'Test123',
         validation: {
           required: true,
           minLength: 6
@@ -70,9 +75,12 @@ class Auth extends Component {
 
   handleShowPass = () => {
     let x = document.getElementById('myPass');
+    //@ts-ignore
     if (x.type === 'password') {
+      //@ts-ignore
       x.type = 'text';
     } else {
+      //@ts-ignore
       x.type = 'password';
     }
   };
@@ -106,16 +114,17 @@ class Auth extends Component {
     let errorMessage = null;
 
     if (this.props.error) {
+      //@ts-ignore
       errorMessage = <p>{this.props.error.message}</p>;
     }
 
     return (
       <React.Fragment>
-        <div className='BackGround'>
-          <div className='Auth'>
+        <div className='BackGround__Auth'>
+          <div className='Auth__form'>
             {errorMessage}
             <h2>LOGIN</h2>
-            <form className='BT' onSubmit={this.submitHandler}>
+            <form className='Auth__form--style' onSubmit={this.submitHandler}>
               {form}
               <label>
                 {' '}
