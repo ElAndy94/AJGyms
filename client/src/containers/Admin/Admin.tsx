@@ -8,9 +8,24 @@ import { updateObject, checkValidity } from '../../shared/utility';
 import Input from '../../components/UI/Input/Input';
 // import Button from '../../components/UI/Button/Button';
 
-class Admin extends Component {
-  constructor(props) {
+interface Props {
+  userId?: string;
+  isAdmin?: boolean;
+}
+
+interface State {
+  gymForm: any;
+  filteredUsers: [];
+  user: {};
+  users: [];
+  selectedUserId?: string;
+  handleDelete?: () => void;
+}
+
+class Admin extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
+
     this.state = {
       user: {},
       users: [],
@@ -42,7 +57,7 @@ class Admin extends Component {
       .get('/api/auth/')
       .then(response => {
         const users = response.data;
-        const updatedUsers = users.map(user => {
+        const updatedUsers = users.map((user: any) => {
           return {
             ...user
           };
@@ -54,7 +69,7 @@ class Admin extends Component {
       });
   }
 
-  inputChangedHandler = (event, inputIdentifier) => {
+  inputChangedHandler = (event: any, inputIdentifier: string) => {
     const updatedFormElement = updateObject(
       this.state.gymForm[inputIdentifier],
       {
@@ -77,25 +92,26 @@ class Admin extends Component {
     this.setState({ gymForm: updatedGymForm });
   };
 
-  checkEvent(theEvent, inputIdentifier) {
+  checkEvent(theEvent: string, inputIdentifier: string) {
     if (inputIdentifier === 'gymLocation') {
       this.filterUsers(theEvent, 'gymLocation');
     }
   }
 
-  filterUsers(selectedValue, type) {
-    const newFilteredUsers = this.state.filteredUsers.filter(value => {
+  filterUsers(selectedValue: string, type: string) {
+    const newFilteredUsers = this.state.filteredUsers.filter((value: any) => {
       return value[type] === selectedValue;
     });
+    // @ts-ignore
     this.setState({ filteredUsers: newFilteredUsers });
   }
 
-  userSelectedHandler = id => {
+  userSelectedHandler = (id: string) => {
     this.setState({ selectedUserId: id });
   };
 
   render() {
-    const users = this.state.filteredUsers.map(user => {
+    const users = this.state.filteredUsers.map((user: any) => {
       return (
         <User
           key={user._id}
@@ -131,7 +147,9 @@ class Admin extends Component {
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
             invalid={!formElement.config.valid}
-            changed={event => this.inputChangedHandler(event, formElement.id)}
+            changed={(event: any) =>
+              this.inputChangedHandler(event, formElement.id)
+            }
           />
         ))}
       </form>
@@ -146,7 +164,7 @@ class Admin extends Component {
             userId={this.props.userId}
             isAdmin={this.props.isAdmin}
             id={this.state.selectedUserId}
-            onDelete={this.handleDelete}
+            // onDelete={this.handleDelete}
           />
         </div>
       </React.Fragment>

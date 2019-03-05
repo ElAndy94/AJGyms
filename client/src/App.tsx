@@ -14,11 +14,11 @@ import BookedGymClasses from './containers/GymClasses/BookedGymClasses/BookedGym
 import Admin from './containers/Admin/Admin';
 
 interface Props {
-  isAuthenticated: boolean;
-  isAdmin: boolean;
-  isPt: boolean;
-  userId: string;
-  userName: string;
+  isAuthenticated?: boolean;
+  isAdmin?: boolean;
+  isPt?: boolean;
+  userId?: string;
+  userName?: string;
 }
 
 const app = (props: Props) => {

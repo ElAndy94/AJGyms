@@ -4,8 +4,14 @@ import axios from 'axios';
 import './SelectedUser.scss';
 import Button from '../../../components/UI/Button/Button';
 
-class SelectedUser extends Component {
-  state = {
+interface Props {
+  id: string;
+  isAdmin?: boolean;
+  userId?: string;
+}
+
+class SelectedUser extends Component<Props> {
+  state: any = {
     loadedUser: null
   };
 

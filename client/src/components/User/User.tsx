@@ -3,7 +3,8 @@ import React from 'react';
 import './User.scss';
 
 interface Props {
-  clicked: () => void;
+  // clicked: () => void;
+  clicked: any;
   name: string;
   email: string;
   address: string;
@@ -12,6 +13,7 @@ interface Props {
   payment: string;
   gymLocation: string;
   pt: boolean;
+  goal?: string;
 }
 
 const user = (props: Props) => (

@@ -2,7 +2,15 @@ import React from 'react';
 
 import './BookedClasses.scss';
 
-const BookedClasses = props => (
+interface Props {
+  clicked: () => void;
+  classType: string;
+  startTime: string;
+  className: string;
+  location: string;
+}
+
+const BookedClasses = (props: Props) => (
   <article className='Class' onClick={props.clicked}>
     <h2>{props.location}</h2>
     <h1>

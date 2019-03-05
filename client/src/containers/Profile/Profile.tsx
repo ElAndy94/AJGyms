@@ -7,8 +7,12 @@ import Button from '../../components/UI/Button/Button';
 import './Profile.scss';
 import { updateObject, checkValidity } from '../../shared/utility';
 
-class Profile extends Component {
-  state = {
+interface Props {
+  userId: string;
+}
+
+class Profile extends Component<Props> {
+  state: any = {
     user: {},
     controls: {
       email: {
@@ -65,10 +69,11 @@ class Profile extends Component {
 
   submitHandler = event => {
     event.preventDefault();
-    this.onSubmitData(
-      this.state.controls.email.value,
-      this.state.controls.address.value
-    );
+    this
+      .onSubmitData
+      // this.state.controls.email.value,
+      // this.state.controls.address.value
+      ();
   };
 
   handleChange = () => {
