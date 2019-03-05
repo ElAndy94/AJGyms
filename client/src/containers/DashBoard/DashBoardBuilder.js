@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Aux from '../../hoc/ReactAux';
 import Button from '../../components/UI/Button/Button';
 import GymImg from '../../assets/images/thegym.png';
 import './DashBoard.scss';
@@ -29,7 +28,7 @@ class DashBoardBuilder extends Component {
     }
 
     return (
-      <Aux>
+      <React.Fragment>
         <div className='DashBoard'>
           <h2>AJ GYMS</h2>
           <div>
@@ -48,7 +47,7 @@ class DashBoardBuilder extends Component {
             <p />
           )}
         </div>
-      </Aux>
+      </React.Fragment>
     );
   }
 }

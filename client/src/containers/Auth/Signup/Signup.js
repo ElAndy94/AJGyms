@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
-import Aux from '../../../hoc/ReactAux';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import './Signup.scss';
@@ -282,15 +281,14 @@ class Signup extends Component {
     }
 
     return (
-      <Aux>
-        <div className='BackGround'>
-          <div className='Signup'>
+      <React.Fragment>
+        <div className='signup__background'>
+          <div className='signup'>
             {errorMessage}
             <h2>SIGN UP</h2>
-            <form className='BT' onSubmit={this.submitHandler}>
+            <form className='signup__form' onSubmit={this.submitHandler}>
               {form}
               <label>
-                {' '}
                 Show Password: &nbsp;
                 <input
                   name='image'
@@ -303,7 +301,7 @@ class Signup extends Component {
             </form>
           </div>
         </div>
-      </Aux>
+      </React.Fragment>
     );
   }
 }

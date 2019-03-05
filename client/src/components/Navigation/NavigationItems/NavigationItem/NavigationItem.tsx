@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import './NavigationItem.scss';
 
-const navigationItem = props => (
+const navigationItem = (props: any) => (
   <li className='NavigationItem'>
     <NavLink
       to={props.link}

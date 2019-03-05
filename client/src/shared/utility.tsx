@@ -1,13 +1,13 @@
-export const updateObject = (oldObject, updatedProperties) => {
+export const updateObject = (oldObject: {}, updatedProperties: any) => {
   return {
     ...oldObject,
     ...updatedProperties
   };
 };
 
-export const checkValidity = (value, rules) => {
+export const checkValidity = (value: any, rules: any) => {
   let isValid = true;
-  if ( !rules ) {
+  if (!rules) {
     return true;
   }
 
@@ -23,9 +23,9 @@ export const checkValidity = (value, rules) => {
     isValid = value.length <= rules.maxLength && isValid;
   }
 
-  if ( rules.isEmail ) {
+  if (rules.isEmail) {
     const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    isValid = pattern.test( value ) && isValid
+    isValid = pattern.test(value) && isValid;
   }
 
   // if ( rules.isNumeric ) {
@@ -34,4 +34,4 @@ export const checkValidity = (value, rules) => {
   // }
 
   return isValid;
-}
+};

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Aux from '../../hoc/ReactAux';
 import GymTimetable from '../../components/GymTimetable/GymTimetable';
 import './GymClasses.scss';
 import FullGymClass from './FullGymClass/FullGymClass';
@@ -240,7 +239,7 @@ export class GymClasses extends Component {
       </form>
     );
     return (
-      <Aux>
+      <React.Fragment>
         <div className='BackGround'>
           <div className='GymClasses'>
             <h3>Select, book and enjoy!</h3>
@@ -256,7 +255,7 @@ export class GymClasses extends Component {
             />
           </div>
         </div>
-      </Aux>
+      </React.Fragment>
     );
   }
 }

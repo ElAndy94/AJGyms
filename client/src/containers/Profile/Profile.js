@@ -4,7 +4,6 @@ import axios from 'axios';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-import Aux from '../../hoc/ReactAux';
 import './Profile.scss';
 import { updateObject, checkValidity } from '../../shared/utility';
 
@@ -129,7 +128,7 @@ class Profile extends Component {
     ));
 
     return (
-      <Aux>
+      <React.Fragment>
         <div className='BackGround'>
           <UserProfile
             user={this.state.user}
@@ -148,7 +147,7 @@ class Profile extends Component {
             </Button>
           </form>
         </div>
-      </Aux>
+      </React.Fragment>
     );
   }
 }

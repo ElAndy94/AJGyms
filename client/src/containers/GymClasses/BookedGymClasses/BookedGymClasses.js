@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Aux from '../../../hoc/ReactAux';
 import BookedClasses from '../../../components/BookedClasses/BookedClasses';
 import './BookedGymClasses.scss';
 import BookedClass from './BookedClass/BookedClass';
@@ -33,7 +32,7 @@ class BookedGymClasses extends Component {
     });
 
     return (
-      <Aux>
+      <React.Fragment>
         <div className='BackGround'>
           <section className='Classes'>{gymClasses}</section>
           <BookedClass
@@ -41,7 +40,7 @@ class BookedGymClasses extends Component {
             classId={this.state.selectedClassId}
           />
         </div>
-      </Aux>
+      </React.Fragment>
     );
   }
 }

@@ -2,7 +2,19 @@ import React from 'react';
 
 import './User.scss';
 
-const user = props => (
+interface Props {
+  clicked: () => void;
+  name: string;
+  email: string;
+  address: string;
+  contract: string;
+  date: Date;
+  payment: string;
+  gymLocation: string;
+  pt: boolean;
+}
+
+const user = (props: Props) => (
   <article className='User' onClick={props.clicked}>
     <h2>{props.name}</h2>
     <p className='Details'>

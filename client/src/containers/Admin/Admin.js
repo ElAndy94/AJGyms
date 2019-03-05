@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Aux from '../../hoc/ReactAux';
 import './Admin.scss';
 import User from '../../components/User/User';
 import SelectedUser from './SelectedUser/SelectedUser';
@@ -138,7 +137,7 @@ class Admin extends Component {
       </form>
     );
     return (
-      <Aux>
+      <React.Fragment>
         <div className='BackGround'>
           <h1 className='FancyFont'> Users </h1>
           <div className='DropDown'>{form}</div>
@@ -150,7 +149,7 @@ class Admin extends Component {
             onDelete={this.handleDelete}
           />
         </div>
-      </Aux>
+      </React.Fragment>
     );
   }
 }

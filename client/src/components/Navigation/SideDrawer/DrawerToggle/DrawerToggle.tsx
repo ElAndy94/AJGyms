@@ -2,7 +2,11 @@ import React from 'react';
 
 import './DrawerToggle.scss';
 
-const drawerToggle = props => (
+interface Props {
+  clicked: () => void;
+}
+
+const drawerToggle = (props: Props) => (
   <div className='DrawerToggle' onClick={props.clicked}>
     <div />
     <div />

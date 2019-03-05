@@ -2,17 +2,24 @@ import React from 'react';
 
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
-import './SideDrawer.scss';
-import Aux from '../../../hoc/ReactAux';
 import Backdrop from '../../UI/Backdrop/Backdrop';
+import './SideDrawer.scss';
 
-const sideDrawer = props => {
+interface Props {
+  isAuthenticated: boolean;
+  isPt: boolean;
+  isAdmin: boolean;
+  open: any;
+  closed: any;
+}
+
+const sideDrawer = (props: Props) => {
   let attachedClasses = ['SideDrawer', 'Close'];
   if (props.open) {
     attachedClasses = ['SideDrawer', 'Open'];
   }
   return (
-    <Aux>
+    <React.Fragment>
       <Backdrop show={props.open} clicked={props.closed} />
       <div className={attachedClasses.join(' ')} onClick={props.closed}>
         <div className='Logo'>
@@ -26,7 +33,7 @@ const sideDrawer = props => {
           />
         </nav>
       </div>
-    </Aux>
+    </React.Fragment>
   );
 };
 

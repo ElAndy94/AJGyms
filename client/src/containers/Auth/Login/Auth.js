@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Aux from '../../../hoc/ReactAux';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import './Auth.scss';
@@ -111,7 +110,7 @@ class Auth extends Component {
     }
 
     return (
-      <Aux>
+      <React.Fragment>
         <div className='BackGround'>
           <div className='Auth'>
             {errorMessage}
@@ -132,7 +131,7 @@ class Auth extends Component {
             </form>
           </div>
         </div>
-      </Aux>
+      </React.Fragment>
     );
   }
 }
