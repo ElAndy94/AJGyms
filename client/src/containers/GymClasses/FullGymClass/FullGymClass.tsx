@@ -6,7 +6,16 @@ import './FullGymClass.scss';
 import Button from '../../../components/UI/Button/Button';
 import * as actions from '../../../store/actions/index';
 
-class FullGymClass extends Component {
+interface Props {
+  id: string;
+  userId: string;
+  isPt: boolean;
+  isAdmin: boolean;
+  onBookClass: ({}) => void;
+  onDelete: (string) => void;
+}
+
+class FullGymClass extends Component<Props> {
   state = {
     loadedClass: null
   };

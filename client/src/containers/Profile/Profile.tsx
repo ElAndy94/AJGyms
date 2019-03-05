@@ -48,6 +48,7 @@ class Profile extends Component<Props> {
   };
 
   componentDidMount() {
+    console.log(this.props.userId);
     axios.get('/api/auth/' + this.props.userId).then(response => {
       this.setState({ user: response.data });
     });

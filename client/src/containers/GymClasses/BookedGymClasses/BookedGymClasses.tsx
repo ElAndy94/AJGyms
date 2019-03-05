@@ -6,8 +6,14 @@ import './BookedGymClasses.scss';
 import BookedClass from './BookedClass/BookedClass';
 import * as actions from '../../../store/actions/index';
 
-class BookedGymClasses extends Component {
-  state = {};
+interface Props {
+  userId: string;
+  classes: any[];
+  bookedClasses: (string) => void;
+}
+
+class BookedGymClasses extends Component<Props> {
+  state: any = {};
 
   componentWillMount() {
     this.props.bookedClasses(this.props.userId);

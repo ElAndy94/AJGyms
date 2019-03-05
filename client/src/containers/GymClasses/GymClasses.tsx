@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import './CreateGymClass.scss';
-import axios from 'axios';
-import Input from '../../components/UI/Input/Input';
+import GymTimetable from '../../components/GymTimetable/GymTimetable';
+import './GymClasses.scss';
+import FullGymClass from './FullGymClass/FullGymClass';
 import { updateObject, checkValidity } from '../../shared/utility';
-import Button from '../../components/UI/Button/Button';
-import { Redirect } from 'react-router-dom';
+import Input from '../../components/UI/Input/Input';
+import * as actions from '../../store/actions/index';
 
-class CreateGymClass extends Component {
-  state = {
-    createClassForm: {
+interface Props {
+  userId: string;
+  isPt: boolean;
+  isAdmin: boolean;
+  // selectedClassId: string;
+  filteredClasses: any[];
+  gymClasses: any[];
+  onFetchClasses: () => void;
+  onCreateClass: (any) => void;
+  onFilterClasses: (any) => void;
+  onDeleteClass: (any) => void;
+}
+
+export class GymClasses extends Component<Props> {
+  state: any = {
+    gymForm: {
       gymLocation: {
         elementType: 'select',
         elementConfig: {
           options: [
+            { value: 'All Gyms', displayValue: 'All Gyms' },
             { value: 'Market Street', displayValue: 'Market Street' },
             { value: 'Portland Street', displayValue: 'Portland Street' },
             { value: 'Oxford Road', displayValue: 'Oxford Road' }
           ]
         },
-        value: 'Market Street',
+        value: 'All Gyms',
         validation: {},
         valid: true
       },
@@ -27,6 +42,7 @@ class CreateGymClass extends Component {
         elementType: 'select',
         elementConfig: {
           options: [
+            { value: 'All Classes', displayValue: 'All Classes' },
             { value: 'Induction Only', displayValue: 'Induction Only' },
             { value: 'Classes Only', displayValue: 'Classes Only' },
             {
@@ -35,27 +51,15 @@ class CreateGymClass extends Component {
             }
           ]
         },
-        value: 'Classes Only',
+        value: 'All Classes',
         validation: {},
         valid: true
-      },
-      className: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'text',
-          placeholder: 'Class Name (Strength Training)'
-        },
-        value: '',
-        validation: {
-          required: true
-        },
-        valid: false,
-        touched: false
       },
       timeOfDay: {
         elementType: 'select',
         elementConfig: {
           options: [
+            { value: 'All Day', displayValue: 'All Day' },
             {
               value: 'Morning (06:00 - 07:00)',
               displayValue: 'Morning (06:00 - 07:00)'
@@ -122,99 +126,117 @@ class CreateGymClass extends Component {
             }
           ]
         },
-        value: 'Morning (06:00 - 07:00)',
+        value: 'All Day',
         validation: {},
         valid: true
       }
     },
-    formIsValid: false,
-    showConfirmation: false,
-    currentClass: {},
-    classCreated: false
+    formIsValid: false
   };
 
-  createClassHandler = event => {
+  componentWillMount() {
+    this.props.onFetchClasses();
+  }
+
+  classBookHandler = event => {
     event.preventDefault();
     const formData = {};
-    for (let formElementIdentifier in this.state.createClassForm) {
-      formData[formElementIdentifier] = this.state.createClassForm[
+    for (let formElementIdentifier in this.state.gymForm) {
+      formData[formElementIdentifier] = this.state.gymForm[
         formElementIdentifier
       ].value;
     }
-    const newGymClass = {
-      data: formData
-      // userId: this.props.userId
+    const selectedClass = {
+      classData: formData,
+      userId: this.props.userId
     };
-    // Setting the state to store the class data in the state, and toggle the showConfirmation flag.
-    this.setState({ currentClass: newGymClass.data, showConfirmation: true });
-    this.createGymClassHandler(formData);
-  };
-
-  cancelNewClass = () => {
-    this.setState({ showConfirmation: false, formData: {}, className: {} });
+    this.props.onCreateClass(selectedClass);
   };
 
   inputChangedHandler = (event, inputIdentifier) => {
+    // console.log(inputIdentifier);
     const updatedFormElement = updateObject(
-      this.state.createClassForm[inputIdentifier],
+      this.state.gymForm[inputIdentifier],
       {
         value: event.target.value,
         valid: checkValidity(
           event.target.value,
-          this.state.createClassForm[inputIdentifier].validation
+          this.state.gymForm[inputIdentifier].validation
         ),
         touched: true
       }
     );
-    const updatedCreateClassForm = updateObject(this.state.createClassForm, {
+    const updatedGymForm = updateObject(this.state.gymForm, {
       [inputIdentifier]: updatedFormElement
     });
 
     let formIsValid = true;
-    for (let inputIdentifier in updatedCreateClassForm) {
-      formIsValid =
-        updatedCreateClassForm[inputIdentifier].valid && formIsValid;
+    for (let inputIdentifier in updatedGymForm) {
+      formIsValid = updatedGymForm[inputIdentifier].valid && formIsValid;
     }
 
-    this.setState({
-      createClassForm: updatedCreateClassForm,
-      formIsValid: formIsValid
-    });
+    const theEvent = event.target.value;
+
+    this.checkEvent(theEvent, inputIdentifier);
+
+    this.setState({ gymForm: updatedGymForm, formIsValid: formIsValid });
   };
 
-  createGymClassHandler = formData => {
-    const newClass = {
-      location: formData.gymLocation,
-      type: formData.classType,
-      name: formData.className,
-      time: formData.timeOfDay,
-      ptName: this.props.userName
-    };
-    axios
-      .post('/api/classes', newClass)
-      .then(response => {
-        this.setState({ classCreated: true });
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  checkEvent(theEvent, inputIdentifier) {
+    if (inputIdentifier === 'timeOfDay') {
+      this.filterClasses(theEvent, 'time');
+    } else if (inputIdentifier === 'gymLocation') {
+      this.filterClasses(theEvent, 'location');
+    } else if (inputIdentifier === 'classType') {
+      this.filterClasses(theEvent, 'type');
+    }
+  }
+
+  filterClasses(selectedValue, type) {
+    // Filter through the classes and only have ones that apply the search term
+    const newFilteredClasses = this.props.filteredClasses.filter(value => {
+      return value[type] === selectedValue;
+    });
+    this.props.onFilterClasses(newFilteredClasses);
+  }
+
+  classSelectedHandler = id => {
+    this.setState({ selectedClassId: id });
+  };
+
+  handleDelete = id => {
+    const updatedFilteredClasses = this.state.gymClasses.filter(value => {
+      return value._id !== id;
+    });
+    this.setState({ selectedClassId: null });
+    this.props.onDeleteClass(updatedFilteredClasses);
   };
 
   render() {
-    if (this.state.classCreated === true) {
-      return <Redirect to='/classes' />;
-    }
+    // console.table([this.props.filteredClasses]);
+    const gymClasses = this.props.filteredClasses.map(gymClass => {
+      return (
+        <GymTimetable
+          key={gymClass._id}
+          location={gymClass.location}
+          classType={gymClass.type}
+          className={gymClass.name}
+          startTime={gymClass.time}
+          ptName={gymClass.ptName}
+          clicked={() => this.classSelectedHandler(gymClass._id)}
+        />
+      );
+    });
 
     const formElementsArray = [];
-    for (let key in this.state.createClassForm) {
+    for (let key in this.state.gymForm) {
       formElementsArray.push({
         id: key,
-        config: this.state.createClassForm[key]
+        config: this.state.gymForm[key]
       });
     }
     let form = (
-      <form onSubmit={this.createClassHandler}>
+      <form onSubmit={this.classBookHandler}>
         {formElementsArray.map(formElement => (
           <Input
             key={formElement.id}
@@ -227,65 +249,45 @@ class CreateGymClass extends Component {
             changed={event => this.inputChangedHandler(event, formElement.id)}
           />
         ))}
-        <Button
-          btnType='Success'
-          onClick={this.createGymClassHandler}
-          disabled={!this.state.formIsValid}
-        >
-          Add Class
-        </Button>
       </form>
     );
-
-    // Delcaring the confirmation but leaving it null - this is so after the inital page render
-    //  nothing is shown in the screen. If statement is used to return the ClassConfirmation if
-    //  showConfirmation flag is true - An else statement could be used here for a default value.
-    let confirmation;
-    if (this.state.showConfirmation) {
-      confirmation = <ClassConfirmation class={this.state.currentClass} />;
-    }
-
-    /*
-      I've added the confimration below - the styling is applied here, but I think
-      it would be better practice to style inside the ClassConfirmation component.
-      Another thing would be to look into a react equivalent of ng-container to
-      replace the div that holds confirmation - this div only adds to the web of
-      nested divs.
-    */
     return (
-      <div className='BackGround'>
-        <div className='CreateGymClass'>
-          <h3>
-            {this.props.userName}
-            <br /> Make sure all fields are correct before creating a class!
-          </h3>
-          {form}
+      <React.Fragment>
+        <div className='BackGround'>
+          <div className='GymClasses'>
+            <h3>Select, book and enjoy!</h3>
+            {form}
+          </div>
+          <div className='Classes'>{gymClasses}</div>
+          <div className='BackGroundTwo'>
+            <FullGymClass
+              userId={this.props.userId}
+              isPt={this.props.isPt}
+              isAdmin={this.props.isAdmin}
+              id={this.state.selectedClassId}
+              onDelete={this.handleDelete}
+            />
+          </div>
         </div>
-        <div className='CentreDiv'>{confirmation}</div>
-      </div>
+      </React.Fragment>
     );
   }
 }
 
-/*
-  Component to hold the structure of a class confirmation.
-  If the props are for some reason empty - the default value will be returned.
-*/
-function ClassConfirmation(props) {
-  if (!props) {
-    return <p>No class found!</p>;
-  }
+const mapStateToProps = state => ({
+  gymClasses: state.classes.gymClasses,
+  filteredClasses: state.classes.filteredClasses
+});
 
-  return (
-    <div className='BackGround'>
-      <div>
-        <p>{props.class.gymLocation}</p>
-        <p>{props.class.classType}</p>
-        <p>{props.class.className}</p>
-        <p>{props.class.timeOfDay}</p>
-      </div>
-    </div>
-  );
-}
+const mapDispatchToProps = dispatch => ({
+  onFetchClasses: () => dispatch(actions.fetchClasses()),
+  onFilterClasses: newFilteredClasses =>
+    dispatch(actions.filterClasses(newFilteredClasses)),
+  onDeleteClass: updatedFilteredClasses =>
+    dispatch(actions.deleteClass(updatedFilteredClasses))
+});
 
-export default CreateGymClass;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GymClasses);

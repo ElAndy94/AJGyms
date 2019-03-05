@@ -34,7 +34,8 @@ const app = (props: Props) => {
   if (props.isAuthenticated && props.isAdmin && props.isPt) {
     routes = (
       <Switch>
-        <Route path='/profile' render={props => <Profile {...props} />} />
+        <Route path='/profile' component={Profile} userId={props.userId} />
+        {/* <Route path='/profile' render={props => <Profile {...props} />} /> */}
         <Route path='/classes' render={props => <GymClasses {...props} />} />
         <Route
           path='/myclasses'
@@ -44,7 +45,8 @@ const app = (props: Props) => {
           path='/createGymClass'
           render={props => <CreateGymClass {...props} />}
         />
-        <Route path='/admin' render={props => <Admin {...props} />} />
+        <Route path='/admin' component={Admin} />
+        {/* <Route path='/admin' render={props => <Admin {...props} />} /> */}
         <Route path='/logout' render={() => <Logout />} />
         <Route path='/' exact component={DashBoardBuilder} />
         <Redirect to='/' />
@@ -55,7 +57,8 @@ const app = (props: Props) => {
   if (props.isAuthenticated && props.isPt && !props.isAdmin) {
     routes = (
       <Switch>
-        <Route path='/profile' render={props => <Profile {...props} />} />
+        <Route path='/profile' component={Profile} userId={props.userId} />
+        {/* <Route path='/profile' render={props => <Profile {...props} />} /> */}
         <Route path='/classes' render={props => <GymClasses {...props} />} />
         <Route
           path='/myclasses'
@@ -75,7 +78,8 @@ const app = (props: Props) => {
   if (props.isAuthenticated && !props.isPt) {
     routes = (
       <Switch>
-        <Route path='/profile' render={props => <Profile {...props} />} />
+        <Route path='/profile' component={Profile} userId={props.userId} />
+        {/* <Route path='/profile' render={props => <Profile {...props} />} /> */}
         <Route path='/classes' render={props => <GymClasses {...props} />} />
         <Route
           path='/myclasses'

@@ -4,7 +4,12 @@ import axios from 'axios';
 import './BookedClass.scss';
 import Button from '../../../../components/UI/Button/Button';
 
-class BookedClass extends Component {
+interface Props {
+  userId: string;
+  classId: string;
+}
+
+class BookedClass extends Component<Props> {
   state = {
     loadedClass: null
   };
@@ -37,7 +42,7 @@ class BookedClass extends Component {
   };
 
   render() {
-    let gymClass = '';
+    let gymClass: any = '';
     // let gymClass = <p style={{ textAlign: 'center', color: 'white', fontSize: '26px', fontWeight: '400'}}>Please select a Class!</p>;
     if (this.props.classId) {
       gymClass = <p style={{ textAlign: 'center' }}>Loading...!</p>;
