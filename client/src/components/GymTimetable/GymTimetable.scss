@@ -1,4 +1,4 @@
-.Class {
+.Gym__Class {
   background-image: linear-gradient(
     to right bottom,
     rgba(111, 172, 213, 0.8),
@@ -15,15 +15,15 @@
   box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 23px;
+
+  &:hover,
+  &:active {
+    background-color: #c0ddf5;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
 }
 
-.Class:hover,
-.Class:active {
-  background-color: #c0ddf5;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-.Name {
+.Gym__Class__Name {
   margin: 16px 0;
   color: #fff;
 }

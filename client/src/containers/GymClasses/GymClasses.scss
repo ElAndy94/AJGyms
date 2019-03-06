@@ -1,55 +1,58 @@
 .BackGround__GymClasses {
-  height: 100vh;
+  height: 120vh;
   text-align: center;
-  // background-color: #e9e9e9;
   background-color: rgba(111, 172, 213, 0.4);
-}
 
-.BackGroundTwo {
-  position: relative;
-  top: 50px;
-}
+  .GymClasses__form {
+    position: relative;
+    background-image: linear-gradient(
+      to right bottom,
+      rgba(111, 172, 213, 0.8),
+      rgba(83, 134, 211, 0.8)
+    );
+    color: #fff;
+    // background-color: #e9e9e9;
+    margin: 0 auto;
+    width: 40%;
+    text-align: center;
+    padding: 10px;
+    top: 6rem;
+    box-sizing: border-box;
+    box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    border-radius: 23px;
+    line-height: 1;
 
-.GymClasses {
-  position: relative;
-  top: 30px;
-  background-image: linear-gradient(
-    to right bottom,
-    rgba(111, 172, 213, 0.8),
-    rgba(83, 134, 211, 0.8)
-  );
-  color: #fff;
-  margin: 20px auto;
-  width: 80%;
-  text-align: center;
-  box-shadow: 0 2px 3px #ccc;
-  padding: 10px;
-  box-sizing: border-box;
-  box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 23px;
-  line-height: 1;
-}
+    & h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: white;
+    }
+  }
 
-.GymClasses h3 {
-  font-size: 20px;
-  font-weight: 600;
-  color: white;
-}
+  .Gym__Classes {
+    height: 60vh;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    top: 10rem;
+    color: #fff;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    overflow: auto;
+  }
 
-.Classes {
-  position: relative;
-  top: 30px;
-  color: #fff;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  width: 80%;
-  margin: auto;
+  .BackGroundTwo {
+    position: relative;
+    top: 50px;
+  }
 }
 
 @media (min-width: 600px) {
-  .GymClasses {
+  .GymClasses__form {
     width: 500px;
   }
 }

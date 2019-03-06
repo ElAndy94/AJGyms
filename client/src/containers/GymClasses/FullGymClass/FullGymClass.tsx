@@ -66,7 +66,7 @@ class FullGymClass extends Component<Props> {
     }
     if (this.state.loadedClass) {
       gymClass = (
-        <div className='BackGround'>
+        <div className='FullGymClass__BackGround'>
           <div className='FullGymClass'>
             <h1>{this.state.loadedClass.location}</h1>
             <p>{this.state.loadedClass.type}</p>
