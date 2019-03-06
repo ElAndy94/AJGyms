@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import * as actions from './store/actions/index';
 import Layout from './components/Layout/Layout';
 import DashBoardBuilder from './containers/DashBoard/DashBoardBuilder';
 import GymClasses from './containers/GymClasses/GymClasses';
@@ -19,9 +20,14 @@ interface Props {
   isPt?: boolean;
   userId?: string;
   userName?: string;
+  onTryAutoSingup: () => void;
 }
 
 const app = (props: Props) => {
+  useEffect(() => {
+    props.onTryAutoSingup();
+  }, []);
+
   let routes = (
     <Switch>
       <Route path='/auth' component={Auth} />
@@ -112,10 +118,16 @@ const mapStateToProps = (state: any) => ({
   isPt: state.auth.isPt
 });
 
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSingup: () => dispatch(actions.authCheckState())
+  };
+};
+
 export default withRouter(
   // @ts-ignore: connect error
   connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
   )(app)
 );

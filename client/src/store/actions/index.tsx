@@ -1,12 +1,9 @@
-export {
-    auth,
-    logout,
-} from './auth';
+export { auth, authCheckState, logout } from './auth';
 
 export {
-    fetchClasses,
-    filterClasses,
-    bookClass,
-    deleteClass,
-    bookedClasses
+  fetchClasses,
+  filterClasses,
+  bookClass,
+  deleteClass,
+  bookedClasses
 } from './classes';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import './Admin.scss';
-import User from '../../components/User/User';
+// import User from '../../components/User/User';
 import SelectedUser from './SelectedUser/SelectedUser';
 import { updateObject, checkValidity } from '../../shared/utility';
 import Input from '../../components/UI/Input/Input';
@@ -113,19 +113,20 @@ class Admin extends Component<Props, State> {
   render() {
     const users = this.state.filteredUsers.map((user: any) => {
       return (
-        <User
-          key={user._id}
-          name={user.name}
-          email={user.email}
-          address={user.address}
-          contract={user.contract}
-          date={user.date}
-          payment={user.payment}
-          goal={user.goal}
-          gymLocation={user.gymLocation}
-          pt={user.pt}
-          clicked={() => this.userSelectedHandler(user._id)}
-        />
+        <p>Needs fixing</p>
+        // <User
+        //   key={user._id}
+        //   name={user.name}
+        //   email={user.email}
+        //   address={user.address}
+        //   contract={user.contract}
+        //   date={user.date}
+        //   payment={user.payment}
+        //   goal={user.goal}
+        //   gymLocation={user.gymLocation}
+        //   pt={user.pt}
+        //   clicked={() => this.userSelectedHandler(user._id)}
+        // />
       );
     });
 

@@ -259,7 +259,7 @@ export class GymClasses extends Component<Props> {
             {form}
           </div>
           <div className='Gym__Classes'>{gymClasses}</div>
-          <div className='BackGroundTwo'>
+          <div className='Extention__SelectedGymClass'>
             <FullGymClass
               userId={this.props.userId}
               isPt={this.props.isPt}

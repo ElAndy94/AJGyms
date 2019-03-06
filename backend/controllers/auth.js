@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const logger = require('../utility/logger');
 const change = require('../utility/change');
 // const nodemailer = require('nodemailer');
@@ -15,8 +16,7 @@ const GymClass = require('../models/classes');
 // }));
 
 exports.createUser = (req, res) => {
-  bcrypt.hash(req.body.password, 10)
-  .then(hash => {
+  bcrypt.hash(req.body.password, 10).then(hash => {
     let emailLowerCase = req.body.email.toLowerCase();
     let userName = req.body.name;
     const user = new User({
@@ -28,16 +28,21 @@ exports.createUser = (req, res) => {
       date: req.body.date,
       payment: req.body.payment,
       goal: req.body.goal,
-      gymLocation: req.body.gymLocation
+      gymLocation: req.body.gymLocation,
+      pt: false,
+      admin: false
     });
-    user.save()
+    user
+      .save()
       .then(createdUser => {
-        change.change(`User ${userName} has created an account using this email: ${emailLowerCase}.`);
+        change.change(
+          `User ${userName} has created an account using this email: ${emailLowerCase}.`
+        );
         res.status(201).json({
-          message: "User added Successfully",
+          message: 'User added Successfully',
           gymClass: {
             ...createdUser,
-            id: createdUser._id,
+            id: createdUser._id
           }
         });
         // return transporter.sendMail({
@@ -49,11 +54,11 @@ exports.createUser = (req, res) => {
       })
       .catch(() => {
         res.status(500).json({
-          message: "Creating User Failed!"
+          message: 'Creating User Failed!'
         });
       });
   });
-}
+};
 
 exports.login = (req, res) => {
   let emailLowerCase = req.body.email.toLowerCase();
@@ -76,11 +81,25 @@ exports.login = (req, res) => {
       bcrypt.compare(password, hash, (err, passwordMatches) => {
         if (passwordMatches) {
           logger.info(`User ${user.name} logged in`);
+          const token = jwt.sign(
+            {
+              _id: user._id,
+              name: user.name,
+              pt: user.pt,
+              admin: user.admin
+            },
+            'somesupersecretkey',
+            {
+              expiresIn: '1h'
+            }
+          );
           res.status(200).json({
             _id: user._id,
             name: user.name,
             pt: user.pt,
             admin: user.admin,
+            token: token,
+            tokenExpiration: 3600,
             message: 'User Found!'
           });
         } else {
@@ -91,14 +110,13 @@ exports.login = (req, res) => {
         }
       });
     }
-  })
-  .catch( (err) => {
+  }).catch(err => {
     logger.log(err);
     res.status(500).json({
       message: 'Server Error'
     });
   });
-}
+};
 
 exports.getUser = (req, res) => {
   User.findById(req.params.id)
@@ -116,23 +134,23 @@ exports.getUser = (req, res) => {
     })
     .catch(() => {
       res.status(500).json({
-        message: "Fetching User Failed"
+        message: 'Fetching User Failed'
       });
     });
-}
+};
 
 exports.getUsers = (req, res) => {
   User.find({}, (err, users) => {
     if (err) {
       logger.error(`Users could not be fetched.`);
       return res.status(500).json({
-        message: "Users not found!"
+        message: 'Users not found!'
       });
     }
     logger.info(`Users has been requested.`);
     return res.json(users);
   });
-}
+};
 
 exports.bookedClasses = (req, res) => {
   const userId = req.params.id;
@@ -142,62 +160,72 @@ exports.bookedClasses = (req, res) => {
     if (err) {
       logger.error(`Classes could not be fetched.`);
       return res.status(500).json({
-        message: "Classes not found!"
+        message: 'Classes not found!'
       });
     }
-    classes.map( (gymClass) => {
-      const attendees = gymClass.classMembers;
+    classes.map(
+      gymClass => {
+        const attendees = gymClass.classMembers;
 
-      attendees.forEach((attendee) =>{
-        if (attendee.userId.equals(userId)) {
-          userClasses.push(gymClass._id);
+        attendees.forEach(attendee => {
+          if (attendee.userId.equals(userId)) {
+            userClasses.push(gymClass._id);
+          }
+        });
+      },
+      err => {
+        if (err) {
+          res.status(401).json({
+            message: 'Error Occured!'
+          });
         }
-      });
-    }, (err) => {
-      if(err) {
-        res.status(401).json({
-          message: "Error Occured!"
-        })
       }
-    })
-    classes.map( (gymClass) => {
-      if (userClasses.includes(gymClass._id)) {
-        filteredClasses.push(gymClass);
+    );
+    classes.map(
+      gymClass => {
+        if (userClasses.includes(gymClass._id)) {
+          filteredClasses.push(gymClass);
+        }
+      },
+      err => {
+        if (err) {
+          res.status(401).json({
+            message: 'Error Occured!'
+          });
+        }
       }
-    }, (err) => {
-      if(err) {
-        res.status(401).json({
-          message: "Error Occured!"
-        })
-      }
-    })
+    );
     res.status(200).json(filteredClasses);
   });
-}
+};
 
 exports.updateInfo = (req, res) => {
   let userId = req.body.userId;
   let emailLowerCase = req.body.userEmail.toLowerCase();
-  User.findByIdAndUpdate({
-    _id: req.body.userId
-  }, {
-    $set: {
-      email: emailLowerCase,
-      address: req.body.userAddress
+  User.findByIdAndUpdate(
+    {
+      _id: req.body.userId
+    },
+    {
+      $set: {
+        email: emailLowerCase,
+        address: req.body.userAddress
+      }
+    },
+    {
+      upsert: false
+    },
+    err => {
+      if (err) {
+        res.status(400).json({
+          message: 'Error Occured'
+        });
+      } else {
+        change.change(`User ${userId} has updated their email and address.`);
+        res.status(200).json({
+          message: 'Details Successfully Updated!'
+        });
+      }
     }
-  }, {
-    upsert: false
-  },
-  (err) => {
-    if (err) {
-      res.status(400).json({
-        message: "Error Occured"
-      })
-    } else {
-      change.change(`User ${userId} has updated their email and address.`);
-      res.status(200).json({
-        message: "Details Successfully Updated!"
-      })
-    }
-  });
-}
+  );
+};
