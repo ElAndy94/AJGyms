@@ -1,18 +1,13 @@
 .signup__background {
   text-align: center;
   height: 100vh;
-  background-image: linear-gradient(
-      to right bottom,
-      rgba(111, 172, 213, 0.4),
-      rgba(83, 134, 211, 0.4)
-    ),
-    url('../../../assets/images/gym2.jpeg');
-  background-size: cover;
+  background-color: rgba(111, 172, 213, 0.4);
+  overflow-x: hidden;
+  overflow-y: auto;
 
   & .signup {
     position: relative;
-    top: 50px;
-    margin: 20px auto;
+    margin: 10rem auto;
     width: 40%;
     text-align: center;
     background-image: linear-gradient(
@@ -24,12 +19,7 @@
     box-sizing: border-box;
     transition: 0.3s;
     border-radius: 5px;
-    // box-shadow: 0 2px 3px #ccc;
-    // box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 15);
-
-    &:hover {
-      box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 10);
-    }
+    box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 2);
 
     & .signup__form input {
       font-weight: 700;

@@ -253,7 +253,7 @@ export class GymClasses extends Component<Props> {
     );
     return (
       <React.Fragment>
-        <div className='BackGround'>
+        <div className='BackGround__GymClasses'>
           <div className='GymClasses'>
             <h3>Select, book and enjoy!</h3>
             {form}

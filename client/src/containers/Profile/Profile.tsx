@@ -49,7 +49,6 @@ class Profile extends Component<Props> {
   };
 
   componentDidMount() {
-    console.log(this.props.userId);
     if (this.props.userId === undefined) {
       return;
     }
@@ -147,7 +146,7 @@ class Profile extends Component<Props> {
           />
           <form
             onSubmit={this.submitHandler}
-            className='ProfileForm'
+            className='Profile__Form'
             style={{ display: this.state.showForm ? 'block' : 'none' }}
           >
             {form}

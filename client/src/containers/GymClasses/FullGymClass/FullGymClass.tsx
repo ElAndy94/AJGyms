@@ -57,7 +57,7 @@ class FullGymClass extends Component<Props> {
 
   render() {
     let gymClass = (
-      <p style={{ textAlign: 'center', color: 'white', fontSize: '20px' }}>
+      <p style={{ textAlign: 'center', color: 'black', fontSize: '20px' }}>
         Please select a Class!
       </p>
     );
