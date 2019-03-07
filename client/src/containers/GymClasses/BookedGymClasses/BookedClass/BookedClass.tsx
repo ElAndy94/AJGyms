@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import './BookedClass.scss';
@@ -9,64 +9,57 @@ interface Props {
   classId: string;
 }
 
-class BookedClass extends Component<Props> {
-  state = {
-    loadedClass: null
-  };
+const bookedClass = (props: Props) => {
+  const [loadedClass, setLoadedClass] = useState();
 
-  componentDidUpdate() {
-    if (this.props.classId) {
-      if (
-        !this.state.loadedClass ||
-        (this.state.loadedClass &&
-          this.state.loadedClass._id !== this.props.classId)
-      ) {
-        axios.get('/api/classes/' + this.props.classId).then(response => {
-          this.setState({ loadedClass: response.data });
+  useEffect(() => {
+    settingClass();
+  });
+
+  const settingClass = () => {
+    if (props.classId) {
+      if (!loadedClass || (loadedClass && loadedClass._id !== props.classId)) {
+        axios.get('/api/classes/' + props.classId).then(response => {
+          setLoadedClass(response.data);
         });
       }
     }
-  }
+  };
 
-  deleteClassHandler = () => {
+  const deleteClassHandler = () => {
     axios
-      .delete(
-        '/api/classes/' + this.props.classId + '/user/' + this.props.userId
-      )
+      .delete('/api/classes/' + props.classId + '/user/' + props.userId)
       .then(response => {
-        console.log(response);
+        console.log('classID ', props.classId, 'userId ', props.userId);
       })
       .catch(error => {
         console.log(error);
       });
   };
 
-  render() {
-    let gymClass: any = '';
-    // let gymClass = <p style={{ textAlign: 'center', color: 'white', fontSize: '26px', fontWeight: '400'}}>Please select a Class!</p>;
-    if (this.props.classId) {
-      gymClass = <p style={{ textAlign: 'center' }}>Loading...!</p>;
-    }
-    if (this.state.loadedClass) {
-      gymClass = (
-        <div className='BookedClass'>
-          <h1>{this.state.loadedClass.location}</h1>
-          <p>{this.state.loadedClass.type}</p>
-          <p>{this.state.loadedClass.name}</p>
-          <p>{this.state.loadedClass.time}</p>
-          <Button
-            clicked={() => {
-              this.deleteClassHandler();
-            }}
-            btnType='Danger'
-          >
-            Delete
-          </Button>
-        </div>
-      );
-    }
-    return gymClass;
+  let gymClass: any = '';
+  if (props.classId) {
+    gymClass = <p style={{ textAlign: 'center' }}>Loading...!</p>;
   }
-}
+  if (loadedClass) {
+    gymClass = (
+      <div className='BookedClass'>
+        <h1>{loadedClass.location}</h1>
+        <p>{loadedClass.type}</p>
+        <p>{loadedClass.name}</p>
+        <p>{loadedClass.time}</p>
+        <Button
+          clicked={() => {
+            deleteClassHandler();
+          }}
+          btnType='Danger'
+        >
+          Delete
+        </Button>
+      </div>
+    );
+  }
+  return gymClass;
+};
 
-export default BookedClass;
+export default bookedClass;

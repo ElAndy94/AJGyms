@@ -5,11 +5,16 @@ h1 {
   color: white;
 }
 
-.Card__Headers {
+.card__headers {
   margin: 2rem;
   margin-top: 3.5rem;
   font-weight: 400;
-  font-size: 26px;
-  // color: white;
-  // text-decoration: underline;
+  font-size: 28px;
+
+  &--space {
+    margin: 2rem;
+    font-weight: 400;
+    font-size: 28px;
+    margin-top: 5.5rem;
+  }
 }

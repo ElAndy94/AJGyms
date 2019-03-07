@@ -69,8 +69,6 @@ class Auth extends Component<Props> {
       this.state.controls.email.value,
       this.state.controls.password.value
     );
-    // this.props.onAuthComplete();
-    // this.onAuth(this.state.controls.email.value, this.state.controls.password.value);
   };
 
   handleShowPass = () => {

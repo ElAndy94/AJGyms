@@ -1,3 +1,5 @@
+//@ts-check
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const logger = require('../utility/logger');
@@ -35,6 +37,7 @@ exports.createUser = (req, res) => {
     user
       .save()
       .then(createdUser => {
+        //@ts-ignore
         change.change(
           `User ${userName} has created an account using this email: ${emailLowerCase}.`
         );
@@ -221,6 +224,7 @@ exports.updateInfo = (req, res) => {
           message: 'Error Occured'
         });
       } else {
+        //@ts-ignore
         change.change(`User ${userId} has updated their email and address.`);
         res.status(200).json({
           message: 'Details Successfully Updated!'
