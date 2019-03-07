@@ -54,16 +54,14 @@ class BookedClass extends Component<Props> {
           <p>{this.state.loadedClass.type}</p>
           <p>{this.state.loadedClass.name}</p>
           <p>{this.state.loadedClass.time}</p>
-          <div className='Edit'>
-            <Button
-              clicked={() => {
-                this.deleteClassHandler();
-              }}
-              btnType='Danger'
-            >
-              Delete
-            </Button>
-          </div>
+          <Button
+            clicked={() => {
+              this.deleteClassHandler();
+            }}
+            btnType='Danger'
+          >
+            Delete
+          </Button>
         </div>
       );
     }

@@ -7,7 +7,6 @@
     margin: 6rem auto;
     color: #fff;
     border: 1px solid #eee;
-    // box-shadow: 0 2px 3px #ccc;
     text-align: center;
     position: relative;
     box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.2);
@@ -21,29 +20,6 @@
   }
 }
 
-// .Edit label {
-//   display: block;
-//   color: grey;
-// }
-
-// .Button {
-//   border: none;
-//   background-color: transparent;
-//   cursor: pointer;
-//   outline: none;
-//   color: #fa923f;
-// }
-
-// .Button:hover,
-// .Button:active {
-//   color: #521751;
-// }
-
-// .Button .Delete {
-//   color: red;
-// }
-
-// .Button button.Delete:hover,
-// .Button button.Delete:active {
-//   color: darkred;
-// }
+.button__choice {
+  margin: 0 auto;
+}

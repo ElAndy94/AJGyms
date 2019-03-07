@@ -261,8 +261,8 @@ export class GymClasses extends Component<Props> {
           <div className='Gym__Classes'>{gymClasses}</div>
           <div className='Extention__SelectedGymClass'>
             <FullGymClass
-              isPt={this.props.isPt}
-              isAdmin={this.props.isAdmin}
+              // isPt={this.props.isPt}
+              // isAdmin={this.props.isAdmin}
               id={this.state.selectedClassId}
               onDelete={this.handleDelete}
             />

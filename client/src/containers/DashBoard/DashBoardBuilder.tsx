@@ -22,9 +22,9 @@ const dashBoardBuilder = (props: Props) => {
 
   return (
     <React.Fragment>
-      <div className='DashBoard'>
+      <div className='dashBoard__background'>
         <h2>AJ GYMS</h2>
-        <div className='DashBoard__img' />
+        <div className='dashboard__img' />
         <p>
           Stop waiting... <br /> make a difference now!
         </p>

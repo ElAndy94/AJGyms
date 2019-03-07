@@ -5,6 +5,7 @@ import './Button.scss';
 const button = (props: any) => (
   <button
     disabled={props.disabled}
+    // className='Button'
     className={['Button', [props.btnType]].join(' ')}
     onClick={props.clicked}
   >

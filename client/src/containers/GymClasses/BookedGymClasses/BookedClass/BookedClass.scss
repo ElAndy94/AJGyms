@@ -16,29 +16,8 @@
   color: white;
 }
 
-// .Edit label {
-//   display: block;
-//   color: grey;
-// }
-
-// .Button {
-//   border: none;
-//   background-color: transparent;
-//   cursor: pointer;
-//   outline: none;
-//   color: #fa923f;
-// }
-
-// .Button:hover,
-// .Button:active {
-//   color: #521751;
-// }
-
-// .Button .Delete {
-//   color: red;
-// }
-
-// .Button button.Delete:hover,
-// .Button button.Delete:active {
-//   color: darkred;
-// }
+.Delete__Button {
+  background-color: rgb(173, 21, 21) !important;
+  padding: 0.5rem;
+  padding-left: 0.5rem !important;
+}

@@ -1,4 +1,4 @@
-.DashBoard {
+.dashBoard__background {
   display: flex;
   overflow: hidden;
   width: 100%;
@@ -15,7 +15,6 @@
     url('../../assets/images/gym.jpeg');
   background-size: cover;
   text-align: center;
-  align-content: center;
   align-items: center;
   flex-direction: column;
 
@@ -50,7 +49,7 @@
     font-weight: 500;
   }
 
-  .DashBoard__img {
+  .dashboard__img {
     width: 15%;
     height: 30%;
     content: url('../../assets/images/thegym.png');

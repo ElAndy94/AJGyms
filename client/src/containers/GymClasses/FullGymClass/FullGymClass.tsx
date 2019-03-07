@@ -74,7 +74,7 @@ class FullGymClass extends Component<Props> {
             <p>{this.state.loadedClass.name}</p>
             <p>{this.state.loadedClass.time}</p>
             <p>{this.state.loadedClass.ptName}</p>
-            <div className='Edit'>
+            <div className='button__choice'>
               {this.props.isPt || this.props.isAdmin ? (
                 <Button btnType='Danger' clicked={this.deleteClassHandler}>
                   Delete
@@ -94,7 +94,9 @@ class FullGymClass extends Component<Props> {
 }
 
 const mapStateToProps = state => ({
-  userId: state.auth.userId
+  userId: state.auth.userId,
+  isPt: state.auth.isPt,
+  isAdmin: state.auth.isAdmin
 });
 
 const mapDispatchToProps = dispatch => ({
