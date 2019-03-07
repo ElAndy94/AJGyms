@@ -41,7 +41,8 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Andrew Peliza** - *Initial work* - [AndrewPeliza](https://github.com/ElAndy94)
+* **Josh Hazlewood** - *Refactoring master & lookout* - [JoshHazlewood](https://github.com/joshhazlewood)
 
 
 ## License
