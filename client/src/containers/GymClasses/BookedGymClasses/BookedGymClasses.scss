@@ -9,20 +9,18 @@
   position: relative;
   color: #fff;
   margin: 0 auto;
-  // height: 80vh;
   width: 80%;
   text-align: center;
   padding: 10px;
   top: 6rem;
-  // box-sizing: border-box;
-  box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 23px;
   line-height: 1;
   display: flex;
   flex-flow: row;
-  // flex-flow: row wrap;
   justify-content: center;
+  // flex-flow: row wrap;
+  // box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.2);
 }
 
 // .BookedGymClasses {
