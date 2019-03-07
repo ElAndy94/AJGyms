@@ -56,14 +56,15 @@ class FullGymClass extends Component<Props> {
   };
 
   render() {
-    let gymClass = (
-      <p style={{ textAlign: 'center', color: 'black', fontSize: '20px' }}>
-        Please select a Class!
-      </p>
-    );
-    if (this.props.id) {
-      gymClass = <p style={{ textAlign: 'center' }}>Loading...!</p>;
-    }
+    // let gymClass = (
+    //   <p style={{ textAlign: 'center', color: 'black', fontSize: '20px' }}>
+    //     Please select a Class!
+    //   </p>
+    // );
+    // if (this.props.id) {
+    //   gymClass = <p style={{ textAlign: 'center' }}>Loading...!</p>;
+    // }
+    let gymClass = <p />;
     if (this.state.loadedClass) {
       gymClass = (
         <div className='FullGymClass__BackGround'>
@@ -72,6 +73,7 @@ class FullGymClass extends Component<Props> {
             <p>{this.state.loadedClass.type}</p>
             <p>{this.state.loadedClass.name}</p>
             <p>{this.state.loadedClass.time}</p>
+            <p>{this.state.loadedClass.ptName}</p>
             <div className='Edit'>
               {this.props.isPt || this.props.isAdmin ? (
                 <Button btnType='Danger' clicked={this.deleteClassHandler}>
@@ -91,9 +93,9 @@ class FullGymClass extends Component<Props> {
   }
 }
 
-// const mapStateToProps = state => ({
-
-// });
+const mapStateToProps = state => ({
+  userId: state.auth.userId
+});
 
 const mapDispatchToProps = dispatch => ({
   onBookClass: bookingData => dispatch(actions.bookClass(bookingData))
@@ -101,6 +103,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(FullGymClass);

@@ -60,11 +60,12 @@ export const classBookedSuccess = () => ({
   type: actionTypes.CLASS_BOOKED
 });
 
-export const bookClass = (bookingData: []) => {
+export const bookClass = (bookingData: {}) => {
   return (dispatch: any) => {
     axios
       .post('/api/classes/bookclass', bookingData)
       .then(response => {
+        console.log(response);
         dispatch(classBookedSuccess());
       })
       .catch(error => {

@@ -255,13 +255,12 @@ export class GymClasses extends Component<Props> {
       <React.Fragment>
         <div className='BackGround__GymClasses'>
           <div className='GymClasses__form'>
-            <h3>Select, book and enjoy!</h3>
+            <h1>Select, book and enjoy!</h1>
             {form}
           </div>
           <div className='Gym__Classes'>{gymClasses}</div>
           <div className='Extention__SelectedGymClass'>
             <FullGymClass
-              userId={this.props.userId}
               isPt={this.props.isPt}
               isAdmin={this.props.isAdmin}
               id={this.state.selectedClassId}

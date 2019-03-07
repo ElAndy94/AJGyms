@@ -12,10 +12,10 @@ interface Props {
 
 const BookedClasses = (props: Props) => (
   <article className='Class' onClick={props.clicked}>
-    <h2>{props.location}</h2>
-    <h1>
+    <h1>{props.location}</h1>
+    <h2>
       {props.classType} <br /> {props.startTime}
-    </h1>
+    </h2>
     <p className='Name'>{props.className}</p>
   </article>
 );

@@ -39,8 +39,10 @@ class BookedGymClasses extends Component<Props> {
 
     return (
       <React.Fragment>
-        <div className='BackGround'>
-          <section className='Classes'>{gymClasses}</section>
+        <div className='Booked__BackGround'>
+          <section className='Booked__BackGround__Classes'>
+            {gymClasses}
+          </section>
           <BookedClass
             userId={this.props.userId}
             classId={this.state.selectedClassId}
@@ -52,7 +54,8 @@ class BookedGymClasses extends Component<Props> {
 }
 
 const mapStateToProps = state => ({
-  classes: state.classes.classes
+  classes: state.classes.classes,
+  userId: state.auth.userId
 });
 
 const mapDispatchToProps = dispatch => ({
