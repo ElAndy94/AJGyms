@@ -31,17 +31,23 @@ Run Npm start or yarn start on the backend and on the client.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+This project is not intended for your own deployment but it is currently deployed at: http://react-gym.s3-website.eu-west-2.amazonaws.com/
 
 ## Built With
 
 * [React](https://reactjs.org/) - The web framework used
 * [Yarn](https://yarnpkg.com/en/) - Dependency Management
-* TypeScript, Sass, Node, Express, Mongoose and many more.
+* [TypeScript](https://www.typescriptlang.org/) - Type Checking
+* [SASS](https://https://sass-lang.com/) - Styling
+* [Node](https://nodejs.org/en/) - Server
+* [MongoDB](https://www.mongodb.com/) - Database
+* [Mongoose](https://mongoosejs.com/) - Mongodb object modeling
+* [Express](https://expressjs.com/) - Web framework for Node.js
+* and many more.
 
 ## Authors
 
-* **Andrew Peliza** - *Initial work* - [AndrewPeliza](https://github.com/ElAndy94)
+* **Andrew Peliza** - *Main Developer* - [AndrewPeliza](https://github.com/ElAndy94)
 * **Josh Hazlewood** - *Refactoring master & lookout* - [JoshHazlewood](https://github.com/joshhazlewood)
 
 
