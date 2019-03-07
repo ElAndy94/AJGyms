@@ -44,8 +44,7 @@ class Profile extends Component<Props> {
         touched: false
       }
     },
-    showProfile: true,
-    showForm: false
+    showProfile: true
   };
 
   componentDidMount() {
@@ -73,15 +72,11 @@ class Profile extends Component<Props> {
 
   submitHandler = event => {
     event.preventDefault();
-    this
-      .onSubmitData
-      // this.state.controls.email.value,
-      // this.state.controls.address.value
-      ();
+    this.onSubmitData();
   };
 
   handleChange = () => {
-    this.setState({ showForm: true, showProfile: false });
+    this.setState({ showProfile: false });
 
     let inputEmail = this.state.user.email;
     let statusCopy = Object.assign({}, this.state.controls);
@@ -103,8 +98,8 @@ class Profile extends Component<Props> {
     axios
       .post('/api/auth/infoUpdate', userUpdate)
       .then(response => {
-        this.setState({ showForm: false, showProfile: true });
-        console.log(response);
+        this.setState({ showProfile: true });
+        this.refresh();
       })
       .catch(error => {
         console.log(error);
@@ -112,7 +107,13 @@ class Profile extends Component<Props> {
   };
 
   cancelEdit = () => {
-    this.setState({ showForm: false, showProfile: true });
+    this.setState({ showProfile: true });
+  };
+
+  refresh = () => {
+    axios.get('/api/auth/' + this.props.userId).then(response => {
+      this.setState({ user: response.data });
+    });
   };
 
   render() {
@@ -139,22 +140,20 @@ class Profile extends Component<Props> {
     return (
       <React.Fragment>
         <div className='Profile__BackGround'>
-          <UserProfile
-            user={this.state.user}
-            edit={this.handleChange}
-            style={{ display: this.state.showProfile ? 'block' : 'none' }}
-          />
-          <form
-            onSubmit={this.submitHandler}
-            className='Profile__Form'
-            style={{ display: this.state.showForm ? 'block' : 'none' }}
-          >
-            {form}
-            <Button btnType='Success'>SUBMIT</Button>
-            <Button btnType='Danger' clicked={this.cancelEdit}>
-              CANCEL
-            </Button>
-          </form>
+          {this.state.showProfile ? (
+            <UserProfile
+              user={this.state.user}
+              handleChange={this.handleChange}
+            />
+          ) : (
+            <form onSubmit={this.submitHandler} className='Profile__Form'>
+              {form}
+              <Button btnType='Success'>SUBMIT</Button>
+              <Button btnType='Danger' clicked={this.cancelEdit}>
+                CANCEL
+              </Button>
+            </form>
+          )}
         </div>
       </React.Fragment>
     );

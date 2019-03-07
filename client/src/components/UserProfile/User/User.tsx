@@ -4,16 +4,6 @@ import Button from '../../UI/Button/Button';
 import './User.scss';
 
 interface Props {
-  // name: string;
-  // email: string;
-  // address: string;
-  // contract: string;
-  // date: Date;
-  // payment: string;
-  // gymLocation: string;
-  // pt: boolean;
-  // goal?: string;
-
   user: any[string];
   edit: () => void;
 }
@@ -25,7 +15,7 @@ const user = (props: Props) => (
     Manchester {props.user.gymLocation} <br /> {props.user.payment} <br />{' '}
     {props.user.contract}
     <div className='Card__Headers'>
-      Your Details
+      Your Details &nbsp; &nbsp;
       <Button btnType='Edit' clicked={props.edit}>
         Edit
       </Button>

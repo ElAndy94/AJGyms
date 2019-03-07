@@ -2,6 +2,7 @@
   height: 100vh;
   text-align: center;
   background-color: rgba(111, 172, 213, 0.4);
+  overflow: auto;
 
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -37,4 +38,8 @@
   .Profile__Form {
     width: 90%;
   }
+}
+
+.display__none {
+  display: none;
 }
