@@ -232,7 +232,7 @@ class CreateGymClass extends Component<Props> {
           />
         ))}
         <Button
-          btnType='Success'
+          btnType='success'
           onClick={this.createGymClassHandler}
           disabled={!this.state.formIsValid}
         >
@@ -257,15 +257,15 @@ class CreateGymClass extends Component<Props> {
       nested divs.
     */
     return (
-      <div className='BackGround'>
-        <div className='CreateGymClass'>
+      <div className='create__gym__class__background'>
+        <div className='create__gym__class'>
           <h3>
             {this.props.userName}
             <br /> Make sure all fields are correct before creating a class!
           </h3>
           {form}
         </div>
-        <div className='CentreDiv'>{confirmation}</div>
+        <div className='centre__div'>{confirmation}</div>
       </div>
     );
   }
@@ -281,7 +281,7 @@ function ClassConfirmation(props) {
   }
 
   return (
-    <div className='BackGround'>
+    <div className='create__gym__class__background'>
       <div>
         <p>{props.class.gymLocation}</p>
         <p>{props.class.classType}</p>

@@ -1,10 +1,11 @@
 const { createLogger, format, transports } = require('winston');
+// import * as logger from 'winston';
 
 const customLevels = {
   levels: {
-      accessed: 0
+    accessed: 0
   }
-}
+};
 
 module.exports = createLogger({
   format: format.combine(
@@ -19,6 +20,6 @@ module.exports = createLogger({
       maxFiles: 5,
       filename: `${__dirname}/../logs/log-access.log`,
       level: 'accessed'
-    }),
+    })
   ]
 });

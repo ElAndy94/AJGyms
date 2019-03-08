@@ -1,5 +1,3 @@
-//@ts-check
-
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const logger = require('../utility/logger');

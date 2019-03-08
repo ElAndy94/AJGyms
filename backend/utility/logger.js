@@ -1,5 +1,5 @@
 const { createLogger, format, transports } = require('winston');
-
+// import * as logger from 'winston';
 
 module.exports = createLogger({
   format: format.combine(
@@ -27,7 +27,6 @@ module.exports = createLogger({
     }),
     new transports.Console({
       level: 'debug'
-    }),
+    })
   ]
 });
-
