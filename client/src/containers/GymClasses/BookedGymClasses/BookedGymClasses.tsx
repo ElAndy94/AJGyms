@@ -39,10 +39,8 @@ class BookedGymClasses extends Component<Props> {
 
     return (
       <React.Fragment>
-        <div className='Booked__BackGround'>
-          <section className='Booked__BackGround__Classes'>
-            {gymClasses}
-          </section>
+        <div className='booked__background'>
+          <section className='booked__classes'>{gymClasses}</section>
           <BookedClass
             userId={this.props.userId}
             classId={this.state.selectedClassId}

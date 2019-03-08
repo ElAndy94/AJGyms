@@ -43,7 +43,7 @@ const bookedClass = (props: Props) => {
   }
   if (loadedClass) {
     gymClass = (
-      <div className='BookedClass'>
+      <div className='booked__class'>
         <h1>{loadedClass.location}</h1>
         <p>{loadedClass.type}</p>
         <p>{loadedClass.name}</p>
@@ -52,7 +52,7 @@ const bookedClass = (props: Props) => {
           clicked={() => {
             deleteClassHandler();
           }}
-          btnType='Danger'
+          btnType='danger'
         >
           Delete
         </Button>

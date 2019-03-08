@@ -1,11 +1,11 @@
-.Booked__BackGround {
+.booked__background {
   height: 100vh;
   text-align: center;
   background-color: rgba(111, 172, 213, 0.4);
   overflow: auto;
 }
 
-.Booked__BackGround__Classes {
+.booked__classes {
   position: relative;
   color: #fff;
   margin: 0 auto;
@@ -19,19 +19,4 @@
   display: flex;
   flex-flow: row;
   justify-content: center;
-  // flex-flow: row wrap;
-  // box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.2);
 }
-
-// .BookedGymClasses {
-//   background-image: linear-gradient(to right bottom, rgba(111, 172, 213, 0.8), rgba(83, 134, 211, 0.8));
-//   margin: 20px auto;
-//   width: 50%;
-//   text-align: center;
-//   padding: 10px;
-//   box-sizing: border-box;
-//   box-shadow: 1px 4px 6px 1px rgba(0,0,0,0.2);
-//   transition: 0.3s;
-//   border-radius: 23px;
-//   margin-top: 50px;
-// }

@@ -31,7 +31,7 @@ const dashBoardBuilder = (props: Props) => {
         <p>Join today and pay no joining fee.</p>
         <p>Bring a friend, signup and first month becomes FREE!</p>
         {!props.isAuthenticated ? (
-          <Button btnType='Signup' clicked={() => joinNowClicked()}>
+          <Button btnType='signup' clicked={() => joinNowClicked()}>
             Join Now
           </Button>
         ) : (

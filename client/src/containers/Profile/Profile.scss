@@ -1,4 +1,4 @@
-.Profile__BackGround {
+.profile__background {
   height: 100vh;
   text-align: center;
   background-color: rgba(111, 172, 213, 0.4);
@@ -9,7 +9,7 @@
   }
 }
 
-.Profile__Form {
+.profile__form {
   position: relative;
   // top: 30px;
   background-image: linear-gradient(
@@ -29,13 +29,13 @@
 }
 
 @media (min-width: 600px) {
-  .Profile__Form {
+  .profile__form {
     width: 60%;
   }
 }
 
 @media (max-width: 600px) {
-  .Profile__Form {
+  .profile__form {
     width: 90%;
   }
 }

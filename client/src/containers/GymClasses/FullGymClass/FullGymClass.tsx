@@ -67,8 +67,8 @@ class FullGymClass extends Component<Props> {
     let gymClass = <p />;
     if (this.state.loadedClass) {
       gymClass = (
-        <div className='FullGymClass__BackGround'>
-          <div className='FullGymClass'>
+        <div className='full__gymclass__background'>
+          <div className='full__gymclass'>
             <h1>{this.state.loadedClass.location}</h1>
             <p>{this.state.loadedClass.type}</p>
             <p>{this.state.loadedClass.name}</p>
@@ -76,11 +76,11 @@ class FullGymClass extends Component<Props> {
             <p>{this.state.loadedClass.ptName}</p>
             <div className='button__choice'>
               {this.props.isPt || this.props.isAdmin ? (
-                <Button btnType='Danger' clicked={this.deleteClassHandler}>
+                <Button btnType='danger' clicked={this.deleteClassHandler}>
                   Delete
                 </Button>
               ) : (
-                <Button btnType='Success' clicked={this.bookClassHandler}>
+                <Button btnType='success' clicked={this.bookClassHandler}>
                   Book Class
                 </Button>
               )}

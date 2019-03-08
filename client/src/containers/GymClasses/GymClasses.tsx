@@ -253,13 +253,13 @@ export class GymClasses extends Component<Props> {
     );
     return (
       <React.Fragment>
-        <div className='BackGround__GymClasses'>
-          <div className='GymClasses__form'>
+        <div className='background__gym__classes'>
+          <div className='gym__classes__form'>
             <h1>Select, book and enjoy!</h1>
             {form}
           </div>
-          <div className='Gym__Classes'>{gymClasses}</div>
-          <div className='Extention__SelectedGymClass'>
+          <div className='gym__classes'>{gymClasses}</div>
+          <div className='extention__selected__gymclass'>
             <FullGymClass
               id={this.state.selectedClassId}
               onDelete={this.handleDelete}

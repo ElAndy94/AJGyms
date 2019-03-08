@@ -139,17 +139,17 @@ class Profile extends Component<Props> {
 
     return (
       <React.Fragment>
-        <div className='Profile__BackGround'>
+        <div className='profile__background'>
           {this.state.showProfile ? (
             <UserProfile
               user={this.state.user}
               handleChange={this.handleChange}
             />
           ) : (
-            <form onSubmit={this.submitHandler} className='Profile__Form'>
+            <form onSubmit={this.submitHandler} className='profile__form'>
               {form}
-              <Button btnType='Success'>SUBMIT</Button>
-              <Button btnType='Danger' clicked={this.cancelEdit}>
+              <Button btnType='success'>SUBMIT</Button>
+              <Button btnType='danger' clicked={this.cancelEdit}>
                 CANCEL
               </Button>
             </form>
