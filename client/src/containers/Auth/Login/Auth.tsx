@@ -118,11 +118,11 @@ class Auth extends Component<Props> {
 
     return (
       <React.Fragment>
-        <div className='BackGround__Auth'>
-          <div className='Auth__form'>
+        <div className='background__auth'>
+          <div className='auth__form'>
             {errorMessage}
             <h2>LOGIN</h2>
-            <form className='Auth__form--style' onSubmit={this.submitHandler}>
+            <form className='auth__form--style' onSubmit={this.submitHandler}>
               {form}
               <label>
                 {' '}
@@ -134,7 +134,7 @@ class Auth extends Component<Props> {
                 />
               </label>
               <br />
-              <Button btnType='Success'>SUBMIT</Button>
+              <Button btnType='success'>SUBMIT</Button>
             </form>
           </div>
         </div>

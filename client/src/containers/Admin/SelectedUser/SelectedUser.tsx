@@ -60,27 +60,23 @@ class SelectedUser extends Component<Props> {
     }
     if (this.state.loadedUser) {
       user = (
-        <div className='BackGround'>
-          <div className='SelectedUser'>
+        <div className='background__selectedUser'>
+          <div className='selectedUser'>
             <h1>{this.state.loadedUser.name}</h1>
             <p>{this.state.loadedUser.email}</p>
             <p>{this.state.loadedUser.address}</p>
             <p>{this.state.loadedUser.gymLocation}</p>
             <p>{this.state.loadedUser.pt}</p>
-            <div className='Edit'>
-              {this.props.isAdmin ? (
-                <div>
-                  <Button btnType='Success' clicked={this.editUserHandler}>
-                    Edit User
-                  </Button>
-                  <Button btnType='Danger' clicked={this.deleteUserHandler}>
-                    Delete User
-                  </Button>
-                </div>
-              ) : (
-                <div> </div>
-              )}
-            </div>
+            {this.props.isAdmin && (
+              <div>
+                <Button btnType='success' clicked={this.editUserHandler}>
+                  Edit User
+                </Button>
+                <Button btnType='danger' clicked={this.deleteUserHandler}>
+                  Delete User
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       );

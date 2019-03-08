@@ -1,4 +1,4 @@
-.Button {
+.button {
   background-color: transparent;
   border: none;
   color: white;
@@ -16,17 +16,17 @@
   transition: all 0.2s;
 }
 
-.Button:first-of-type {
+.button:first-of-type {
   margin-left: 0;
   padding-left: 0;
 }
 
-.Button:disabled {
+.button:disabled {
   color: #ccc;
   cursor: not-allowed;
 }
 
-.Success {
+.success {
   background-image: linear-gradient(to right, #00cc00, #009900);
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3);
   color: black !important;
@@ -34,24 +34,24 @@
   width: 6rem;
 }
 
-.Success:focus,
-.Success:hover {
+.success:focus,
+.success:hover {
   outline: none;
   // animation: pulsate 1s infinite;
 }
 
-.Danger {
+.danger {
   background-image: linear-gradient(to right, #b30000, #800000);
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3);
 }
 
-.Danger:focus,
-.Danger:hover {
+.danger:focus,
+.danger:hover {
   outline: none;
   // animation: pulsate 1s infinite;
 }
 
-.Signup {
+.signup {
   padding: 8px 20px 8px 20px !important;
   background-image: linear-gradient(
     to right,
@@ -61,13 +61,13 @@
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3);
 }
 
-.Signup:focus,
-.Signup:hover {
+.signup:focus,
+.signup:hover {
   outline: none;
   // animation: pulsate 1s infinite;
 }
 
-.Edit {
+.edit {
   background-color: #dcd800 !important;
   color: black !important;
   font-size: 16px;
@@ -76,8 +76,8 @@
   // background-image: linear-gradient(to right, #ffee00, #b4b102);
 }
 
-.Edit:focus,
-.Edit:hover {
+.edit:focus,
+.edit:hover {
   outline: none;
   // animation: pulsate 1s infinite;
 }

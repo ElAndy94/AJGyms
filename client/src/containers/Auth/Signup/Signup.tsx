@@ -300,7 +300,7 @@ class Signup extends Component<Props> {
                 />
               </label>
               <br />
-              <Button btnType='Success'>SUBMIT</Button>
+              <Button btnType='success'>SUBMIT</Button>
             </form>
           </div>
         </div>

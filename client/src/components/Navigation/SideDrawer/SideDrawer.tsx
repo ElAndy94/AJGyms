@@ -14,15 +14,15 @@ interface Props {
 }
 
 const sideDrawer = (props: Props) => {
-  let attachedClasses = ['SideDrawer', 'Close'];
+  let attachedClasses = ['sidedrawer', 'close'];
   if (props.open) {
-    attachedClasses = ['SideDrawer', 'Open'];
+    attachedClasses = ['sidedrawer', 'open'];
   }
   return (
     <React.Fragment>
       <Backdrop show={props.open} clicked={props.closed} />
       <div className={attachedClasses.join(' ')} onClick={props.closed}>
-        <div className='Logo'>
+        <div className='logo'>
           <Logo />
         </div>
         <nav>

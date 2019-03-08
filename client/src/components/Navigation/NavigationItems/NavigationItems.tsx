@@ -10,7 +10,7 @@ interface Props {
 }
 
 const navigationItems = (props: Props) => (
-  <ul className='NavigationItems'>
+  <ul className='navigation__items'>
     <NavigationItem link='/' exact>
       Dash Board
     </NavigationItem>

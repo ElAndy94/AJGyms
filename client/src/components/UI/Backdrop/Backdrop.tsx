@@ -8,6 +8,6 @@ interface Props {
 }
 
 const backdrop = (props: Props) =>
-  props.show ? <div className='Backdrop' onClick={props.clicked} /> : null;
+  props.show ? <div className='back__drop' onClick={props.clicked} /> : null;
 
 export default backdrop;

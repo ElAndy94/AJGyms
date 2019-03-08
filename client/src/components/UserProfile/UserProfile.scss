@@ -1,14 +1,14 @@
-.User__Profile {
+.user__profile {
   text-align: center;
   width: 100%;
   margin: auto;
 
-  & .User__Profile__Wrapper {
+  & .user__profile__wrapper {
     display: grid;
     grid-template-columns: 100%;
     grid-gap: 10px;
 
-    & .Card {
+    & .card {
       margin-top: 8rem;
       height: 100%;
       width: 100%;
@@ -28,7 +28,7 @@
 }
 
 @media (min-width: 600px) {
-  .User__Profile {
+  .user__profile {
     width: 500px;
   }
 }

@@ -5,9 +5,9 @@ import User from './User/User';
 
 const userProfile = props => {
   return (
-    <div key={props.user.id} className='User__Profile'>
-      <div className='User__Profile__Wrapper'>
-        <div className='Card'>
+    <div key={props.user.id} className='user__profile'>
+      <div className='user__profile__wrapper'>
+        <div className='card'>
           <User user={props.user} edit={props.handleChange} />
         </div>
       </div>

@@ -1,6 +1,5 @@
 const http = require('http');
 const app = require('./app');
-// import * as app from './app';
 const debug = require('debug');
 
 const normalizePort = val => {
@@ -23,7 +22,6 @@ const onError = error => {
   if (error.syscall !== 'listen') {
     throw error;
   }
-  //@ts-ignore
   const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + port;
   switch (error.code) {
     case 'EACCES':
@@ -46,7 +44,6 @@ const onListening = () => {
 };
 
 const port = normalizePort(process.env.PORT || '8080');
-//@ts-ignore
 app.set('port', port);
 
 const server = http.createServer(app);

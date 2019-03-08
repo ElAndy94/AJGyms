@@ -1,11 +1,11 @@
-.BackGround__Auth {
+.background__auth {
   text-align: center;
   height: 100vh;
   background-color: rgba(111, 172, 213, 0.4);
   overflow-x: hidden;
   overflow-y: auto;
 
-  & .Auth__form {
+  & .auth__form {
     position: relative;
     margin: 10rem auto;
     width: 35%;
@@ -22,14 +22,14 @@
     border-radius: 23px;
     box-shadow: 1px 4px 6px 1px rgba(0, 0, 0, 0.2);
 
-    & .Auth__form--style input {
+    & .auth__form--style--style input {
       font-weight: 700;
     }
   }
 }
 
 @media (min-width: 600px) {
-  .Auth__form {
+  .auth__form {
     width: 500px;
   }
 }

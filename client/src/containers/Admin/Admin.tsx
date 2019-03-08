@@ -157,10 +157,10 @@ class Admin extends Component<Props, State> {
     );
     return (
       <React.Fragment>
-        <div className='BackGround'>
-          <h1 className='FancyFont'> Users </h1>
-          <div className='DropDown'>{form}</div>
-          <div className='Users'>{users}</div>
+        <div className='background__admin'>
+          <h1 className='fancyFont'> Users </h1>
+          <div className='dropDown__form'>{form}</div>
+          <div className='users__admin'>{users}</div>
           <SelectedUser
             userId={this.props.userId}
             isAdmin={this.props.isAdmin}

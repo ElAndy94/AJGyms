@@ -1,20 +1,21 @@
-.Logo {
+.logo__style {
   /* background-color: white; */
+  background-image: url('../../assets/images/logo.svg');
   padding: 8px;
   height: 100%;
   box-sizing: border-box;
   border-radius: 5px;
 }
 
-.Logo img {
+.logo__style img {
   height: 100%;
   animation: Logo-spin infinite 5s linear;
 }
 
-  .Logo img:hover,
-  .Logo img:focus {
-    animation: Logo-spin infinite 2s linear;
-  }
+.logo__style img:hover,
+.logo__style img:focus {
+  animation: Logo-spin infinite 2s linear;
+}
 
 @keyframes Logo-spin {
   from {

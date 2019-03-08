@@ -4,7 +4,7 @@ import './Input.scss';
 
 const input = (props: any) => {
   let inputElement = null;
-  const inputClasses = ['InputElement'];
+  const inputClasses = ['input__element'];
 
   if (props.invalid && props.shouldValidate && props.touched) {
     inputClasses.push('Invalid');
@@ -58,8 +58,8 @@ const input = (props: any) => {
   }
 
   return (
-    <div className='Input'>
-      <label className='Label'>{props.label}</label>
+    <div className='input'>
+      <label className='label'>{props.label}</label>
       {inputElement}
     </div>
   );
